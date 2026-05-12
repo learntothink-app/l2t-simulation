@@ -25,6 +25,7 @@ from l2t_sim.analysis import aggregate_table, test_h1, test_h1b, test_h2, test_h
 from l2t_sim.invariants import verify_invariants_on_fsm
 from l2t_sim.methodology import (
     generate_synthetic_methodology,
+    load_probability_methodology,
     save_synthetic_to_json,
 )
 from l2t_sim.reporting import (
@@ -72,6 +73,19 @@ def main() -> int:
     log.info("config: %s", cfg)
 
     # Methodologies ---------------------------------------------------------
+    prob_path = ROOT / "methodologies" / "probability_basics.json"
+    log.info("loading probability methodology from %s", prob_path)
+    probability = load_probability_methodology(prob_path)
+    log.info(
+        "probability: %d vertices, %d edges, %d skills, %d tasks, %d transfer, %d holdout",
+        len(probability.hypergraph.vertices),
+        len(probability.hypergraph.edges),
+        len(probability.hypergraph.skill_ids),
+        len(probability.tasks),
+        len(probability.transfer_tasks),
+        len(probability.holdout_transfer_ids),
+    )
+
     log.info("generating synthetic methodology (seed=%d)", cfg["method_seed"])
     synth = generate_synthetic_methodology(seed=cfg["method_seed"])
     save_synthetic_to_json(synth, ROOT / "methodologies" / "synthetic_abstract.json")
@@ -85,7 +99,7 @@ def main() -> int:
         len(synth.holdout_transfer_ids),
     )
 
-    methodologies = {"synthetic": synth}
+    methodologies = {"probability": probability, "synthetic": synth}
 
     # Manifest --------------------------------------------------------------
     manifest = {
@@ -130,6 +144,9 @@ def main() -> int:
     log.info("wrote %s", table_dir / "main_results.csv")
 
     # Hypotheses ------------------------------------------------------------
+    # POOLED testing: combine all methodologies for the primary statistical
+    # tests. Per-methodology breakdowns are saved separately for
+    # transparency in §VIII.
     pooled: dict[str, list] = {p: [] for p in POLICY_NAMES}
     for (_meth, pol), recs in all_results.items():
         pooled[pol].extend(recs)
@@ -139,12 +156,30 @@ def main() -> int:
     h2 = test_h2(pooled["B2_bkt"], pooled["B3_l2t_no_q"], pooled["B4_full_l2t"])
     h3 = test_h3(pooled["B1_random"], pooled["B2_bkt"], pooled["B3_l2t_no_q"], pooled["B4_full_l2t"])
     h4 = test_h4(pooled["B3_l2t_no_q"], pooled["B4_full_l2t"])
+
+    per_methodology: dict[str, dict] = {"H2": {}, "H3": {}, "H1b": {}}
+    for meth_name in methodologies:
+        b1 = all_results[(meth_name, "B1_random")]
+        b2 = all_results[(meth_name, "B2_bkt")]
+        b3 = all_results[(meth_name, "B3_l2t_no_q")]
+        b4 = all_results[(meth_name, "B4_full_l2t")]
+        per_methodology["H2"][meth_name] = test_h2(b2, b3, b4)
+        per_methodology["H3"][meth_name] = test_h3(b1, b2, b3, b4)
+        per_methodology["H1b"][meth_name] = test_h1b(b1, b3, b4)
+
     log.info("H1: %s", h1)
     log.info("H1b: %s", h1b)
     log.info("H4: %s", h4)
     save_json(
         table_dir / "hypothesis_tests.json",
-        {"H1": h1, "H1b": h1b, "H2": h2, "H3": h3, "H4": h4},
+        {
+            "H1": h1,
+            "H1b": h1b,
+            "H2": h2,
+            "H3": h3,
+            "H4": h4,
+            "_per_methodology": per_methodology,
+        },
     )
 
     # Model-checking --------------------------------------------------------
