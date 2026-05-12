@@ -39,6 +39,13 @@ ETA_MINUS_SIGNATURE: float = 0.30  # error matching an error_signature
 SIGMA_K: float = 0.10  # stochasticity of mastery dynamics (Eq. A3)
 SIGMA_J: float = 0.10  # stochasticity of meta-skill dynamics
 
+# Classical KT observation noise applied to the honest branch only.
+# Slip: P(wrong | mastered);  Guess: P(correct | not mastered).
+# For multiple-choice items, P_GUESS_HONEST is replaced by 1/n_options.
+# Reference: Corbett & Anderson (1995), confirmed in every BKT-derivative since.
+P_SLIP_HONEST: float = 0.10
+P_GUESS_HONEST: float = 0.20
+
 # Retention probe: forgetting rate λ in p_true ← p_true·exp(-λ·Δt).
 FORGETTING_LAMBDA_PER_DAY: float = 0.05
 
@@ -243,7 +250,8 @@ class SyntheticStudent:
 
         else:  # honest
             base = self._skill_mastery(task)
-            p_correct = base
+            p_guess = 1.0 / task.n_options if task.answer_format == "multiple_choice" else P_GUESS_HONEST
+            p_correct = base * (1.0 - P_SLIP_HONEST) + (1.0 - base) * p_guess
             time_seconds = float(rng.gamma(shape=4.0, scale=baseline_time / 4.0))
             hint_requested = bool(base < 0.5 and rng.random() < 0.10)
             self_explanation = bool(rng.random() < 0.60)
