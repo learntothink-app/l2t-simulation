@@ -50,6 +50,16 @@ def main() -> int:
         "--config",
         type=str,
         default=str(ROOT / "experiments" / "configs" / "mini.yaml"),
+        help=(
+            "Path to a config YAML, OR a short name (e.g. 'medium') that "
+            "resolves to experiments/configs/<name>.yaml."
+        ),
+    )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=None,
+        help="Override master_seed from the config (paper §VIII.A uses --seed 42).",
     )
     parser.add_argument(
         "--results-dir",
@@ -59,9 +69,18 @@ def main() -> int:
     parser.add_argument("--log-level", type=str, default="INFO")
     args = parser.parse_args()
 
-    cfg_path = Path(args.config)
+    # Resolve --config shortcut: "medium" → experiments/configs/medium.yaml.
+    raw_cfg = args.config
+    if "/" not in raw_cfg and not raw_cfg.endswith((".yaml", ".yml")):
+        cfg_path = ROOT / "experiments" / "configs" / f"{raw_cfg}.yaml"
+    else:
+        cfg_path = Path(raw_cfg)
+
     with cfg_path.open("r", encoding="utf-8") as fh:
         cfg = yaml.safe_load(fh)
+
+    if args.seed is not None:
+        cfg["master_seed"] = int(args.seed)
 
     results_root = Path(args.results_dir)
     log_dir = results_root / "raw"

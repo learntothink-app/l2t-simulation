@@ -15,14 +15,14 @@ python -m pip install -e .
 ## Quick run
 
 ```bash
-# 10s smoke test
-python experiments/run_main.py --config experiments/configs/mini.yaml
+# Paper §VIII.A reproducibility block: production run, N=1000, T=100
+python experiments/main.py --seed 42 --config medium
+
+# 10s smoke test (mini config)
+python experiments/main.py --config mini
 
 # Iteration / calibration (N=300)
-python experiments/run_main.py --config experiments/configs/small.yaml
-
-# Full run (N=1000, T=100, 4 policies × 2 methodologies)
-python experiments/run_main.py --config experiments/configs/medium.yaml
+python experiments/main.py --config small
 
 # Model-check invariants on the controller FSM (no simulation)
 python experiments/run_model_checking.py
@@ -30,6 +30,10 @@ python experiments/run_model_checking.py
 # Sensitivity to hyperedge type weights w_kappa (±20%)
 python experiments/run_sensitivity.py
 ```
+
+`--config` accepts a short name (resolved to `experiments/configs/<name>.yaml`)
+or an explicit path. `--seed` overrides `master_seed` from the config. The
+older `experiments/run_main.py` entry point is still supported.
 
 ### Expected runtimes
 
