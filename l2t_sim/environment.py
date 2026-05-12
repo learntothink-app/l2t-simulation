@@ -1,4 +1,4 @@
-"""Synthetic student environment.
+"""Simulated student environment.
 
 Implements the four behaviour types from §VII (honest, guesser, copier,
 help_seeker) and the logistic-normal mastery dynamics of Eq. (A3). The
@@ -78,7 +78,7 @@ def _expit_safe(x: np.ndarray, lo: float = 1e-6, hi: float = 1 - 1e-6) -> np.nda
 
 @dataclass
 class SyntheticStudent:
-    """Synthetic learner with hidden state ``s_t = (p, c, m, e, ψ)``.
+    """Simulated learner with hidden state ``s_t = (p, c, m, e, ψ)``.
 
     We model the two pedagogically-load-bearing components: ``p_true`` and
     ``m_true``. The behaviour type governs the observation kernel.

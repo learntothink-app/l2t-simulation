@@ -88,7 +88,7 @@ def render_latex_table(rows: list[AggregateRow], methodology: str) -> str:
             cells.append(_fmt(r.mean, r.ci_low, r.ci_high) if r is not None else "---")
         s += met.replace("_", "\\_") + " & " + " & ".join(cells) + " \\\\\n"
     s += "\\hline\n\\end{tabular}\n"
-    s += "\\caption{Headline results on the " + methodology + " methodology (mean and 95\\% bootstrap CI over $N=1000$ synthetic students).}\n"
+    s += "\\caption{Headline results on the " + methodology + " methodology (mean and 95\\% bootstrap CI over $N=1000$ simulated students).}\n"
     s += "\\label{tab:headline-" + methodology + "}\n\\end{table}\n"
     return s
 
@@ -240,7 +240,7 @@ def render_latex_section(
     lines.append("\\subsection{Simulation setup}\n")
     lines.append(
         f"We executed the simulation protocol of Sec.~\\ref{{sec:simulation}} on "
-        f"$N={n_students}$ synthetic students with $T={t_steps}$ tutoring steps each, "
+        f"$N={n_students}$ simulated students with $T={t_steps}$ tutoring steps each, "
         "on two methodologies: (i)~a canonical introductory probability methodology "
         "covering sample spaces through conditional probability "
         "($10$ concepts, $12$ skills, $25$ training tasks, $18$ transfer tasks) and "
