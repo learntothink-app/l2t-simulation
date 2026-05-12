@@ -48,6 +48,21 @@ and a LaTeX fragment for §VIII is written to `docs/paper_section_VIII.tex`.
 The exact seeds, hyperparameters, and library versions used for any given run
 are dumped to `experiment_manifest.json` next to the results.
 
+## Methodologies
+
+The simulation ships with two methodologies, each loaded automatically by
+`experiments/run_main.py`:
+
+| Methodology | Role | Domain | Size |
+|---|---|---|---|
+| **probability** (primary) | Statistical hypothesis testing | Discrete probability — coins, dice, bags, cards | 10 concepts, 12 skills, 3 metaskills, 8 misconceptions, 25 training tasks, 18 transfer tasks |
+| **synthetic** (control) | Graph-structure / scale control | Seeded random topology | 8 concepts, 10 skills, 3 metaskills, 12 errors, 40 tasks, 15 transfer tasks |
+
+Hypothesis tests **H1, H1b, H2, H3, H4** are evaluated on **pooled** records
+across both methodologies (N≈2000 at the medium config). Per-methodology
+breakdowns for H1b, H2, H3 are saved to
+`results/tables/hypothesis_tests.json` under the `_per_methodology` key.
+
 ## Tests
 
 ```bash
