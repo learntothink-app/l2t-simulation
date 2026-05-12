@@ -1,4 +1,4 @@
-"""Methodologies: Fano loader and synthetic abstract generator.
+"""Methodologies: JSON-driven loader and synthetic abstract generator.
 
 A *methodology* is the union of:
   * a typed hypergraph ``H`` (knowledge structure), and
@@ -34,8 +34,8 @@ class Task:
     """L2T task / drill / probe record (Sec. IV.A).
 
     Required-skill / required-concept references are id-strings into the
-    hypergraph; missing references are dropped silently to keep the loader
-    robust against the experimental Fano fixture.
+    hypergraph; missing references are dropped silently so JSON fixtures
+    with stray ids load robustly.
     """
 
     id: str
@@ -107,166 +107,6 @@ class MethodologyData:
     def main_loop_transfer_ids(self) -> list[str]:
         """Transfer task ids visible to policies during the main loop."""
         return [tid for tid in self.transfer_tasks if tid not in self.holdout_transfer_ids]
-
-
-# ---------------------------------------------------------------------------
-# Fano loader
-
-
-def load_fano_methodology(path: str | Path) -> MethodologyData:
-    """Build a :class:`MethodologyData` from the open Fano JSON fixture."""
-
-    raw = load_json(path)
-    H = Hypergraph()
-
-    # 1) Hypergraph nodes from JSON.
-    kind_map = {
-        "concept": "concept",
-        "skill": "skill",
-        "metaskill": "metaskill",
-        "error": "error",
-        "topic": "topic",
-    }
-    for node in raw["hypergraph"]["nodes"]:
-        vkind = kind_map.get(node["kind"])
-        if vkind is None:
-            continue
-        if node["id"] in H.vertices:
-            continue
-        H.add_vertex(node["id"], vkind)
-
-    # 2) Tasks / drills / probes contribute *vertices* of those kinds.
-    tasks: dict[str, Task] = {}
-    drills: dict[str, Task] = {}
-    probes: dict[str, Task] = {}
-    transfer_tasks: dict[str, Task] = {}
-    microtheories: dict[str, MicroTheory] = {}
-
-    def _safe_skill_refs(seq: Sequence[str] | None) -> tuple[str, ...]:
-        if not seq:
-            return ()
-        return tuple(s for s in seq if s in H.vertices and H.vertices[s].vtype == "skill")
-
-    def _safe_concept_refs(seq: Sequence[str] | None) -> tuple[str, ...]:
-        if not seq:
-            return ()
-        return tuple(c for c in seq if c in H.vertices and H.vertices[c].vtype == "concept")
-
-    # Scaffolding + target = regular tasks for the simulation.
-    for raw_t in raw.get("scaffolding_tasks", []) + raw.get("target_tasks", []):
-        tid = raw_t["id"]
-        if tid not in H.vertices:
-            H.add_vertex(tid, "task")
-        skills = _safe_skill_refs(raw_t.get("required_skills"))
-        concepts = _safe_concept_refs(raw_t.get("required_concepts"))
-        tasks[tid] = Task(
-            id=tid,
-            kind="task",
-            required_skills=skills,
-            required_concepts=concepts,
-            answer_format="open_text",
-            time_estimate_seconds=60.0 * float(raw_t.get("time_estimate_minutes", 2)),
-        )
-        # requires edges
-        for sk in skills:
-            H.add_edge(f"R_{tid}_{sk}", (tid,), (sk,), "requires", weight=1.0)
-
-    for raw_d in raw.get("drills", []):
-        did = raw_d["id"]
-        if did not in H.vertices:
-            H.add_vertex(did, "drill")
-        train_skills = _safe_skill_refs(raw_d.get("trains_skills"))
-        drills[did] = Task(
-            id=did,
-            kind="drill",
-            required_skills=train_skills,
-            trains_skills=train_skills,
-            time_estimate_seconds=60.0 * float(raw_d.get("estimated_time_minutes", 3)),
-        )
-        for sk in train_skills:
-            eid = f"T_{did}_{sk}"
-            if eid in H.edges:
-                continue
-            H.add_edge(eid, (did,), (sk,), "trains", weight=1.0)
-
-    for raw_p in raw.get("probes", []):
-        pid = raw_p["id"]
-        if pid not in H.vertices:
-            H.add_vertex(pid, "probe")
-        diag_skills = _safe_skill_refs(raw_p.get("diagnoses_skills"))
-        diag_concepts = _safe_concept_refs(raw_p.get("diagnoses_concepts"))
-        probes[pid] = Task(
-            id=pid,
-            kind="probe",
-            required_skills=diag_skills,
-            required_concepts=diag_concepts,
-            diagnoses_skills=diag_skills,
-            answer_format="multiple_choice",
-            n_options=4,
-            time_estimate_seconds=60.0,
-        )
-        for sk in diag_skills:
-            eid = f"DG_{pid}_{sk}"
-            if eid in H.edges:
-                continue
-            H.add_edge(eid, (pid,), (sk,), "diagnoses", weight=1.0)
-
-    for ts in raw.get("transfer_sets", []):
-        target_skills = _safe_skill_refs(ts.get("target_skills"))
-        target_concepts = _safe_concept_refs(ts.get("target_concepts"))
-        for raw_t in ts.get("tasks", []):
-            tid = raw_t["id"]
-            if tid not in H.vertices:
-                H.add_vertex(tid, "task")
-            transfer_tasks[tid] = Task(
-                id=tid,
-                kind="transfer",
-                required_skills=target_skills,
-                required_concepts=target_concepts,
-                answer_format="open_text",
-                time_estimate_seconds=180.0,
-            )
-            for sk in target_skills:
-                eid = f"TV_{tid}_{sk}"
-                if eid in H.edges:
-                    continue
-                # transfer_variant edges link the transfer task to required skills
-                H.add_edge(eid, (tid,), (sk,), "transfer_variant", weight=1.0)
-
-    for mt in raw.get("micro_theories", []):
-        concepts = _safe_concept_refs(mt.get("concept_ids"))
-        microtheories[mt["id"]] = MicroTheory(
-            id=mt["id"], concepts=concepts, title=mt.get("title", "")
-        )
-
-    # 3) Native hyperedges from the JSON.
-    for raw_e in raw["hypergraph"]["hyperedges"]:
-        eid = raw_e["id"]
-        if eid in H.edges:
-            continue
-        tail = tuple(v for v in raw_e["tail"] if v in H.vertices)
-        head = tuple(v for v in raw_e["head"] if v in H.vertices)
-        if not tail or not head:
-            log.warning("dropping edge %s: tail/head missing from vertex set", eid)
-            continue
-        weight = hg.DEFAULT_TYPE_WEIGHTS.get(raw_e["kind"], 1.0)
-        H.add_edge(eid, tail, head, raw_e["kind"], weight=weight)
-
-    # 4) Prerequisite DAG.
-    prereq = [(d["from"], d["to"]) for d in raw["hypergraph"].get("prereq_dag", [])]
-
-    return MethodologyData(
-        name="fano",
-        hypergraph=H,
-        tasks=tasks,
-        drills=drills,
-        probes=probes,
-        transfer_tasks=transfer_tasks,
-        microtheories=microtheories,
-        prereq_dag=prereq,
-        retention_schedule_days=tuple(raw.get("retention_schedule", [1, 3, 7, 14])),
-        hint_ladder_max=6,
-    )
 
 
 # ---------------------------------------------------------------------------

@@ -221,7 +221,7 @@ def run_single_student(
     # the end of the main loop. Prefer the methodology's holdout set so that
     # the battery measures transfer to *novel* items rather than ones the
     # policy already drilled in-loop; fall back to the first 8 transfer tasks
-    # if no holdout exists (e.g. Fano has only one transfer task total).
+    # if no holdout is configured for the methodology.
     if methodology.holdout_transfer_ids:
         sample_ids = sorted(methodology.holdout_transfer_ids)
     else:

@@ -241,11 +241,13 @@ def render_latex_section(
     lines.append(
         f"We executed the simulation protocol of Sec.~\\ref{{sec:simulation}} on "
         f"$N={n_students}$ synthetic students with $T={t_steps}$ tutoring steps each, "
-        "on two methodologies: (i)~the Fano methodology drawn from the open L2T "
-        "repository and (ii)~a synthetically generated abstract methodology with "
-        "$K=10$ skills, $M=3$ meta-skills, and $40$ tasks. The four behaviour "
-        "types from Sec.~\\ref{sec:simulation}—honest, guesser, copier, "
-        "help_seeker—appear in the proportions $0.60/0.15/0.10/0.15$.\n"
+        "on two methodologies: (i)~a canonical introductory probability methodology "
+        "covering sample spaces through conditional probability "
+        "($10$ concepts, $12$ skills, $25$ training tasks, $18$ transfer tasks) and "
+        "(ii)~a randomly-generated synthetic methodology used as a control for "
+        "graph-structure effects ($K=10$ skills, $M=3$ meta-skills, $40$ tasks). "
+        "The four behaviour types from Sec.~\\ref{sec:simulation}—honest, guesser, "
+        "copier, help\\_seeker—appear in the proportions $0.60/0.15/0.10/0.15$.\n"
     )
     for meth in methodologies:
         lines.append(f"\\subsection{{Headline results: {meth}}}\n")

@@ -25,7 +25,6 @@ from l2t_sim.analysis import aggregate_table, test_h1, test_h1b, test_h2, test_h
 from l2t_sim.invariants import verify_invariants_on_fsm
 from l2t_sim.methodology import (
     generate_synthetic_methodology,
-    load_fano_methodology,
     save_synthetic_to_json,
 )
 from l2t_sim.reporting import (
@@ -73,30 +72,20 @@ def main() -> int:
     log.info("config: %s", cfg)
 
     # Methodologies ---------------------------------------------------------
-    fano_path = ROOT / "methodologies" / "fano.json"
-    log.info("loading Fano methodology from %s", fano_path)
-    fano = load_fano_methodology(fano_path)
-    log.info(
-        "fano: %d vertices, %d edges, %d skills, %d tasks, %d transfer",
-        len(fano.hypergraph.vertices),
-        len(fano.hypergraph.edges),
-        len(fano.hypergraph.skill_ids),
-        len(fano.tasks),
-        len(fano.transfer_tasks),
-    )
-
     log.info("generating synthetic methodology (seed=%d)", cfg["method_seed"])
     synth = generate_synthetic_methodology(seed=cfg["method_seed"])
     save_synthetic_to_json(synth, ROOT / "methodologies" / "synthetic_abstract.json")
     log.info(
-        "synthetic: %d vertices, %d edges, %d skills, %d tasks",
+        "synthetic: %d vertices, %d edges, %d skills, %d tasks, %d transfer, %d holdout",
         len(synth.hypergraph.vertices),
         len(synth.hypergraph.edges),
         len(synth.hypergraph.skill_ids),
         len(synth.tasks),
+        len(synth.transfer_tasks),
+        len(synth.holdout_transfer_ids),
     )
 
-    methodologies = {"fano": fano, "synthetic": synth}
+    methodologies = {"synthetic": synth}
 
     # Manifest --------------------------------------------------------------
     manifest = {
@@ -141,23 +130,15 @@ def main() -> int:
     log.info("wrote %s", table_dir / "main_results.csv")
 
     # Hypotheses ------------------------------------------------------------
-    # H1 stays Fano-only as an ablation comparison (B4 vs B3 only differ in
-    # the q_t weighting, the rest is identical). H1b pools both methodologies
-    # for the main L2T-vs-Random comparison on m_robust.
-    fano_b3 = all_results[("fano", "B3_l2t_no_q")]
-    fano_b4 = all_results[("fano", "B4_full_l2t")]
-    fano_b2 = all_results[("fano", "B2_bkt")]
-    fano_b1 = all_results[("fano", "B1_random")]
-
     pooled: dict[str, list] = {p: [] for p in POLICY_NAMES}
     for (_meth, pol), recs in all_results.items():
         pooled[pol].extend(recs)
 
-    h1 = test_h1(fano_b3, fano_b4)
+    h1 = test_h1(pooled["B3_l2t_no_q"], pooled["B4_full_l2t"])
     h1b = test_h1b(pooled["B1_random"], pooled["B3_l2t_no_q"], pooled["B4_full_l2t"])
-    h2 = test_h2(fano_b2, fano_b3, fano_b4)
-    h3 = test_h3(fano_b1, fano_b2, fano_b3, fano_b4)
-    h4 = test_h4(fano_b3, fano_b4)
+    h2 = test_h2(pooled["B2_bkt"], pooled["B3_l2t_no_q"], pooled["B4_full_l2t"])
+    h3 = test_h3(pooled["B1_random"], pooled["B2_bkt"], pooled["B3_l2t_no_q"], pooled["B4_full_l2t"])
+    h4 = test_h4(pooled["B3_l2t_no_q"], pooled["B4_full_l2t"])
     log.info("H1: %s", h1)
     log.info("H1b: %s", h1b)
     log.info("H4: %s", h4)

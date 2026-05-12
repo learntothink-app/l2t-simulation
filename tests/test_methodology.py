@@ -4,18 +4,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from l2t_sim.methodology import generate_synthetic_methodology, load_fano_methodology
+from l2t_sim.methodology import generate_synthetic_methodology
 
 ROOT = Path(__file__).resolve().parent.parent
-
-
-def test_fano_loads() -> None:
-    md = load_fano_methodology(ROOT / "methodologies" / "fano.json")
-    assert md.name == "fano"
-    assert len(md.hypergraph.skill_ids) > 0
-    assert any(v.vtype == "concept" for v in md.hypergraph.vertices.values())
-    assert any(v.vtype == "metaskill" for v in md.hypergraph.vertices.values())
-    assert len(md.tasks) + len(md.transfer_tasks) >= 1
 
 
 def test_synthetic_is_dag() -> None:

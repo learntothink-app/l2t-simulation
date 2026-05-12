@@ -11,23 +11,17 @@ from pathlib import Path
 
 import pytest
 
-from l2t_sim.methodology import generate_synthetic_methodology, load_fano_methodology
+from l2t_sim.methodology import generate_synthetic_methodology
 from l2t_sim.simulation import run_simulation
 
 
 ROOT = Path(__file__).resolve().parent.parent
-FANO = ROOT / "methodologies" / "fano.json"
 
 
 @pytest.fixture(scope="module")
 def methodologies():
-    fano = load_fano_methodology(FANO) if FANO.exists() else None
     synth = generate_synthetic_methodology(seed=1)
-    out = {}
-    if fano is not None:
-        out["fano"] = fano
-    out["synthetic"] = synth
-    return out
+    return {"synthetic": synth}
 
 
 @pytest.mark.parametrize("policy", ["B1_random", "B2_bkt", "B3_l2t_no_q", "B4_full_l2t"])
