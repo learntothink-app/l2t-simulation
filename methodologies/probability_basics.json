@@ -10,103 +10,1821 @@
     "language": "en",
     "description": "Canonical introductory probability methodology — coins, dice, bags, cards. Covers 10 concepts, 12 skills, 3 metaskills, 8 misconceptions. Primary statistical-testing domain for L2T simulation."
   },
-
   "hypergraph": {
     "nodes": [
-      {"id": "C_sample_space", "kind": "concept", "title": "Sample space (Ω)", "description": "Set of all possible outcomes of an experiment. For one coin flip: {H, T}. For two dice: 36 ordered pairs."},
-      {"id": "C_equally_likely", "kind": "concept", "title": "Equally likely outcomes", "description": "Assumption (not a theorem) that each outcome of Ω has the same probability. Applies to fair coins/dice, not to weighted ones."},
-      {"id": "C_event", "kind": "concept", "title": "Event (A ⊆ Ω)", "description": "Subset of the sample space. 'At least one head in two flips' = {HH, HT, TH}."},
-      {"id": "C_classical_probability", "kind": "concept", "title": "Classical probability P(A)", "description": "P(A) = |A| / |Ω| when outcomes are equally likely. The most basic definition."},
-      {"id": "C_complement", "kind": "concept", "title": "Complement rule", "description": "P(¬A) = 1 − P(A). Useful when 'not happening' is easier to count than 'happening'."},
-      {"id": "C_independence", "kind": "concept", "title": "Independence", "description": "Two events are independent if knowing one doesn't change the probability of the other. Formally P(A∩B) = P(A)·P(B)."},
-      {"id": "C_joint_independent", "kind": "concept", "title": "Joint probability (independent)", "description": "For independent A, B: P(A and B) = P(A)·P(B). Multiplication rule."},
-      {"id": "C_mutually_exclusive", "kind": "concept", "title": "Mutually exclusive events", "description": "Two events that cannot both happen. P(A∪B) = P(A) + P(B). Addition rule (special case)."},
-      {"id": "C_conditional_probability", "kind": "concept", "title": "Conditional probability P(A|B)", "description": "Probability of A given that B happened. P(A|B) = P(A∩B)/P(B)."},
-      {"id": "C_expected_value", "kind": "concept", "title": "Expected value E[X]", "description": "Long-run average value of a random variable. E[X] = Σ x · P(X=x)."},
-
-      {"id": "S_enumerate_outcomes", "kind": "skill", "title": "Enumerate sample space"},
-      {"id": "S_count_favorable", "kind": "skill", "title": "Count favorable outcomes"},
-      {"id": "S_compute_simple_probability", "kind": "skill", "title": "Compute P(A) = favorable/total"},
-      {"id": "S_apply_complement_rule", "kind": "skill", "title": "Apply complement rule"},
-      {"id": "S_recognize_independence", "kind": "skill", "title": "Recognize independence"},
-      {"id": "S_compute_joint_independent", "kind": "skill", "title": "Compute P(A∩B) for independent events"},
-      {"id": "S_apply_addition_mutually_exclusive", "kind": "skill", "title": "Addition rule for mutually exclusive events"},
-      {"id": "S_apply_addition_general", "kind": "skill", "title": "General addition rule"},
-      {"id": "S_compute_conditional", "kind": "skill", "title": "Compute conditional probability"},
-      {"id": "S_apply_bayes_simple", "kind": "skill", "title": "Apply simple Bayes' theorem"},
-      {"id": "S_compute_expected_value_discrete", "kind": "skill", "title": "Compute discrete expected value"},
-      {"id": "S_distinguish_probability_frequency", "kind": "skill", "title": "Distinguish probability from observed frequency"},
-
-      {"id": "MS_check_range_validity", "kind": "metaskill", "title": "Sanity check: probability ∈ [0,1]"},
-      {"id": "MS_enumerate_carefully", "kind": "metaskill", "title": "Enumerate without double-counting"},
-      {"id": "MS_distinguish_and_or", "kind": "metaskill", "title": "Distinguish 'and' / 'or' in problem text"},
-
-      {"id": "E_gamblers_fallacy", "kind": "error", "title": "Gambler's fallacy", "description": "After 5 heads in a row, tails is treated as 'more likely'. Independent events have no memory."},
-      {"id": "E_equiprobability_bias", "kind": "error", "title": "Equiprobability bias", "description": "Assuming all outcomes are equally likely without checking (e.g. sum=2 and sum=7 on two dice)."},
-      {"id": "E_conjunction_fallacy", "kind": "error", "title": "Conjunction fallacy", "description": "P(A∩B) > P(A) — impossible. Classic Linda-the-bank-teller setup."},
-      {"id": "E_inverse_confusion", "kind": "error", "title": "Inverse confusion", "description": "Treating P(A|B) and P(B|A) as the same quantity."},
-      {"id": "E_outcome_focus_bias", "kind": "error", "title": "Outcome approach", "description": "Predicting on a single outcome's probability ('I'll definitely win because P=1/6') instead of distribution thinking."},
-      {"id": "E_addition_without_subtraction", "kind": "error", "title": "Addition without subtraction", "description": "P(A∪B) = P(A) + P(B) when events are NOT mutually exclusive — missing the intersection term."},
-      {"id": "E_independence_assumption_error", "kind": "error", "title": "Assuming independence when there is none", "description": "Multiplying probabilities for dependent events such as drawing two cards without replacement."},
-      {"id": "E_base_rate_neglect", "kind": "error", "title": "Base rate neglect", "description": "Ignoring the prior probability in Bayes problems (medical-testing classics)."}
+      {
+        "id": "C_sample_space",
+        "kind": "concept",
+        "title": "Sample space (Ω)",
+        "description": "Set of all possible outcomes of an experiment. For one coin flip: {H, T}. For two dice: 36 ordered pairs."
+      },
+      {
+        "id": "C_equally_likely",
+        "kind": "concept",
+        "title": "Equally likely outcomes",
+        "description": "Assumption (not a theorem) that each outcome of Ω has the same probability. Applies to fair coins/dice, not to weighted ones."
+      },
+      {
+        "id": "C_event",
+        "kind": "concept",
+        "title": "Event (A ⊆ Ω)",
+        "description": "Subset of the sample space. 'At least one head in two flips' = {HH, HT, TH}."
+      },
+      {
+        "id": "C_classical_probability",
+        "kind": "concept",
+        "title": "Classical probability P(A)",
+        "description": "P(A) = |A| / |Ω| when outcomes are equally likely. The most basic definition."
+      },
+      {
+        "id": "C_complement",
+        "kind": "concept",
+        "title": "Complement rule",
+        "description": "P(¬A) = 1 − P(A). Useful when 'not happening' is easier to count than 'happening'."
+      },
+      {
+        "id": "C_independence",
+        "kind": "concept",
+        "title": "Independence",
+        "description": "Two events are independent if knowing one doesn't change the probability of the other. Formally P(A∩B) = P(A)·P(B)."
+      },
+      {
+        "id": "C_joint_independent",
+        "kind": "concept",
+        "title": "Joint probability (independent)",
+        "description": "For independent A, B: P(A and B) = P(A)·P(B). Multiplication rule."
+      },
+      {
+        "id": "C_mutually_exclusive",
+        "kind": "concept",
+        "title": "Mutually exclusive events",
+        "description": "Two events that cannot both happen. P(A∪B) = P(A) + P(B). Addition rule (special case)."
+      },
+      {
+        "id": "C_conditional_probability",
+        "kind": "concept",
+        "title": "Conditional probability P(A|B)",
+        "description": "Probability of A given that B happened. P(A|B) = P(A∩B)/P(B)."
+      },
+      {
+        "id": "C_expected_value",
+        "kind": "concept",
+        "title": "Expected value E[X]",
+        "description": "Long-run average value of a random variable. E[X] = Σ x · P(X=x)."
+      },
+      {
+        "id": "S_enumerate_outcomes",
+        "kind": "skill",
+        "title": "Enumerate sample space"
+      },
+      {
+        "id": "S_count_favorable",
+        "kind": "skill",
+        "title": "Count favorable outcomes"
+      },
+      {
+        "id": "S_compute_simple_probability",
+        "kind": "skill",
+        "title": "Compute P(A) = favorable/total"
+      },
+      {
+        "id": "S_apply_complement_rule",
+        "kind": "skill",
+        "title": "Apply complement rule"
+      },
+      {
+        "id": "S_recognize_independence",
+        "kind": "skill",
+        "title": "Recognize independence"
+      },
+      {
+        "id": "S_compute_joint_independent",
+        "kind": "skill",
+        "title": "Compute P(A∩B) for independent events"
+      },
+      {
+        "id": "S_apply_addition_mutually_exclusive",
+        "kind": "skill",
+        "title": "Addition rule for mutually exclusive events"
+      },
+      {
+        "id": "S_apply_addition_general",
+        "kind": "skill",
+        "title": "General addition rule"
+      },
+      {
+        "id": "S_compute_conditional",
+        "kind": "skill",
+        "title": "Compute conditional probability"
+      },
+      {
+        "id": "S_apply_bayes_simple",
+        "kind": "skill",
+        "title": "Apply simple Bayes' theorem"
+      },
+      {
+        "id": "S_compute_expected_value_discrete",
+        "kind": "skill",
+        "title": "Compute discrete expected value"
+      },
+      {
+        "id": "S_distinguish_probability_frequency",
+        "kind": "skill",
+        "title": "Distinguish probability from observed frequency"
+      },
+      {
+        "id": "MS_check_range_validity",
+        "kind": "metaskill",
+        "title": "Sanity check: probability ∈ [0,1]"
+      },
+      {
+        "id": "MS_enumerate_carefully",
+        "kind": "metaskill",
+        "title": "Enumerate without double-counting"
+      },
+      {
+        "id": "MS_distinguish_and_or",
+        "kind": "metaskill",
+        "title": "Distinguish 'and' / 'or' in problem text"
+      },
+      {
+        "id": "E_gamblers_fallacy",
+        "kind": "error",
+        "title": "Gambler's fallacy",
+        "description": "After 5 heads in a row, tails is treated as 'more likely'. Independent events have no memory."
+      },
+      {
+        "id": "E_equiprobability_bias",
+        "kind": "error",
+        "title": "Equiprobability bias",
+        "description": "Assuming all outcomes are equally likely without checking (e.g. sum=2 and sum=7 on two dice)."
+      },
+      {
+        "id": "E_conjunction_fallacy",
+        "kind": "error",
+        "title": "Conjunction fallacy",
+        "description": "P(A∩B) > P(A) — impossible. Classic Linda-the-bank-teller setup."
+      },
+      {
+        "id": "E_inverse_confusion",
+        "kind": "error",
+        "title": "Inverse confusion",
+        "description": "Treating P(A|B) and P(B|A) as the same quantity."
+      },
+      {
+        "id": "E_outcome_focus_bias",
+        "kind": "error",
+        "title": "Outcome approach",
+        "description": "Predicting on a single outcome's probability ('I'll definitely win because P=1/6') instead of distribution thinking."
+      },
+      {
+        "id": "E_addition_without_subtraction",
+        "kind": "error",
+        "title": "Addition without subtraction",
+        "description": "P(A∪B) = P(A) + P(B) when events are NOT mutually exclusive — missing the intersection term."
+      },
+      {
+        "id": "E_independence_assumption_error",
+        "kind": "error",
+        "title": "Assuming independence when there is none",
+        "description": "Multiplying probabilities for dependent events such as drawing two cards without replacement."
+      },
+      {
+        "id": "E_base_rate_neglect",
+        "kind": "error",
+        "title": "Base rate neglect",
+        "description": "Ignoring the prior probability in Bayes problems (medical-testing classics)."
+      }
     ],
-
     "hyperedges": [
-      {"id": "REQ_sample_space_enum", "kind": "requires", "tail": ["C_sample_space"], "head": ["S_enumerate_outcomes"], "weight": 1.0},
-      {"id": "REQ_event_count", "kind": "requires", "tail": ["C_event"], "head": ["S_count_favorable"], "weight": 1.0},
-      {"id": "REQ_classical_compute", "kind": "requires", "tail": ["C_classical_probability"], "head": ["S_compute_simple_probability"], "weight": 1.0},
-      {"id": "REQ_complement_apply", "kind": "requires", "tail": ["C_complement"], "head": ["S_apply_complement_rule"], "weight": 1.0},
-      {"id": "REQ_independence_recognize", "kind": "requires", "tail": ["C_independence"], "head": ["S_recognize_independence"], "weight": 1.0},
-      {"id": "REQ_joint_indep_compute", "kind": "requires", "tail": ["C_joint_independent"], "head": ["S_compute_joint_independent"], "weight": 1.0},
-      {"id": "REQ_mutex_add", "kind": "requires", "tail": ["C_mutually_exclusive"], "head": ["S_apply_addition_mutually_exclusive"], "weight": 1.0},
-      {"id": "REQ_addition_general", "kind": "requires", "tail": ["C_classical_probability", "C_mutually_exclusive", "C_event"], "head": ["S_apply_addition_general"], "weight": 1.0},
-      {"id": "REQ_cond_compute", "kind": "requires", "tail": ["C_conditional_probability"], "head": ["S_compute_conditional"], "weight": 1.0},
-      {"id": "REQ_bayes", "kind": "requires", "tail": ["C_conditional_probability"], "head": ["S_apply_bayes_simple"], "weight": 1.0},
-      {"id": "REQ_ev", "kind": "requires", "tail": ["C_expected_value"], "head": ["S_compute_expected_value_discrete"], "weight": 1.0},
-      {"id": "REQ_freq_vs_prob", "kind": "requires", "tail": ["C_classical_probability"], "head": ["S_distinguish_probability_frequency"], "weight": 1.0},
-
-      {"id": "ES_gamblers", "kind": "error_signature", "tail": ["E_gamblers_fallacy"], "head": ["S_recognize_independence"], "weight": 1.0},
-      {"id": "ES_equiprob", "kind": "error_signature", "tail": ["E_equiprobability_bias"], "head": ["S_enumerate_outcomes", "S_count_favorable"], "weight": 1.0},
-      {"id": "ES_conjunction", "kind": "error_signature", "tail": ["E_conjunction_fallacy"], "head": ["S_compute_joint_independent"], "weight": 1.0},
-      {"id": "ES_inverse", "kind": "error_signature", "tail": ["E_inverse_confusion"], "head": ["S_compute_conditional"], "weight": 1.0},
-      {"id": "ES_outcome", "kind": "error_signature", "tail": ["E_outcome_focus_bias"], "head": ["S_distinguish_probability_frequency"], "weight": 1.0},
-      {"id": "ES_add_no_sub", "kind": "error_signature", "tail": ["E_addition_without_subtraction"], "head": ["S_apply_addition_general"], "weight": 1.0},
-      {"id": "ES_indep_assume", "kind": "error_signature", "tail": ["E_independence_assumption_error"], "head": ["S_recognize_independence", "S_compute_joint_independent"], "weight": 1.0},
-      {"id": "ES_base_rate", "kind": "error_signature", "tail": ["E_base_rate_neglect"], "head": ["S_apply_bayes_simple"], "weight": 1.0},
-
-      {"id": "MH_check_range", "kind": "meta_helps_learn", "tail": ["MS_check_range_validity"], "head": ["S_enumerate_outcomes", "S_count_favorable", "S_compute_simple_probability", "S_apply_complement_rule", "S_recognize_independence", "S_compute_joint_independent", "S_apply_addition_mutually_exclusive", "S_apply_addition_general", "S_compute_conditional", "S_apply_bayes_simple", "S_compute_expected_value_discrete", "S_distinguish_probability_frequency"], "weight": 1.0},
-      {"id": "MH_enumerate", "kind": "meta_helps_learn", "tail": ["MS_enumerate_carefully"], "head": ["S_enumerate_outcomes", "S_count_favorable", "S_apply_addition_general"], "weight": 1.0},
-      {"id": "MH_and_or", "kind": "meta_helps_learn", "tail": ["MS_distinguish_and_or"], "head": ["S_compute_joint_independent", "S_apply_addition_mutually_exclusive", "S_apply_addition_general"], "weight": 1.0},
-
-      {"id": "TM_check_all_tasks", "kind": "trains_metaskill", "tail": ["T_basic_2coins_at_least_one_H", "T_basic_die_even", "T_basic_2dice_sum7", "T_basic_bag_3red_2blue", "T_basic_card_heart", "T_complement_die_not_one", "T_complement_2coins_not_both_T", "T_complement_3dice_at_least_one_six", "T_indep_2coins_HH", "T_indep_die_then_coin", "T_indep_2bags_both_red", "T_indep_3coins_all_H", "T_mutex_die_1_or_2", "T_mutex_bag_red_or_blue", "T_mutex_card_ace_or_king", "T_general_card_red_or_face", "T_general_die_even_or_high", "T_general_2dice_first1_or_second6", "T_cond_card_heart_given_red", "T_cond_die_six_given_even", "T_cond_2dice_sum_given_first", "T_cond_bag_no_replacement", "T_bayes_medical_test_basic", "T_bayes_two_coins_one_biased", "T_ev_die_payout"], "head": ["MS_check_range_validity"], "weight": 1.0},
-      {"id": "TM_enumerate_basic", "kind": "trains_metaskill", "tail": ["T_basic_2coins_at_least_one_H", "T_basic_2dice_sum7", "T_basic_bag_3red_2blue", "T_basic_card_heart", "T_general_2dice_first1_or_second6"], "head": ["MS_enumerate_carefully"], "weight": 1.0},
-      {"id": "TM_and_or", "kind": "trains_metaskill", "tail": ["T_mutex_die_1_or_2", "T_mutex_bag_red_or_blue", "T_mutex_card_ace_or_king", "T_general_card_red_or_face", "T_general_die_even_or_high", "T_general_2dice_first1_or_second6", "T_indep_2coins_HH", "T_indep_die_then_coin"], "head": ["MS_distinguish_and_or"], "weight": 1.0}
+      {
+        "id": "REQ_sample_space_enum",
+        "kind": "requires",
+        "tail": [
+          "C_sample_space"
+        ],
+        "head": [
+          "S_enumerate_outcomes"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "REQ_event_count",
+        "kind": "requires",
+        "tail": [
+          "C_event"
+        ],
+        "head": [
+          "S_count_favorable"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "REQ_classical_compute",
+        "kind": "requires",
+        "tail": [
+          "C_classical_probability"
+        ],
+        "head": [
+          "S_compute_simple_probability"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "REQ_complement_apply",
+        "kind": "requires",
+        "tail": [
+          "C_complement"
+        ],
+        "head": [
+          "S_apply_complement_rule"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "REQ_independence_recognize",
+        "kind": "requires",
+        "tail": [
+          "C_independence"
+        ],
+        "head": [
+          "S_recognize_independence"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "REQ_joint_indep_compute",
+        "kind": "requires",
+        "tail": [
+          "C_joint_independent"
+        ],
+        "head": [
+          "S_compute_joint_independent"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "REQ_mutex_add",
+        "kind": "requires",
+        "tail": [
+          "C_mutually_exclusive"
+        ],
+        "head": [
+          "S_apply_addition_mutually_exclusive"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "REQ_addition_general",
+        "kind": "requires",
+        "tail": [
+          "C_classical_probability",
+          "C_mutually_exclusive",
+          "C_event"
+        ],
+        "head": [
+          "S_apply_addition_general"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "REQ_cond_compute",
+        "kind": "requires",
+        "tail": [
+          "C_conditional_probability"
+        ],
+        "head": [
+          "S_compute_conditional"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "REQ_bayes",
+        "kind": "requires",
+        "tail": [
+          "C_conditional_probability"
+        ],
+        "head": [
+          "S_apply_bayes_simple"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "REQ_ev",
+        "kind": "requires",
+        "tail": [
+          "C_expected_value"
+        ],
+        "head": [
+          "S_compute_expected_value_discrete"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "REQ_freq_vs_prob",
+        "kind": "requires",
+        "tail": [
+          "C_classical_probability"
+        ],
+        "head": [
+          "S_distinguish_probability_frequency"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_gamblers",
+        "kind": "error_signature",
+        "tail": [
+          "E_gamblers_fallacy"
+        ],
+        "head": [
+          "S_recognize_independence"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_equiprob",
+        "kind": "error_signature",
+        "tail": [
+          "E_equiprobability_bias"
+        ],
+        "head": [
+          "S_enumerate_outcomes",
+          "S_count_favorable"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_conjunction",
+        "kind": "error_signature",
+        "tail": [
+          "E_conjunction_fallacy"
+        ],
+        "head": [
+          "S_compute_joint_independent"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_inverse",
+        "kind": "error_signature",
+        "tail": [
+          "E_inverse_confusion"
+        ],
+        "head": [
+          "S_compute_conditional"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_outcome",
+        "kind": "error_signature",
+        "tail": [
+          "E_outcome_focus_bias"
+        ],
+        "head": [
+          "S_distinguish_probability_frequency"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_add_no_sub",
+        "kind": "error_signature",
+        "tail": [
+          "E_addition_without_subtraction"
+        ],
+        "head": [
+          "S_apply_addition_general"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_indep_assume",
+        "kind": "error_signature",
+        "tail": [
+          "E_independence_assumption_error"
+        ],
+        "head": [
+          "S_recognize_independence",
+          "S_compute_joint_independent"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_base_rate",
+        "kind": "error_signature",
+        "tail": [
+          "E_base_rate_neglect"
+        ],
+        "head": [
+          "S_apply_bayes_simple"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "MH_check_range",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_check_range_validity"
+        ],
+        "head": [
+          "S_enumerate_outcomes",
+          "S_count_favorable",
+          "S_compute_simple_probability",
+          "S_apply_complement_rule",
+          "S_recognize_independence",
+          "S_compute_joint_independent",
+          "S_apply_addition_mutually_exclusive",
+          "S_apply_addition_general",
+          "S_compute_conditional",
+          "S_apply_bayes_simple",
+          "S_compute_expected_value_discrete",
+          "S_distinguish_probability_frequency"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "MH_enumerate",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_enumerate_carefully"
+        ],
+        "head": [
+          "S_enumerate_outcomes",
+          "S_count_favorable",
+          "S_apply_addition_general"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "MH_and_or",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_distinguish_and_or"
+        ],
+        "head": [
+          "S_compute_joint_independent",
+          "S_apply_addition_mutually_exclusive",
+          "S_apply_addition_general"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TM_check_all_tasks",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_basic_2coins_at_least_one_H",
+          "T_basic_die_even",
+          "T_basic_2dice_sum7",
+          "T_basic_bag_3red_2blue",
+          "T_basic_card_heart",
+          "T_complement_die_not_one",
+          "T_complement_2coins_not_both_T",
+          "T_complement_3dice_at_least_one_six",
+          "T_indep_2coins_HH",
+          "T_indep_die_then_coin",
+          "T_indep_2bags_both_red",
+          "T_indep_3coins_all_H",
+          "T_mutex_die_1_or_2",
+          "T_mutex_bag_red_or_blue",
+          "T_mutex_card_ace_or_king",
+          "T_general_card_red_or_face",
+          "T_general_die_even_or_high",
+          "T_general_2dice_first1_or_second6",
+          "T_cond_card_heart_given_red",
+          "T_cond_die_six_given_even",
+          "T_cond_2dice_sum_given_first",
+          "T_cond_bag_no_replacement",
+          "T_bayes_medical_test_basic",
+          "T_bayes_two_coins_one_biased",
+          "T_ev_die_payout"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TM_enumerate_basic",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_basic_2coins_at_least_one_H",
+          "T_basic_2dice_sum7",
+          "T_basic_bag_3red_2blue",
+          "T_basic_card_heart",
+          "T_general_2dice_first1_or_second6"
+        ],
+        "head": [
+          "MS_enumerate_carefully"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TM_and_or",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_mutex_die_1_or_2",
+          "T_mutex_bag_red_or_blue",
+          "T_mutex_card_ace_or_king",
+          "T_general_card_red_or_face",
+          "T_general_die_even_or_high",
+          "T_general_2dice_first1_or_second6",
+          "T_indep_2coins_HH",
+          "T_indep_die_then_coin"
+        ],
+        "head": [
+          "MS_distinguish_and_or"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_basic_2coins_at_least_one_H__S_enumerate_outcomes",
+        "kind": "trains",
+        "tail": [
+          "T_basic_2coins_at_least_one_H"
+        ],
+        "head": [
+          "S_enumerate_outcomes"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_basic_2coins_at_least_one_H__S_count_favorable",
+        "kind": "trains",
+        "tail": [
+          "T_basic_2coins_at_least_one_H"
+        ],
+        "head": [
+          "S_count_favorable"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_basic_2coins_at_least_one_H__S_compute_simple_probability",
+        "kind": "trains",
+        "tail": [
+          "T_basic_2coins_at_least_one_H"
+        ],
+        "head": [
+          "S_compute_simple_probability"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_basic_die_even__S_enumerate_outcomes",
+        "kind": "trains",
+        "tail": [
+          "T_basic_die_even"
+        ],
+        "head": [
+          "S_enumerate_outcomes"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_basic_die_even__S_count_favorable",
+        "kind": "trains",
+        "tail": [
+          "T_basic_die_even"
+        ],
+        "head": [
+          "S_count_favorable"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_basic_die_even__S_compute_simple_probability",
+        "kind": "trains",
+        "tail": [
+          "T_basic_die_even"
+        ],
+        "head": [
+          "S_compute_simple_probability"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_basic_2dice_sum7__S_enumerate_outcomes",
+        "kind": "trains",
+        "tail": [
+          "T_basic_2dice_sum7"
+        ],
+        "head": [
+          "S_enumerate_outcomes"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_basic_2dice_sum7__S_count_favorable",
+        "kind": "trains",
+        "tail": [
+          "T_basic_2dice_sum7"
+        ],
+        "head": [
+          "S_count_favorable"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_basic_2dice_sum7__S_compute_simple_probability",
+        "kind": "trains",
+        "tail": [
+          "T_basic_2dice_sum7"
+        ],
+        "head": [
+          "S_compute_simple_probability"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_basic_bag_3red_2blue__S_count_favorable",
+        "kind": "trains",
+        "tail": [
+          "T_basic_bag_3red_2blue"
+        ],
+        "head": [
+          "S_count_favorable"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_basic_bag_3red_2blue__S_compute_simple_probability",
+        "kind": "trains",
+        "tail": [
+          "T_basic_bag_3red_2blue"
+        ],
+        "head": [
+          "S_compute_simple_probability"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_basic_card_heart__S_count_favorable",
+        "kind": "trains",
+        "tail": [
+          "T_basic_card_heart"
+        ],
+        "head": [
+          "S_count_favorable"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_basic_card_heart__S_compute_simple_probability",
+        "kind": "trains",
+        "tail": [
+          "T_basic_card_heart"
+        ],
+        "head": [
+          "S_compute_simple_probability"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_complement_die_not_one__S_apply_complement_rule",
+        "kind": "trains",
+        "tail": [
+          "T_complement_die_not_one"
+        ],
+        "head": [
+          "S_apply_complement_rule"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_complement_die_not_one__S_compute_simple_probability",
+        "kind": "trains",
+        "tail": [
+          "T_complement_die_not_one"
+        ],
+        "head": [
+          "S_compute_simple_probability"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_complement_2coins_not_both_T__S_apply_complement_rule",
+        "kind": "trains",
+        "tail": [
+          "T_complement_2coins_not_both_T"
+        ],
+        "head": [
+          "S_apply_complement_rule"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_complement_2coins_not_both_T__S_enumerate_outcomes",
+        "kind": "trains",
+        "tail": [
+          "T_complement_2coins_not_both_T"
+        ],
+        "head": [
+          "S_enumerate_outcomes"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_complement_3dice_at_least_one_six__S_apply_complement_rule",
+        "kind": "trains",
+        "tail": [
+          "T_complement_3dice_at_least_one_six"
+        ],
+        "head": [
+          "S_apply_complement_rule"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_complement_3dice_at_least_one_six__S_compute_joint_independent",
+        "kind": "trains",
+        "tail": [
+          "T_complement_3dice_at_least_one_six"
+        ],
+        "head": [
+          "S_compute_joint_independent"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_indep_2coins_HH__S_recognize_independence",
+        "kind": "trains",
+        "tail": [
+          "T_indep_2coins_HH"
+        ],
+        "head": [
+          "S_recognize_independence"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_indep_2coins_HH__S_compute_joint_independent",
+        "kind": "trains",
+        "tail": [
+          "T_indep_2coins_HH"
+        ],
+        "head": [
+          "S_compute_joint_independent"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_indep_die_then_coin__S_recognize_independence",
+        "kind": "trains",
+        "tail": [
+          "T_indep_die_then_coin"
+        ],
+        "head": [
+          "S_recognize_independence"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_indep_die_then_coin__S_compute_joint_independent",
+        "kind": "trains",
+        "tail": [
+          "T_indep_die_then_coin"
+        ],
+        "head": [
+          "S_compute_joint_independent"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_indep_2bags_both_red__S_recognize_independence",
+        "kind": "trains",
+        "tail": [
+          "T_indep_2bags_both_red"
+        ],
+        "head": [
+          "S_recognize_independence"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_indep_2bags_both_red__S_compute_joint_independent",
+        "kind": "trains",
+        "tail": [
+          "T_indep_2bags_both_red"
+        ],
+        "head": [
+          "S_compute_joint_independent"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_indep_2bags_both_red__S_compute_simple_probability",
+        "kind": "trains",
+        "tail": [
+          "T_indep_2bags_both_red"
+        ],
+        "head": [
+          "S_compute_simple_probability"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_indep_3coins_all_H__S_recognize_independence",
+        "kind": "trains",
+        "tail": [
+          "T_indep_3coins_all_H"
+        ],
+        "head": [
+          "S_recognize_independence"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_indep_3coins_all_H__S_compute_joint_independent",
+        "kind": "trains",
+        "tail": [
+          "T_indep_3coins_all_H"
+        ],
+        "head": [
+          "S_compute_joint_independent"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_mutex_die_1_or_2__S_apply_addition_mutually_exclusive",
+        "kind": "trains",
+        "tail": [
+          "T_mutex_die_1_or_2"
+        ],
+        "head": [
+          "S_apply_addition_mutually_exclusive"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_mutex_die_1_or_2__S_compute_simple_probability",
+        "kind": "trains",
+        "tail": [
+          "T_mutex_die_1_or_2"
+        ],
+        "head": [
+          "S_compute_simple_probability"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_mutex_bag_red_or_blue__S_apply_addition_mutually_exclusive",
+        "kind": "trains",
+        "tail": [
+          "T_mutex_bag_red_or_blue"
+        ],
+        "head": [
+          "S_apply_addition_mutually_exclusive"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_mutex_bag_red_or_blue__S_compute_simple_probability",
+        "kind": "trains",
+        "tail": [
+          "T_mutex_bag_red_or_blue"
+        ],
+        "head": [
+          "S_compute_simple_probability"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_mutex_card_ace_or_king__S_apply_addition_mutually_exclusive",
+        "kind": "trains",
+        "tail": [
+          "T_mutex_card_ace_or_king"
+        ],
+        "head": [
+          "S_apply_addition_mutually_exclusive"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_mutex_card_ace_or_king__S_compute_simple_probability",
+        "kind": "trains",
+        "tail": [
+          "T_mutex_card_ace_or_king"
+        ],
+        "head": [
+          "S_compute_simple_probability"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_general_card_red_or_face__S_apply_addition_general",
+        "kind": "trains",
+        "tail": [
+          "T_general_card_red_or_face"
+        ],
+        "head": [
+          "S_apply_addition_general"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_general_card_red_or_face__S_count_favorable",
+        "kind": "trains",
+        "tail": [
+          "T_general_card_red_or_face"
+        ],
+        "head": [
+          "S_count_favorable"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_general_die_even_or_high__S_apply_addition_general",
+        "kind": "trains",
+        "tail": [
+          "T_general_die_even_or_high"
+        ],
+        "head": [
+          "S_apply_addition_general"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_general_die_even_or_high__S_enumerate_outcomes",
+        "kind": "trains",
+        "tail": [
+          "T_general_die_even_or_high"
+        ],
+        "head": [
+          "S_enumerate_outcomes"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_general_2dice_first1_or_second6__S_apply_addition_general",
+        "kind": "trains",
+        "tail": [
+          "T_general_2dice_first1_or_second6"
+        ],
+        "head": [
+          "S_apply_addition_general"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_general_2dice_first1_or_second6__S_enumerate_outcomes",
+        "kind": "trains",
+        "tail": [
+          "T_general_2dice_first1_or_second6"
+        ],
+        "head": [
+          "S_enumerate_outcomes"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_cond_card_heart_given_red__S_compute_conditional",
+        "kind": "trains",
+        "tail": [
+          "T_cond_card_heart_given_red"
+        ],
+        "head": [
+          "S_compute_conditional"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_cond_die_six_given_even__S_compute_conditional",
+        "kind": "trains",
+        "tail": [
+          "T_cond_die_six_given_even"
+        ],
+        "head": [
+          "S_compute_conditional"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_cond_2dice_sum_given_first__S_compute_conditional",
+        "kind": "trains",
+        "tail": [
+          "T_cond_2dice_sum_given_first"
+        ],
+        "head": [
+          "S_compute_conditional"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_cond_bag_no_replacement__S_compute_conditional",
+        "kind": "trains",
+        "tail": [
+          "T_cond_bag_no_replacement"
+        ],
+        "head": [
+          "S_compute_conditional"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_cond_bag_no_replacement__S_recognize_independence",
+        "kind": "trains",
+        "tail": [
+          "T_cond_bag_no_replacement"
+        ],
+        "head": [
+          "S_recognize_independence"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_bayes_medical_test_basic__S_apply_bayes_simple",
+        "kind": "trains",
+        "tail": [
+          "T_bayes_medical_test_basic"
+        ],
+        "head": [
+          "S_apply_bayes_simple"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_bayes_medical_test_basic__S_compute_conditional",
+        "kind": "trains",
+        "tail": [
+          "T_bayes_medical_test_basic"
+        ],
+        "head": [
+          "S_compute_conditional"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_bayes_two_coins_one_biased__S_apply_bayes_simple",
+        "kind": "trains",
+        "tail": [
+          "T_bayes_two_coins_one_biased"
+        ],
+        "head": [
+          "S_apply_bayes_simple"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_bayes_two_coins_one_biased__S_compute_conditional",
+        "kind": "trains",
+        "tail": [
+          "T_bayes_two_coins_one_biased"
+        ],
+        "head": [
+          "S_compute_conditional"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRN_T_ev_die_payout__S_compute_expected_value_discrete",
+        "kind": "trains",
+        "tail": [
+          "T_ev_die_payout"
+        ],
+        "head": [
+          "S_compute_expected_value_discrete"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRM_T_basic_2coins_at_least_one_H__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_basic_2coins_at_least_one_H"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_basic_die_even__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_basic_die_even"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_basic_2dice_sum7__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_basic_2dice_sum7"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_basic_bag_3red_2blue__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_basic_bag_3red_2blue"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_basic_card_heart__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_basic_card_heart"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_complement_die_not_one__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_complement_die_not_one"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_complement_2coins_not_both_T__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_complement_2coins_not_both_T"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_complement_3dice_at_least_one_six__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_complement_3dice_at_least_one_six"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_indep_2coins_HH__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_indep_2coins_HH"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_indep_die_then_coin__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_indep_die_then_coin"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_indep_2bags_both_red__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_indep_2bags_both_red"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_indep_3coins_all_H__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_indep_3coins_all_H"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_mutex_die_1_or_2__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_mutex_die_1_or_2"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_mutex_bag_red_or_blue__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_mutex_bag_red_or_blue"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_mutex_card_ace_or_king__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_mutex_card_ace_or_king"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_general_card_red_or_face__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_general_card_red_or_face"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_general_die_even_or_high__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_general_die_even_or_high"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_general_2dice_first1_or_second6__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_general_2dice_first1_or_second6"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_cond_card_heart_given_red__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_cond_card_heart_given_red"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_cond_die_six_given_even__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_cond_die_six_given_even"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_cond_2dice_sum_given_first__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_cond_2dice_sum_given_first"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_cond_bag_no_replacement__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_cond_bag_no_replacement"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_bayes_medical_test_basic__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_bayes_medical_test_basic"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_bayes_two_coins_one_biased__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_bayes_two_coins_one_biased"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_ev_die_payout__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_ev_die_payout"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_basic_2coins_at_least_one_H__MS_enumerate_carefully",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_basic_2coins_at_least_one_H"
+        ],
+        "head": [
+          "MS_enumerate_carefully"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_basic_die_even__MS_enumerate_carefully",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_basic_die_even"
+        ],
+        "head": [
+          "MS_enumerate_carefully"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_basic_2dice_sum7__MS_enumerate_carefully",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_basic_2dice_sum7"
+        ],
+        "head": [
+          "MS_enumerate_carefully"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_basic_bag_3red_2blue__MS_enumerate_carefully",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_basic_bag_3red_2blue"
+        ],
+        "head": [
+          "MS_enumerate_carefully"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_basic_card_heart__MS_enumerate_carefully",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_basic_card_heart"
+        ],
+        "head": [
+          "MS_enumerate_carefully"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_general_card_red_or_face__MS_enumerate_carefully",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_general_card_red_or_face"
+        ],
+        "head": [
+          "MS_enumerate_carefully"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_general_die_even_or_high__MS_enumerate_carefully",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_general_die_even_or_high"
+        ],
+        "head": [
+          "MS_enumerate_carefully"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_general_2dice_first1_or_second6__MS_enumerate_carefully",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_general_2dice_first1_or_second6"
+        ],
+        "head": [
+          "MS_enumerate_carefully"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_mutex_die_1_or_2__MS_distinguish_and_or",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_mutex_die_1_or_2"
+        ],
+        "head": [
+          "MS_distinguish_and_or"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_mutex_bag_red_or_blue__MS_distinguish_and_or",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_mutex_bag_red_or_blue"
+        ],
+        "head": [
+          "MS_distinguish_and_or"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_mutex_card_ace_or_king__MS_distinguish_and_or",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_mutex_card_ace_or_king"
+        ],
+        "head": [
+          "MS_distinguish_and_or"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_general_card_red_or_face__MS_distinguish_and_or",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_general_card_red_or_face"
+        ],
+        "head": [
+          "MS_distinguish_and_or"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_general_die_even_or_high__MS_distinguish_and_or",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_general_die_even_or_high"
+        ],
+        "head": [
+          "MS_distinguish_and_or"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_general_2dice_first1_or_second6__MS_distinguish_and_or",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_general_2dice_first1_or_second6"
+        ],
+        "head": [
+          "MS_distinguish_and_or"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "MHL_MS_check_range_validity__S_enumerate_outcomes",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_check_range_validity"
+        ],
+        "head": [
+          "S_enumerate_outcomes"
+        ],
+        "weight": 0.1
+      },
+      {
+        "id": "MHL_MS_check_range_validity__S_count_favorable",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_check_range_validity"
+        ],
+        "head": [
+          "S_count_favorable"
+        ],
+        "weight": 0.1
+      },
+      {
+        "id": "MHL_MS_check_range_validity__S_compute_simple_probability",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_check_range_validity"
+        ],
+        "head": [
+          "S_compute_simple_probability"
+        ],
+        "weight": 0.1
+      },
+      {
+        "id": "MHL_MS_check_range_validity__S_apply_complement_rule",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_check_range_validity"
+        ],
+        "head": [
+          "S_apply_complement_rule"
+        ],
+        "weight": 0.1
+      },
+      {
+        "id": "MHL_MS_check_range_validity__S_recognize_independence",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_check_range_validity"
+        ],
+        "head": [
+          "S_recognize_independence"
+        ],
+        "weight": 0.1
+      },
+      {
+        "id": "MHL_MS_check_range_validity__S_compute_joint_independent",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_check_range_validity"
+        ],
+        "head": [
+          "S_compute_joint_independent"
+        ],
+        "weight": 0.1
+      },
+      {
+        "id": "MHL_MS_check_range_validity__S_apply_addition_mutually_exclusive",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_check_range_validity"
+        ],
+        "head": [
+          "S_apply_addition_mutually_exclusive"
+        ],
+        "weight": 0.1
+      },
+      {
+        "id": "MHL_MS_check_range_validity__S_apply_addition_general",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_check_range_validity"
+        ],
+        "head": [
+          "S_apply_addition_general"
+        ],
+        "weight": 0.1
+      },
+      {
+        "id": "MHL_MS_check_range_validity__S_compute_conditional",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_check_range_validity"
+        ],
+        "head": [
+          "S_compute_conditional"
+        ],
+        "weight": 0.1
+      },
+      {
+        "id": "MHL_MS_check_range_validity__S_apply_bayes_simple",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_check_range_validity"
+        ],
+        "head": [
+          "S_apply_bayes_simple"
+        ],
+        "weight": 0.1
+      },
+      {
+        "id": "MHL_MS_check_range_validity__S_compute_expected_value_discrete",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_check_range_validity"
+        ],
+        "head": [
+          "S_compute_expected_value_discrete"
+        ],
+        "weight": 0.1
+      },
+      {
+        "id": "MHL_MS_check_range_validity__S_distinguish_probability_frequency",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_check_range_validity"
+        ],
+        "head": [
+          "S_distinguish_probability_frequency"
+        ],
+        "weight": 0.1
+      },
+      {
+        "id": "MHL_MS_enumerate_carefully__S_enumerate_outcomes",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_enumerate_carefully"
+        ],
+        "head": [
+          "S_enumerate_outcomes"
+        ],
+        "weight": 0.15
+      },
+      {
+        "id": "MHL_MS_enumerate_carefully__S_count_favorable",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_enumerate_carefully"
+        ],
+        "head": [
+          "S_count_favorable"
+        ],
+        "weight": 0.15
+      },
+      {
+        "id": "MHL_MS_enumerate_carefully__S_apply_addition_general",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_enumerate_carefully"
+        ],
+        "head": [
+          "S_apply_addition_general"
+        ],
+        "weight": 0.15
+      },
+      {
+        "id": "MHL_MS_distinguish_and_or__S_compute_joint_independent",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_distinguish_and_or"
+        ],
+        "head": [
+          "S_compute_joint_independent"
+        ],
+        "weight": 0.15
+      },
+      {
+        "id": "MHL_MS_distinguish_and_or__S_apply_addition_mutually_exclusive",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_distinguish_and_or"
+        ],
+        "head": [
+          "S_apply_addition_mutually_exclusive"
+        ],
+        "weight": 0.15
+      },
+      {
+        "id": "MHL_MS_distinguish_and_or__S_apply_addition_general",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "MS_distinguish_and_or"
+        ],
+        "head": [
+          "S_apply_addition_general"
+        ],
+        "weight": 0.15
+      },
+      {
+        "id": "ES_E_equiprobability_bias__S_count_favorable",
+        "kind": "error_signature",
+        "tail": [
+          "E_equiprobability_bias"
+        ],
+        "head": [
+          "S_count_favorable"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_conjunction_fallacy__MS_check_range_validity",
+        "kind": "error_signature",
+        "tail": [
+          "E_conjunction_fallacy"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_independence_assumption_error__S_compute_joint_independent",
+        "kind": "error_signature",
+        "tail": [
+          "E_independence_assumption_error"
+        ],
+        "head": [
+          "S_compute_joint_independent"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_addition_without_subtraction__S_apply_addition_mutually_exclusive",
+        "kind": "error_signature",
+        "tail": [
+          "E_addition_without_subtraction"
+        ],
+        "head": [
+          "S_apply_addition_mutually_exclusive"
+        ],
+        "weight": 1.0
+      }
     ],
-
     "prereq_dag": [
-      {"from": "C_sample_space", "to": "C_event"},
-      {"from": "C_event", "to": "C_classical_probability"},
-      {"from": "C_classical_probability", "to": "C_complement"},
-      {"from": "C_classical_probability", "to": "C_mutually_exclusive"},
-      {"from": "C_classical_probability", "to": "C_independence"},
-      {"from": "C_independence", "to": "C_joint_independent"},
-      {"from": "C_classical_probability", "to": "C_conditional_probability"},
-      {"from": "C_independence", "to": "C_conditional_probability"},
-      {"from": "C_conditional_probability", "to": "C_expected_value"},
-      {"from": "C_equally_likely", "to": "C_classical_probability"}
+      {
+        "from": "C_sample_space",
+        "to": "C_event"
+      },
+      {
+        "from": "C_event",
+        "to": "C_classical_probability"
+      },
+      {
+        "from": "C_classical_probability",
+        "to": "C_complement"
+      },
+      {
+        "from": "C_classical_probability",
+        "to": "C_mutually_exclusive"
+      },
+      {
+        "from": "C_classical_probability",
+        "to": "C_independence"
+      },
+      {
+        "from": "C_independence",
+        "to": "C_joint_independent"
+      },
+      {
+        "from": "C_classical_probability",
+        "to": "C_conditional_probability"
+      },
+      {
+        "from": "C_independence",
+        "to": "C_conditional_probability"
+      },
+      {
+        "from": "C_conditional_probability",
+        "to": "C_expected_value"
+      },
+      {
+        "from": "C_equally_likely",
+        "to": "C_classical_probability"
+      }
     ]
   },
-
   "scaffolding_tasks": [
     {
       "id": "T_basic_2coins_at_least_one_H",
       "title": "Two coins: at least one heads",
       "statement": "You flip a fair coin twice. What is the probability of getting at least one heads?",
-      "required_skills": ["S_enumerate_outcomes", "S_count_favorable", "S_compute_simple_probability"],
-      "required_concepts": ["C_sample_space", "C_event", "C_classical_probability"],
+      "required_skills": [
+        "S_enumerate_outcomes",
+        "S_count_favorable",
+        "S_compute_simple_probability"
+      ],
+      "required_concepts": [
+        "C_sample_space",
+        "C_event",
+        "C_classical_probability"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/4", "1/2", "3/4", "1"],
+      "options": [
+        "1/4",
+        "1/2",
+        "3/4",
+        "1"
+      ],
       "correct_index": 2,
       "time_estimate_minutes": 2
     },
@@ -114,11 +1832,24 @@
       "id": "T_basic_die_even",
       "title": "Fair die: even number",
       "statement": "You roll a fair six-sided die once. What is the probability of getting an even number?",
-      "required_skills": ["S_enumerate_outcomes", "S_count_favorable", "S_compute_simple_probability"],
-      "required_concepts": ["C_sample_space", "C_event", "C_classical_probability"],
+      "required_skills": [
+        "S_enumerate_outcomes",
+        "S_count_favorable",
+        "S_compute_simple_probability"
+      ],
+      "required_concepts": [
+        "C_sample_space",
+        "C_event",
+        "C_classical_probability"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/6", "1/3", "1/2", "2/3"],
+      "options": [
+        "1/6",
+        "1/3",
+        "1/2",
+        "2/3"
+      ],
       "correct_index": 2,
       "time_estimate_minutes": 1
     },
@@ -126,11 +1857,24 @@
       "id": "T_basic_2dice_sum7",
       "title": "Two dice: sum equals 7",
       "statement": "You roll two fair six-sided dice. What is the probability that their sum equals 7?",
-      "required_skills": ["S_enumerate_outcomes", "S_count_favorable", "S_compute_simple_probability"],
-      "required_concepts": ["C_sample_space", "C_event", "C_classical_probability"],
+      "required_skills": [
+        "S_enumerate_outcomes",
+        "S_count_favorable",
+        "S_compute_simple_probability"
+      ],
+      "required_concepts": [
+        "C_sample_space",
+        "C_event",
+        "C_classical_probability"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/12", "1/6", "1/4", "7/36"],
+      "options": [
+        "1/12",
+        "1/6",
+        "1/4",
+        "7/36"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 3
     },
@@ -138,11 +1882,22 @@
       "id": "T_basic_bag_3red_2blue",
       "title": "Bag of marbles: P(red)",
       "statement": "A bag contains 3 red marbles and 2 blue marbles. You draw one at random. What is the probability of drawing a red marble?",
-      "required_skills": ["S_count_favorable", "S_compute_simple_probability"],
-      "required_concepts": ["C_sample_space", "C_classical_probability"],
+      "required_skills": [
+        "S_count_favorable",
+        "S_compute_simple_probability"
+      ],
+      "required_concepts": [
+        "C_sample_space",
+        "C_classical_probability"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["2/5", "3/5", "1/2", "3/2"],
+      "options": [
+        "2/5",
+        "3/5",
+        "1/2",
+        "3/2"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 2
     },
@@ -150,11 +1905,22 @@
       "id": "T_basic_card_heart",
       "title": "Standard deck: P(heart)",
       "statement": "You draw one card at random from a standard 52-card deck. What is the probability that it is a heart?",
-      "required_skills": ["S_count_favorable", "S_compute_simple_probability"],
-      "required_concepts": ["C_sample_space", "C_classical_probability"],
+      "required_skills": [
+        "S_count_favorable",
+        "S_compute_simple_probability"
+      ],
+      "required_concepts": [
+        "C_sample_space",
+        "C_classical_probability"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/52", "1/13", "1/4", "1/2"],
+      "options": [
+        "1/52",
+        "1/13",
+        "1/4",
+        "1/2"
+      ],
       "correct_index": 2,
       "time_estimate_minutes": 2
     },
@@ -162,11 +1928,22 @@
       "id": "T_complement_die_not_one",
       "title": "Die: P(not 1)",
       "statement": "You roll a fair six-sided die once. Using the complement rule, what is the probability of NOT rolling a 1?",
-      "required_skills": ["S_apply_complement_rule", "S_compute_simple_probability"],
-      "required_concepts": ["C_complement", "C_classical_probability"],
+      "required_skills": [
+        "S_apply_complement_rule",
+        "S_compute_simple_probability"
+      ],
+      "required_concepts": [
+        "C_complement",
+        "C_classical_probability"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/6", "5/6", "1/2", "1/5"],
+      "options": [
+        "1/6",
+        "5/6",
+        "1/2",
+        "1/5"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 2
     },
@@ -174,11 +1951,22 @@
       "id": "T_complement_2coins_not_both_T",
       "title": "Two coins: P(not both tails)",
       "statement": "You flip a fair coin twice. What is the probability that NOT both flips are tails?",
-      "required_skills": ["S_apply_complement_rule", "S_enumerate_outcomes"],
-      "required_concepts": ["C_complement", "C_sample_space"],
+      "required_skills": [
+        "S_apply_complement_rule",
+        "S_enumerate_outcomes"
+      ],
+      "required_concepts": [
+        "C_complement",
+        "C_sample_space"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/4", "1/2", "3/4", "1"],
+      "options": [
+        "1/4",
+        "1/2",
+        "3/4",
+        "1"
+      ],
       "correct_index": 2,
       "time_estimate_minutes": 2
     },
@@ -186,26 +1974,47 @@
       "id": "T_complement_3dice_at_least_one_six",
       "title": "Three dice: P(at least one 6)",
       "statement": "You roll three fair six-sided dice. What is the probability of getting at least one 6? (Hint: complement of 'no 6 on any roll'.)",
-      "required_skills": ["S_apply_complement_rule", "S_compute_joint_independent"],
-      "required_concepts": ["C_complement", "C_joint_independent"],
+      "required_skills": [
+        "S_apply_complement_rule",
+        "S_compute_joint_independent"
+      ],
+      "required_concepts": [
+        "C_complement",
+        "C_joint_independent"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/2", "91/216", "1/6", "125/216"],
+      "options": [
+        "1/2",
+        "91/216",
+        "1/6",
+        "125/216"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 4
     }
   ],
-
   "target_tasks": [
     {
       "id": "T_indep_2coins_HH",
       "title": "Two coins: P(HH)",
       "statement": "You flip a fair coin twice independently. What is the probability of getting heads on both flips?",
-      "required_skills": ["S_recognize_independence", "S_compute_joint_independent"],
-      "required_concepts": ["C_independence", "C_joint_independent"],
+      "required_skills": [
+        "S_recognize_independence",
+        "S_compute_joint_independent"
+      ],
+      "required_concepts": [
+        "C_independence",
+        "C_joint_independent"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/4", "1/2", "1/3", "2/3"],
+      "options": [
+        "1/4",
+        "1/2",
+        "1/3",
+        "2/3"
+      ],
       "correct_index": 0,
       "time_estimate_minutes": 2
     },
@@ -213,11 +2022,22 @@
       "id": "T_indep_die_then_coin",
       "title": "Die-then-coin: P(6 AND H)",
       "statement": "You roll a fair die and then flip a fair coin. What is the probability of rolling a 6 AND flipping heads?",
-      "required_skills": ["S_recognize_independence", "S_compute_joint_independent"],
-      "required_concepts": ["C_independence", "C_joint_independent"],
+      "required_skills": [
+        "S_recognize_independence",
+        "S_compute_joint_independent"
+      ],
+      "required_concepts": [
+        "C_independence",
+        "C_joint_independent"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/8", "1/12", "1/6", "1/2"],
+      "options": [
+        "1/8",
+        "1/12",
+        "1/6",
+        "1/2"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 2
     },
@@ -225,11 +2045,23 @@
       "id": "T_indep_2bags_both_red",
       "title": "Two bags: P(red from both)",
       "statement": "Bag A has 4 red and 6 blue marbles; bag B has 3 red and 7 blue. You draw one marble from each bag independently. What is the probability that both are red?",
-      "required_skills": ["S_recognize_independence", "S_compute_joint_independent", "S_compute_simple_probability"],
-      "required_concepts": ["C_independence", "C_joint_independent"],
+      "required_skills": [
+        "S_recognize_independence",
+        "S_compute_joint_independent",
+        "S_compute_simple_probability"
+      ],
+      "required_concepts": [
+        "C_independence",
+        "C_joint_independent"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["7/20", "12/100", "12/100", "3/10"],
+      "options": [
+        "7/20",
+        "12/100",
+        "12/100",
+        "3/10"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 3
     },
@@ -237,11 +2069,22 @@
       "id": "T_indep_3coins_all_H",
       "title": "Three coins: P(HHH)",
       "statement": "You flip a fair coin three times independently. What is the probability that all three flips show heads?",
-      "required_skills": ["S_recognize_independence", "S_compute_joint_independent"],
-      "required_concepts": ["C_independence", "C_joint_independent"],
+      "required_skills": [
+        "S_recognize_independence",
+        "S_compute_joint_independent"
+      ],
+      "required_concepts": [
+        "C_independence",
+        "C_joint_independent"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/8", "1/6", "3/8", "1/3"],
+      "options": [
+        "1/8",
+        "1/6",
+        "3/8",
+        "1/3"
+      ],
       "correct_index": 0,
       "time_estimate_minutes": 2
     },
@@ -249,11 +2092,21 @@
       "id": "T_mutex_die_1_or_2",
       "title": "Die: P(roll 1 or 2)",
       "statement": "You roll a fair six-sided die once. What is the probability of rolling a 1 OR a 2?",
-      "required_skills": ["S_apply_addition_mutually_exclusive", "S_compute_simple_probability"],
-      "required_concepts": ["C_mutually_exclusive"],
+      "required_skills": [
+        "S_apply_addition_mutually_exclusive",
+        "S_compute_simple_probability"
+      ],
+      "required_concepts": [
+        "C_mutually_exclusive"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/6", "1/4", "1/3", "1/2"],
+      "options": [
+        "1/6",
+        "1/4",
+        "1/3",
+        "1/2"
+      ],
       "correct_index": 2,
       "time_estimate_minutes": 1
     },
@@ -261,11 +2114,21 @@
       "id": "T_mutex_bag_red_or_blue",
       "title": "Bag: P(red or blue)",
       "statement": "A bag contains 4 red, 3 blue, and 5 green marbles. You draw one. What is the probability of drawing a red OR a blue marble?",
-      "required_skills": ["S_apply_addition_mutually_exclusive", "S_compute_simple_probability"],
-      "required_concepts": ["C_mutually_exclusive"],
+      "required_skills": [
+        "S_apply_addition_mutually_exclusive",
+        "S_compute_simple_probability"
+      ],
+      "required_concepts": [
+        "C_mutually_exclusive"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/4", "7/12", "1/2", "5/12"],
+      "options": [
+        "1/4",
+        "7/12",
+        "1/2",
+        "5/12"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 2
     },
@@ -273,11 +2136,21 @@
       "id": "T_mutex_card_ace_or_king",
       "title": "Deck: P(ace or king)",
       "statement": "You draw one card from a standard 52-card deck. What is the probability of drawing an ace OR a king?",
-      "required_skills": ["S_apply_addition_mutually_exclusive", "S_compute_simple_probability"],
-      "required_concepts": ["C_mutually_exclusive"],
+      "required_skills": [
+        "S_apply_addition_mutually_exclusive",
+        "S_compute_simple_probability"
+      ],
+      "required_concepts": [
+        "C_mutually_exclusive"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/13", "2/13", "4/13", "8/52"],
+      "options": [
+        "1/13",
+        "2/13",
+        "4/13",
+        "8/52"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 2
     },
@@ -285,11 +2158,22 @@
       "id": "T_general_card_red_or_face",
       "title": "Deck: P(red or face card)",
       "statement": "You draw one card from a standard 52-card deck. What is the probability of drawing a red card OR a face card (J, Q, K of any suit)?",
-      "required_skills": ["S_apply_addition_general", "S_count_favorable"],
-      "required_concepts": ["C_classical_probability", "C_event"],
+      "required_skills": [
+        "S_apply_addition_general",
+        "S_count_favorable"
+      ],
+      "required_concepts": [
+        "C_classical_probability",
+        "C_event"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["38/52", "32/52", "26/52", "12/52"],
+      "options": [
+        "38/52",
+        "32/52",
+        "26/52",
+        "12/52"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 3
     },
@@ -297,11 +2181,22 @@
       "id": "T_general_die_even_or_high",
       "title": "Die: P(even or ≥4)",
       "statement": "You roll a fair six-sided die once. What is the probability of rolling an even number OR a number ≥ 4?",
-      "required_skills": ["S_apply_addition_general", "S_enumerate_outcomes"],
-      "required_concepts": ["C_classical_probability", "C_event"],
+      "required_skills": [
+        "S_apply_addition_general",
+        "S_enumerate_outcomes"
+      ],
+      "required_concepts": [
+        "C_classical_probability",
+        "C_event"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/2", "2/3", "5/6", "1"],
+      "options": [
+        "1/2",
+        "2/3",
+        "5/6",
+        "1"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 3
     },
@@ -309,11 +2204,22 @@
       "id": "T_general_2dice_first1_or_second6",
       "title": "Two dice: P(first=1 or second=6)",
       "statement": "You roll two fair dice. What is the probability that the first die shows 1 OR the second die shows 6?",
-      "required_skills": ["S_apply_addition_general", "S_enumerate_outcomes"],
-      "required_concepts": ["C_classical_probability", "C_event"],
+      "required_skills": [
+        "S_apply_addition_general",
+        "S_enumerate_outcomes"
+      ],
+      "required_concepts": [
+        "C_classical_probability",
+        "C_event"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["11/36", "12/36", "10/36", "1/3"],
+      "options": [
+        "11/36",
+        "12/36",
+        "10/36",
+        "1/3"
+      ],
       "correct_index": 0,
       "time_estimate_minutes": 3
     },
@@ -321,11 +2227,20 @@
       "id": "T_cond_card_heart_given_red",
       "title": "Deck: P(heart | red)",
       "statement": "You draw one card from a standard 52-card deck and are told it is red. What is the probability that it is a heart?",
-      "required_skills": ["S_compute_conditional"],
-      "required_concepts": ["C_conditional_probability"],
+      "required_skills": [
+        "S_compute_conditional"
+      ],
+      "required_concepts": [
+        "C_conditional_probability"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/4", "1/2", "1/13", "1"],
+      "options": [
+        "1/4",
+        "1/2",
+        "1/13",
+        "1"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 2
     },
@@ -333,11 +2248,20 @@
       "id": "T_cond_die_six_given_even",
       "title": "Die: P(6 | even)",
       "statement": "You roll a fair die and are told the result is even. What is the probability that the result is 6?",
-      "required_skills": ["S_compute_conditional"],
-      "required_concepts": ["C_conditional_probability"],
+      "required_skills": [
+        "S_compute_conditional"
+      ],
+      "required_concepts": [
+        "C_conditional_probability"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/6", "1/3", "1/2", "2/3"],
+      "options": [
+        "1/6",
+        "1/3",
+        "1/2",
+        "2/3"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 2
     },
@@ -345,11 +2269,20 @@
       "id": "T_cond_2dice_sum_given_first",
       "title": "Two dice: P(sum=10 | first=4)",
       "statement": "You roll two fair dice. Given that the first die shows 4, what is the probability that the sum is 10?",
-      "required_skills": ["S_compute_conditional"],
-      "required_concepts": ["C_conditional_probability"],
+      "required_skills": [
+        "S_compute_conditional"
+      ],
+      "required_concepts": [
+        "C_conditional_probability"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/36", "1/6", "1/3", "1/12"],
+      "options": [
+        "1/36",
+        "1/6",
+        "1/3",
+        "1/12"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 3
     },
@@ -357,11 +2290,22 @@
       "id": "T_cond_bag_no_replacement",
       "title": "Bag: P(second red | first red, no replacement)",
       "statement": "A bag has 4 red and 6 blue marbles. You draw two without replacement. Given the first is red, what is the probability the second is also red?",
-      "required_skills": ["S_compute_conditional", "S_recognize_independence"],
-      "required_concepts": ["C_conditional_probability", "C_independence"],
+      "required_skills": [
+        "S_compute_conditional",
+        "S_recognize_independence"
+      ],
+      "required_concepts": [
+        "C_conditional_probability",
+        "C_independence"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["4/10", "3/9", "4/9", "1/3"],
+      "options": [
+        "4/10",
+        "3/9",
+        "4/9",
+        "1/3"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 3
     },
@@ -369,11 +2313,21 @@
       "id": "T_bayes_medical_test_basic",
       "title": "Medical test: P(disease | positive)",
       "statement": "A disease has prevalence 1%. A test has 95% sensitivity and 90% specificity. Given a positive test, what is the probability the patient has the disease? (Approximate.)",
-      "required_skills": ["S_apply_bayes_simple", "S_compute_conditional"],
-      "required_concepts": ["C_conditional_probability"],
+      "required_skills": [
+        "S_apply_bayes_simple",
+        "S_compute_conditional"
+      ],
+      "required_concepts": [
+        "C_conditional_probability"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["0.95", "0.50", "0.09", "0.01"],
+      "options": [
+        "0.95",
+        "0.50",
+        "0.09",
+        "0.01"
+      ],
       "correct_index": 2,
       "time_estimate_minutes": 5
     },
@@ -381,11 +2335,21 @@
       "id": "T_bayes_two_coins_one_biased",
       "title": "Two coins: which one?",
       "statement": "Two coins look identical: one is fair, one always shows heads. You pick a coin uniformly at random and flip it once: it shows heads. What is the probability you picked the biased one?",
-      "required_skills": ["S_apply_bayes_simple", "S_compute_conditional"],
-      "required_concepts": ["C_conditional_probability"],
+      "required_skills": [
+        "S_apply_bayes_simple",
+        "S_compute_conditional"
+      ],
+      "required_concepts": [
+        "C_conditional_probability"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["1/2", "1/3", "2/3", "3/4"],
+      "options": [
+        "1/2",
+        "1/3",
+        "2/3",
+        "3/4"
+      ],
       "correct_index": 2,
       "time_estimate_minutes": 4
     },
@@ -393,31 +2357,57 @@
       "id": "T_ev_die_payout",
       "title": "Die payout: expected value",
       "statement": "A fair die is rolled. You receive in dollars the number rolled. What is the expected payout?",
-      "required_skills": ["S_compute_expected_value_discrete"],
-      "required_concepts": ["C_expected_value"],
+      "required_skills": [
+        "S_compute_expected_value_discrete"
+      ],
+      "required_concepts": [
+        "C_expected_value"
+      ],
       "answer_format": "multiple_choice",
       "n_options": 4,
-      "options": ["3", "3.5", "4", "21"],
+      "options": [
+        "3",
+        "3.5",
+        "4",
+        "21"
+      ],
       "correct_index": 1,
       "time_estimate_minutes": 3
     }
   ],
-
   "transfer_sets": [
     {
       "id": "TS_basic_to_realworld",
-      "target_skills": ["S_enumerate_outcomes", "S_count_favorable", "S_compute_simple_probability"],
-      "target_concepts": ["C_sample_space", "C_classical_probability"],
+      "target_skills": [
+        "S_enumerate_outcomes",
+        "S_count_favorable",
+        "S_compute_simple_probability"
+      ],
+      "target_concepts": [
+        "C_sample_space",
+        "C_classical_probability"
+      ],
       "tasks": [
         {
           "id": "TR_basic_lightbulb_works",
           "title": "Light bulb works",
           "statement": "A box has 10 light bulbs, 3 of which are defective. You pick one at random. What is the probability it works?",
-          "required_skills": ["S_count_favorable", "S_compute_simple_probability"],
-          "required_concepts": ["C_sample_space", "C_classical_probability"],
+          "required_skills": [
+            "S_count_favorable",
+            "S_compute_simple_probability"
+          ],
+          "required_concepts": [
+            "C_sample_space",
+            "C_classical_probability"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["3/10", "7/10", "1/3", "10/3"],
+          "options": [
+            "3/10",
+            "7/10",
+            "1/3",
+            "10/3"
+          ],
           "correct_index": 1,
           "time_estimate_minutes": 3
         },
@@ -425,11 +2415,22 @@
           "id": "TR_basic_archery_target_zone",
           "title": "Archery: target zone",
           "statement": "An archery target has 5 concentric zones of equal area. An arrow lands uniformly at random on the target. What is the probability it lands in the bullseye (innermost zone)?",
-          "required_skills": ["S_enumerate_outcomes", "S_compute_simple_probability"],
-          "required_concepts": ["C_sample_space", "C_classical_probability"],
+          "required_skills": [
+            "S_enumerate_outcomes",
+            "S_compute_simple_probability"
+          ],
+          "required_concepts": [
+            "C_sample_space",
+            "C_classical_probability"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["1/2", "1/4", "1/5", "1/6"],
+          "options": [
+            "1/2",
+            "1/4",
+            "1/5",
+            "1/6"
+          ],
           "correct_index": 2,
           "time_estimate_minutes": 2
         },
@@ -437,11 +2438,20 @@
           "id": "TR_basic_lottery_pick_one",
           "title": "Lottery: one winning number",
           "statement": "A lottery sells tickets numbered 1 through 1000. Exactly one number wins. You buy a single ticket. What is the probability you win?",
-          "required_skills": ["S_compute_simple_probability"],
-          "required_concepts": ["C_classical_probability"],
+          "required_skills": [
+            "S_compute_simple_probability"
+          ],
+          "required_concepts": [
+            "C_classical_probability"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["1/100", "1/500", "1/1000", "1/10000"],
+          "options": [
+            "1/100",
+            "1/500",
+            "1/1000",
+            "1/10000"
+          ],
           "correct_index": 2,
           "time_estimate_minutes": 1
         }
@@ -449,18 +2459,33 @@
     },
     {
       "id": "TS_complement_to_realworld",
-      "target_skills": ["S_apply_complement_rule"],
-      "target_concepts": ["C_complement"],
+      "target_skills": [
+        "S_apply_complement_rule"
+      ],
+      "target_concepts": [
+        "C_complement"
+      ],
       "tasks": [
         {
           "id": "TR_complement_quality_control",
           "title": "Quality control: at least one defect",
           "statement": "A factory produces widgets, and each widget is independently defective with probability 0.02. You inspect a batch of 50. What is the probability that at least one is defective? (Approximate.)",
-          "required_skills": ["S_apply_complement_rule", "S_compute_joint_independent"],
-          "required_concepts": ["C_complement", "C_joint_independent"],
+          "required_skills": [
+            "S_apply_complement_rule",
+            "S_compute_joint_independent"
+          ],
+          "required_concepts": [
+            "C_complement",
+            "C_joint_independent"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["0.02", "0.36", "0.64", "1.00"],
+          "options": [
+            "0.02",
+            "0.36",
+            "0.64",
+            "1.00"
+          ],
           "correct_index": 2,
           "time_estimate_minutes": 4
         },
@@ -468,11 +2493,22 @@
           "id": "TR_complement_passwords_all_letters",
           "title": "Random password: at least one digit",
           "statement": "An 8-character password is generated by choosing each character independently and uniformly from {26 letters + 10 digits}. What is the probability it contains at least one digit?",
-          "required_skills": ["S_apply_complement_rule", "S_compute_joint_independent"],
-          "required_concepts": ["C_complement", "C_joint_independent"],
+          "required_skills": [
+            "S_apply_complement_rule",
+            "S_compute_joint_independent"
+          ],
+          "required_concepts": [
+            "C_complement",
+            "C_joint_independent"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["8/36", "0.10", "0.90", "26/36"],
+          "options": [
+            "8/36",
+            "0.10",
+            "0.90",
+            "26/36"
+          ],
           "correct_index": 2,
           "time_estimate_minutes": 4
         }
@@ -480,18 +2516,35 @@
     },
     {
       "id": "TS_indep_to_realworld",
-      "target_skills": ["S_recognize_independence", "S_compute_joint_independent"],
-      "target_concepts": ["C_independence", "C_joint_independent"],
+      "target_skills": [
+        "S_recognize_independence",
+        "S_compute_joint_independent"
+      ],
+      "target_concepts": [
+        "C_independence",
+        "C_joint_independent"
+      ],
       "tasks": [
         {
           "id": "TR_indep_weather_two_cities",
           "title": "Weather: rain in both cities",
           "statement": "On any given day, rain in city A occurs with probability 0.3 and rain in city B occurs with probability 0.4. Assume the two events are independent. What is the probability of rain in BOTH cities tomorrow?",
-          "required_skills": ["S_recognize_independence", "S_compute_joint_independent"],
-          "required_concepts": ["C_independence", "C_joint_independent"],
+          "required_skills": [
+            "S_recognize_independence",
+            "S_compute_joint_independent"
+          ],
+          "required_concepts": [
+            "C_independence",
+            "C_joint_independent"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["0.7", "0.12", "0.35", "0.58"],
+          "options": [
+            "0.7",
+            "0.12",
+            "0.35",
+            "0.58"
+          ],
           "correct_index": 1,
           "time_estimate_minutes": 2
         },
@@ -499,11 +2552,22 @@
           "id": "TR_indep_two_machines_break",
           "title": "Two machines: both fail",
           "statement": "Machine A fails with probability 0.05 on a given day; machine B fails with probability 0.08. Failures are independent. What is the probability both fail today?",
-          "required_skills": ["S_recognize_independence", "S_compute_joint_independent"],
-          "required_concepts": ["C_independence", "C_joint_independent"],
+          "required_skills": [
+            "S_recognize_independence",
+            "S_compute_joint_independent"
+          ],
+          "required_concepts": [
+            "C_independence",
+            "C_joint_independent"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["0.13", "0.05", "0.004", "0.95"],
+          "options": [
+            "0.13",
+            "0.05",
+            "0.004",
+            "0.95"
+          ],
           "correct_index": 2,
           "time_estimate_minutes": 2
         },
@@ -511,11 +2575,22 @@
           "id": "TR_indep_three_emails_spam",
           "title": "Three emails: all spam",
           "statement": "Each incoming email is independently spam with probability 0.2. You receive three emails. What is the probability all three are spam?",
-          "required_skills": ["S_recognize_independence", "S_compute_joint_independent"],
-          "required_concepts": ["C_independence", "C_joint_independent"],
+          "required_skills": [
+            "S_recognize_independence",
+            "S_compute_joint_independent"
+          ],
+          "required_concepts": [
+            "C_independence",
+            "C_joint_independent"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["0.6", "0.2", "0.008", "0.04"],
+          "options": [
+            "0.6",
+            "0.2",
+            "0.008",
+            "0.04"
+          ],
           "correct_index": 2,
           "time_estimate_minutes": 2
         }
@@ -523,18 +2598,31 @@
     },
     {
       "id": "TS_mutex_to_realworld",
-      "target_skills": ["S_apply_addition_mutually_exclusive"],
-      "target_concepts": ["C_mutually_exclusive"],
+      "target_skills": [
+        "S_apply_addition_mutually_exclusive"
+      ],
+      "target_concepts": [
+        "C_mutually_exclusive"
+      ],
       "tasks": [
         {
           "id": "TR_mutex_blood_type",
           "title": "Blood type: A or B",
           "statement": "In a large population, 42% have blood type O, 39% have A, 12% have B, and 7% have AB. A person is selected at random. What is the probability they have blood type A OR B?",
-          "required_skills": ["S_apply_addition_mutually_exclusive"],
-          "required_concepts": ["C_mutually_exclusive"],
+          "required_skills": [
+            "S_apply_addition_mutually_exclusive"
+          ],
+          "required_concepts": [
+            "C_mutually_exclusive"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["0.39", "0.27", "0.51", "0.46"],
+          "options": [
+            "0.39",
+            "0.27",
+            "0.51",
+            "0.46"
+          ],
           "correct_index": 2,
           "time_estimate_minutes": 2
         },
@@ -542,11 +2630,20 @@
           "id": "TR_mutex_traffic_light_color",
           "title": "Traffic light: red or yellow",
           "statement": "At any moment, the traffic light is red with probability 0.45, yellow with probability 0.05, and green with probability 0.50. You arrive at a random time. What is the probability the light is red OR yellow?",
-          "required_skills": ["S_apply_addition_mutually_exclusive"],
-          "required_concepts": ["C_mutually_exclusive"],
+          "required_skills": [
+            "S_apply_addition_mutually_exclusive"
+          ],
+          "required_concepts": [
+            "C_mutually_exclusive"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["0.45", "0.50", "0.55", "0.95"],
+          "options": [
+            "0.45",
+            "0.50",
+            "0.55",
+            "0.95"
+          ],
           "correct_index": 1,
           "time_estimate_minutes": 2
         }
@@ -554,18 +2651,33 @@
     },
     {
       "id": "TS_general_to_realworld",
-      "target_skills": ["S_apply_addition_general"],
-      "target_concepts": ["C_classical_probability", "C_event"],
+      "target_skills": [
+        "S_apply_addition_general"
+      ],
+      "target_concepts": [
+        "C_classical_probability",
+        "C_event"
+      ],
       "tasks": [
         {
           "id": "TR_general_survey_likes_AB",
           "title": "Survey: likes A or B",
           "statement": "In a survey of 100 people, 60 like product A, 50 like product B, and 30 like both. A person is selected at random. What is the probability they like A OR B?",
-          "required_skills": ["S_apply_addition_general"],
-          "required_concepts": ["C_classical_probability", "C_event"],
+          "required_skills": [
+            "S_apply_addition_general"
+          ],
+          "required_concepts": [
+            "C_classical_probability",
+            "C_event"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["1.10", "0.80", "0.30", "0.50"],
+          "options": [
+            "1.10",
+            "0.80",
+            "0.30",
+            "0.50"
+          ],
           "correct_index": 1,
           "time_estimate_minutes": 3
         },
@@ -573,11 +2685,21 @@
           "id": "TR_general_committee_skills",
           "title": "Committee: member with skill X or Y",
           "statement": "A committee of 20 members has 12 who speak French, 8 who speak Spanish, and 4 who speak both. A member is selected at random. What is the probability they speak French OR Spanish?",
-          "required_skills": ["S_apply_addition_general"],
-          "required_concepts": ["C_classical_probability", "C_event"],
+          "required_skills": [
+            "S_apply_addition_general"
+          ],
+          "required_concepts": [
+            "C_classical_probability",
+            "C_event"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["1.00", "0.80", "0.60", "0.20"],
+          "options": [
+            "1.00",
+            "0.80",
+            "0.60",
+            "0.20"
+          ],
           "correct_index": 1,
           "time_estimate_minutes": 3
         }
@@ -585,18 +2707,32 @@
     },
     {
       "id": "TS_cond_to_realworld",
-      "target_skills": ["S_compute_conditional"],
-      "target_concepts": ["C_conditional_probability"],
+      "target_skills": [
+        "S_compute_conditional"
+      ],
+      "target_concepts": [
+        "C_conditional_probability"
+      ],
       "tasks": [
         {
           "id": "TR_cond_disease_test",
           "title": "Disease test: P(sick | positive)",
           "statement": "In a population, 5% have a certain disease. The test correctly identifies sick people 90% of the time and produces false positives in 10% of healthy people. Given a positive test result, what is the probability the patient is sick? (Approximate.)",
-          "required_skills": ["S_compute_conditional", "S_apply_bayes_simple"],
-          "required_concepts": ["C_conditional_probability"],
+          "required_skills": [
+            "S_compute_conditional",
+            "S_apply_bayes_simple"
+          ],
+          "required_concepts": [
+            "C_conditional_probability"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["0.90", "0.32", "0.05", "0.50"],
+          "options": [
+            "0.90",
+            "0.32",
+            "0.05",
+            "0.50"
+          ],
           "correct_index": 1,
           "time_estimate_minutes": 5
         },
@@ -604,11 +2740,21 @@
           "id": "TR_cond_smoking_cancer",
           "title": "Smoking: P(cancer | smoker)",
           "statement": "In a population, 20% are smokers and 80% are not. Among smokers 15% develop a particular cancer; among non-smokers 1% do. A person selected at random has the cancer. What is the probability they are a smoker? (Approximate.)",
-          "required_skills": ["S_compute_conditional", "S_apply_bayes_simple"],
-          "required_concepts": ["C_conditional_probability"],
+          "required_skills": [
+            "S_compute_conditional",
+            "S_apply_bayes_simple"
+          ],
+          "required_concepts": [
+            "C_conditional_probability"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["0.20", "0.50", "0.79", "0.95"],
+          "options": [
+            "0.20",
+            "0.50",
+            "0.79",
+            "0.95"
+          ],
           "correct_index": 2,
           "time_estimate_minutes": 5
         },
@@ -616,11 +2762,21 @@
           "id": "TR_cond_factory_defect_machine",
           "title": "Factory: P(machine A | defect)",
           "statement": "Two machines produce widgets. Machine A makes 60% of widgets with a 2% defect rate; machine B makes 40% with a 5% defect rate. A randomly chosen widget is defective. What is the probability it came from machine A? (Approximate.)",
-          "required_skills": ["S_compute_conditional", "S_apply_bayes_simple"],
-          "required_concepts": ["C_conditional_probability"],
+          "required_skills": [
+            "S_compute_conditional",
+            "S_apply_bayes_simple"
+          ],
+          "required_concepts": [
+            "C_conditional_probability"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["0.60", "0.50", "0.38", "0.20"],
+          "options": [
+            "0.60",
+            "0.50",
+            "0.38",
+            "0.20"
+          ],
           "correct_index": 2,
           "time_estimate_minutes": 4
         }
@@ -628,18 +2784,31 @@
     },
     {
       "id": "TS_bayes_to_realworld",
-      "target_skills": ["S_apply_bayes_simple"],
-      "target_concepts": ["C_conditional_probability"],
+      "target_skills": [
+        "S_apply_bayes_simple"
+      ],
+      "target_concepts": [
+        "C_conditional_probability"
+      ],
       "tasks": [
         {
           "id": "TR_bayes_spam_filter",
           "title": "Spam filter: P(spam | flagged)",
           "statement": "20% of incoming emails are spam. A spam filter flags 95% of spam and 5% of legitimate emails. An email is flagged. What is the probability it is actually spam?",
-          "required_skills": ["S_apply_bayes_simple"],
-          "required_concepts": ["C_conditional_probability"],
+          "required_skills": [
+            "S_apply_bayes_simple"
+          ],
+          "required_concepts": [
+            "C_conditional_probability"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["0.95", "0.83", "0.50", "0.20"],
+          "options": [
+            "0.95",
+            "0.83",
+            "0.50",
+            "0.20"
+          ],
           "correct_index": 1,
           "time_estimate_minutes": 5
         },
@@ -647,11 +2816,20 @@
           "id": "TR_bayes_courtroom_evidence",
           "title": "Courtroom: P(guilty | match)",
           "statement": "A DNA-style trace matches a suspect's profile. The probability of such a match if the suspect is guilty is 99%; if innocent, the prior 'random match' probability is 0.1%. Suppose the suspect was picked at random from a pool of 10000 and the prior probability of guilt is 1/10000. What is the posterior probability of guilt? (Approximate.)",
-          "required_skills": ["S_apply_bayes_simple"],
-          "required_concepts": ["C_conditional_probability"],
+          "required_skills": [
+            "S_apply_bayes_simple"
+          ],
+          "required_concepts": [
+            "C_conditional_probability"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["0.99", "0.50", "0.09", "0.001"],
+          "options": [
+            "0.99",
+            "0.50",
+            "0.09",
+            "0.001"
+          ],
           "correct_index": 2,
           "time_estimate_minutes": 6
         }
@@ -659,165 +2837,241 @@
     },
     {
       "id": "TS_ev_to_realworld",
-      "target_skills": ["S_compute_expected_value_discrete"],
-      "target_concepts": ["C_expected_value"],
+      "target_skills": [
+        "S_compute_expected_value_discrete"
+      ],
+      "target_concepts": [
+        "C_expected_value"
+      ],
       "tasks": [
         {
           "id": "TR_ev_investment_payoff",
           "title": "Investment: expected payoff",
           "statement": "An investment pays off $1000 with probability 0.30, $500 with probability 0.50, and $0 with probability 0.20. What is the expected payoff?",
-          "required_skills": ["S_compute_expected_value_discrete"],
-          "required_concepts": ["C_expected_value"],
+          "required_skills": [
+            "S_compute_expected_value_discrete"
+          ],
+          "required_concepts": [
+            "C_expected_value"
+          ],
           "answer_format": "multiple_choice",
           "n_options": 4,
-          "options": ["$500", "$550", "$1500", "$0"],
+          "options": [
+            "$500",
+            "$550",
+            "$1500",
+            "$0"
+          ],
           "correct_index": 1,
           "time_estimate_minutes": 3
         }
       ]
     }
   ],
-
   "drills": [
     {
       "id": "D_enumerate",
       "title": "Enumeration warm-up",
-      "trains_skills": ["S_enumerate_outcomes", "S_count_favorable"],
+      "trains_skills": [
+        "S_enumerate_outcomes",
+        "S_count_favorable"
+      ],
       "estimated_time_minutes": 2
     },
     {
       "id": "D_complement",
       "title": "Complement-rule warm-up",
-      "trains_skills": ["S_apply_complement_rule"],
+      "trains_skills": [
+        "S_apply_complement_rule"
+      ],
       "estimated_time_minutes": 2
     },
     {
       "id": "D_independence",
       "title": "Independence warm-up",
-      "trains_skills": ["S_recognize_independence", "S_compute_joint_independent"],
+      "trains_skills": [
+        "S_recognize_independence",
+        "S_compute_joint_independent"
+      ],
       "estimated_time_minutes": 2
     },
     {
       "id": "D_conditional",
       "title": "Conditional probability warm-up",
-      "trains_skills": ["S_compute_conditional"],
+      "trains_skills": [
+        "S_compute_conditional"
+      ],
       "estimated_time_minutes": 2
     },
     {
       "id": "D_bayes",
       "title": "Bayes-rule warm-up",
-      "trains_skills": ["S_apply_bayes_simple"],
+      "trains_skills": [
+        "S_apply_bayes_simple"
+      ],
       "estimated_time_minutes": 3
     },
     {
       "id": "D_expected_value",
       "title": "Expected-value warm-up",
-      "trains_skills": ["S_compute_expected_value_discrete"],
+      "trains_skills": [
+        "S_compute_expected_value_discrete"
+      ],
       "estimated_time_minutes": 2
     }
   ],
-
   "probes": [
     {
       "id": "P_sample_space",
       "title": "Sample-space probe",
-      "diagnoses_skills": ["S_enumerate_outcomes"],
-      "diagnoses_concepts": ["C_sample_space"]
+      "diagnoses_skills": [
+        "S_enumerate_outcomes"
+      ],
+      "diagnoses_concepts": [
+        "C_sample_space"
+      ]
     },
     {
       "id": "P_classical_prob",
       "title": "Classical-probability probe",
-      "diagnoses_skills": ["S_compute_simple_probability", "S_count_favorable"],
-      "diagnoses_concepts": ["C_classical_probability"]
+      "diagnoses_skills": [
+        "S_compute_simple_probability",
+        "S_count_favorable"
+      ],
+      "diagnoses_concepts": [
+        "C_classical_probability"
+      ]
     },
     {
       "id": "P_independence",
       "title": "Independence probe",
-      "diagnoses_skills": ["S_recognize_independence", "S_compute_joint_independent"],
-      "diagnoses_concepts": ["C_independence", "C_joint_independent"]
+      "diagnoses_skills": [
+        "S_recognize_independence",
+        "S_compute_joint_independent"
+      ],
+      "diagnoses_concepts": [
+        "C_independence",
+        "C_joint_independent"
+      ]
     },
     {
       "id": "P_addition_rule",
       "title": "Addition-rule probe",
-      "diagnoses_skills": ["S_apply_addition_general", "S_apply_addition_mutually_exclusive"],
-      "diagnoses_concepts": ["C_mutually_exclusive"]
+      "diagnoses_skills": [
+        "S_apply_addition_general",
+        "S_apply_addition_mutually_exclusive"
+      ],
+      "diagnoses_concepts": [
+        "C_mutually_exclusive"
+      ]
     },
     {
       "id": "P_conditional",
       "title": "Conditional probability probe",
-      "diagnoses_skills": ["S_compute_conditional"],
-      "diagnoses_concepts": ["C_conditional_probability"]
+      "diagnoses_skills": [
+        "S_compute_conditional"
+      ],
+      "diagnoses_concepts": [
+        "C_conditional_probability"
+      ]
     },
     {
       "id": "P_bayes",
       "title": "Bayes probe",
-      "diagnoses_skills": ["S_apply_bayes_simple"],
-      "diagnoses_concepts": ["C_conditional_probability"]
+      "diagnoses_skills": [
+        "S_apply_bayes_simple"
+      ],
+      "diagnoses_concepts": [
+        "C_conditional_probability"
+      ]
     }
   ],
-
   "micro_theories": [
     {
       "id": "MT_sample_space",
       "title": "What is a sample space?",
-      "concept_ids": ["C_sample_space"],
+      "concept_ids": [
+        "C_sample_space"
+      ],
       "content_markdown": "A *sample space* (denoted Ω) is the set of all possible outcomes of an experiment. For a single coin flip, Ω = {H, T}. For rolling a fair die, Ω = {1, 2, 3, 4, 5, 6}. For two coin flips in sequence, Ω = {HH, HT, TH, TT} — four outcomes. The key idea: outcomes are mutually exclusive and exhaustive (every trial produces exactly one outcome from Ω)."
     },
     {
       "id": "MT_equally_likely",
       "title": "When are outcomes equally likely?",
-      "concept_ids": ["C_equally_likely"],
+      "concept_ids": [
+        "C_equally_likely"
+      ],
       "content_markdown": "Saying that outcomes are *equally likely* is an assumption about the experiment, not a theorem. A fair coin has P(H) = P(T) = 1/2 because we assume the coin is symmetric. A weighted coin with P(H) = 0.7 has the same sample space {H, T} but the outcomes are NOT equally likely. Always check the physical setup before assigning equal probabilities."
     },
     {
       "id": "MT_event",
       "title": "Events as subsets",
-      "concept_ids": ["C_event"],
+      "concept_ids": [
+        "C_event"
+      ],
       "content_markdown": "An *event* is any subset of the sample space. If Ω = {HH, HT, TH, TT}, the event 'at least one head' is the subset {HH, HT, TH}. The event 'exactly two heads' is {HH}. Single outcomes are themselves events of size 1, and the entire Ω is the certain event."
     },
     {
       "id": "MT_classical_probability",
       "title": "Classical probability: favorable over total",
-      "concept_ids": ["C_classical_probability"],
+      "concept_ids": [
+        "C_classical_probability"
+      ],
       "content_markdown": "When all outcomes in Ω are equally likely, P(A) = |A| / |Ω| — the count of outcomes in event A divided by the total count. For rolling a fair die, |Ω| = 6 and the event 'even' has |{2,4,6}| = 3, so P(even) = 3/6 = 1/2. This is the building block for everything that follows."
     },
     {
       "id": "MT_complement",
       "title": "The complement rule",
-      "concept_ids": ["C_complement"],
+      "concept_ids": [
+        "C_complement"
+      ],
       "content_markdown": "If A is an event, the *complement* ¬A is everything in Ω that is not in A. The complement rule says P(¬A) = 1 − P(A). This is often the fastest path to a probability: P(at least one 6 in 3 rolls) = 1 − P(no 6 in 3 rolls) = 1 − (5/6)³ ≈ 0.42."
     },
     {
       "id": "MT_independence",
       "title": "Independence",
-      "concept_ids": ["C_independence"],
+      "concept_ids": [
+        "C_independence"
+      ],
       "content_markdown": "Two events A and B are *independent* if knowing one does not change the probability of the other: P(A|B) = P(A). Physically, this often corresponds to separate trials with no interaction — two coin flips, two dice rolls, two unrelated machines. Drawing two cards *without replacement* is NOT independent: the first card changes the deck."
     },
     {
       "id": "MT_joint_independent",
       "title": "Multiplication rule for independent events",
-      "concept_ids": ["C_joint_independent"],
+      "concept_ids": [
+        "C_joint_independent"
+      ],
       "content_markdown": "For independent events, P(A and B) = P(A) · P(B). So P(HH on two fair flips) = (1/2) · (1/2) = 1/4. The rule extends to more events: P(HHH) = (1/2)³ = 1/8. Always verify independence before multiplying — applying this rule to dependent events is a classical error."
     },
     {
       "id": "MT_mutually_exclusive",
       "title": "Mutually exclusive events and the addition rule",
-      "concept_ids": ["C_mutually_exclusive"],
+      "concept_ids": [
+        "C_mutually_exclusive"
+      ],
       "content_markdown": "Two events are *mutually exclusive* (or disjoint) if they cannot both happen in a single trial. Rolling a 1 and rolling a 2 are mutually exclusive — exactly one number comes up. For mutually exclusive events, P(A or B) = P(A) + P(B). For events that can overlap, you must subtract the intersection: P(A∪B) = P(A) + P(B) − P(A∩B)."
     },
     {
       "id": "MT_conditional_probability",
       "title": "Conditional probability",
-      "concept_ids": ["C_conditional_probability"],
+      "concept_ids": [
+        "C_conditional_probability"
+      ],
       "content_markdown": "Conditional probability P(A|B) reads 'the probability of A given that B happened'. By definition, P(A|B) = P(A∩B) / P(B), provided P(B) > 0. This is how we update beliefs as we learn new information: given a positive test, what is the probability of disease? Conditioning typically *concentrates* probability on the part of Ω where B is true."
     },
     {
       "id": "MT_expected_value",
       "title": "Expected value",
-      "concept_ids": ["C_expected_value"],
+      "concept_ids": [
+        "C_expected_value"
+      ],
       "content_markdown": "The *expected value* E[X] of a discrete random variable is the weighted average of its possible values, weighted by their probabilities: E[X] = Σ x · P(X = x). It represents the long-run average over many independent trials, not a value you actually expect to see in any single trial. For a fair die paying its face value, E[X] = (1+2+3+4+5+6)/6 = 3.5."
     }
   ],
-
-  "retention_schedule": [1, 3, 7, 14]
+  "retention_schedule": [
+    1,
+    3,
+    7,
+    14
+  ]
 }
