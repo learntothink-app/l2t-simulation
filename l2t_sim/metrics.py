@@ -67,9 +67,14 @@ def m_hint(
 def m_robust(
     records: Iterable[StepRecord],
     transfer_tasks: set[str],
-    q_low: float = 0.30,
+    q_low: float = 0.50,
 ) -> float:
-    """Eq. (34): E[1{correct} | transfer ∧ q_t ≤ q_low]."""
+    """Eq. (34): E[1{correct} | transfer ∧ q_t ≤ q_low].
+
+    ``q_low`` was raised from 0.30 to 0.50 so that guesser learners
+    (typical q_t ≈ 0.40) also contribute to the subsample — at 0.30
+    only copiers crossed the threshold and H1 had insufficient power.
+    """
     cands = [
         r
         for r in records
