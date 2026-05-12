@@ -1,0 +1,22 @@
+# small.yaml — fix-iteration / calibration run.
+# Sits between mini (CI smoke) and medium (production). N=300 gives
+# bootstrap CI widths roughly half those of mini, which is enough to
+# tell whether a parameter tweak (THEORY_BONUS, q_low, ...) moved the
+# needle. T=80 keeps wall-clock under a minute on a modern machine.
+n_students: 300
+t_steps: 80
+master_seed: 42
+method_seed: 1
+n_bootstrap: 3000
+
+behaviour_proportions:
+  honest: 0.60
+  guesser: 0.15
+  copier: 0.10
+  help_seeker: 0.15
+
+retention_intervals_days: [1, 3, 7, 14]
+forgetting_lambda: 0.05
+
+prereq_perturbation_eps: 0.10
+n_jobs: -1
