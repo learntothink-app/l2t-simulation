@@ -395,6 +395,20 @@ def generate_synthetic_methodology(
             time_estimate_seconds=float(rng.uniform(30.0, 90.0)),
         )
 
+    # trains_metaskill: each metaskill is trained by 3..6 tasks/drills.
+    # Without these edges, m_meta is identically zero — see Eq. (A3) final
+    # remark and the m_meta column of the result table.
+    pool = list(tasks.keys()) + list(drills.keys())
+    for m in metaskills:
+        n_train = int(rng.integers(3, 7))
+        if not pool:
+            continue
+        targets = rng.choice(pool, size=min(n_train, len(pool)), replace=False)
+        for tid in targets:
+            eid = f"TM_{m}_{tid}"
+            if eid not in H.edges:
+                H.add_edge(eid, (tid,), (m,), "trains_metaskill", weight=1.0)
+
     # Probes.
     probes: dict[str, Task] = {}
     for i in range(n_probes):

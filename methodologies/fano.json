@@ -57,7 +57,15 @@
 
       {"id": "HE_meta_read", "kind": "meta_helps_learn", "tail": ["MS_read_problem"], "head": ["S_draw_tree", "S_find_free", "S_check_alphabet"]},
       {"id": "HE_meta_check", "kind": "meta_helps_learn", "tail": ["MS_self_check"], "head": ["S_verify_fano", "S_compute_length"]},
-      {"id": "HE_meta_count", "kind": "meta_helps_learn", "tail": ["MS_count_letters"], "head": ["S_encode_word"]}
+      {"id": "HE_meta_count", "kind": "meta_helps_learn", "tail": ["MS_count_letters"], "head": ["S_encode_word"]},
+
+      {"id": "HE_tm_read_T01", "kind": "trains_metaskill", "tail": ["T_target_01"], "head": ["MS_read_problem"]},
+      {"id": "HE_tm_read_T02", "kind": "trains_metaskill", "tail": ["T_target_02"], "head": ["MS_read_problem"]},
+      {"id": "HE_tm_read_T03", "kind": "trains_metaskill", "tail": ["T_target_03"], "head": ["MS_read_problem"]},
+      {"id": "HE_tm_check_DCF", "kind": "trains_metaskill", "tail": ["D_check_fano"], "head": ["MS_self_check"]},
+      {"id": "HE_tm_check_S00a", "kind": "trains_metaskill", "tail": ["T_S00a_check_fano"], "head": ["MS_self_check"]},
+      {"id": "HE_tm_check_S00b", "kind": "trains_metaskill", "tail": ["T_S00b_find_violation"], "head": ["MS_self_check"]},
+      {"id": "HE_tm_count_DAC", "kind": "trains_metaskill", "tail": ["D_assign_codes"], "head": ["MS_count_letters"]}
     ],
 
     "prereq_dag": [
