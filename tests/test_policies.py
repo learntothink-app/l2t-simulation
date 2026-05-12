@@ -62,6 +62,59 @@ def test_l2t_no_proactive_spoiler() -> None:
         assert a.type != "hint"
 
 
+def test_l2t_transfer_gate_requires_majority_mastered() -> None:
+    """When only one skill is mastered, L2T must NOT spam transfers."""
+
+    from collections import Counter
+
+    md = generate_synthetic_methodology(seed=1)
+    rng = np.random.default_rng(0)
+    pol = L2TPolicy(md.hypergraph, md, rng, use_reliability=True)
+    belief = pol_initial_belief(md)
+    belief.p_hat[:] = 0.40
+    belief.p_hat[0] = 0.95  # exactly one skill mastered
+
+    types: Counter[str] = Counter()
+    for _ in range(100):
+        a = pol.select_action(belief, _ctx(md))
+        types[a.type] += 1
+
+    transfer_frac = types["transfer"] / max(sum(types.values()), 1)
+    assert transfer_frac < 0.2, (
+        f"L2T spammed transfer with only one skill mastered "
+        f"({transfer_frac:.0%}); the majority-gate should suppress it."
+    )
+
+
+def test_l2t_transfer_gate_activates_when_majority_mastered() -> None:
+    """When (almost) all skills are mastered, L2T should enter transfer phase."""
+
+    from collections import Counter
+
+    md = generate_synthetic_methodology(seed=1)
+    rng = np.random.default_rng(0)
+    pol = L2TPolicy(md.hypergraph, md, rng, use_reliability=True)
+    belief = pol_initial_belief(md)
+    belief.p_hat[:] = 0.95  # all skills mastered
+
+    ctx = _ctx(md, t=10)
+    # Pre-populate theory_checked so transfer can fire without microtheory
+    # gating short-circuiting the test.
+    for c in md.hypergraph.concept_ids:
+        ctx.theory_checked.add(c)
+
+    types: Counter[str] = Counter()
+    for _ in range(100):
+        a = pol.select_action(belief, ctx)
+        types[a.type] += 1
+
+    transfer_frac = types["transfer"] / max(sum(types.values()), 1)
+    assert transfer_frac > 0.5, (
+        f"L2T did not enter transfer phase with all skills mastered "
+        f"({transfer_frac:.0%}); the majority-gate is misconfigured."
+    )
+
+
 def test_l2t_respects_prerequisites() -> None:
     md = generate_synthetic_methodology(seed=1)
     rng = np.random.default_rng(0)
