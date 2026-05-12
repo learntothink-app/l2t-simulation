@@ -53,10 +53,13 @@ are dumped to `experiment_manifest.json` next to the results.
 The simulation ships with two methodologies, each loaded automatically by
 `experiments/run_main.py`:
 
-| Methodology | Role | Domain | Size |
-|---|---|---|---|
-| **probability** (primary) | Statistical hypothesis testing | Discrete probability — coins, dice, bags, cards | 10 concepts, 12 skills, 3 metaskills, 8 misconceptions, 25 training tasks, 18 transfer tasks |
-| **synthetic** (control) | Graph-structure / scale control | Seeded random topology | 8 concepts, 10 skills, 3 metaskills, 12 errors, 40 tasks, 15 transfer tasks |
+| Methodology | Role | Training tasks | Transfer tasks (holdout) | Concepts | Skills | Metaskills | Misconceptions |
+|---|---|---|---|---|---|---|---|
+| **probability** (primary) | Statistical hypothesis testing | 37 | 18 (8) | 10 | 12 | 3 | 8 |
+| **synthetic** (control) | Graph-structure / scale control | 40 | 15 (8) | 8 | 10 | 3 | 12 |
+
+Holdout transfer tasks are reserved for the terminal probe — policies do
+not see them during the main loop.
 
 Hypothesis tests **H1, H1b, H2, H3, H4** are evaluated on **pooled** records
 across both methodologies (N≈2000 at the medium config). Per-methodology
