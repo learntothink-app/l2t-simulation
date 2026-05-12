@@ -110,3 +110,31 @@ def test_minimum_edge_counts() -> None:
     assert (
         kinds["meta_helps_learn"] >= 15
     ), f"meta_helps_learn edges: {kinds['meta_helps_learn']} (expected >= 15)"
+
+
+def test_every_skill_has_min_3_tasks() -> None:
+    """Each skill should be trained by at least 3 tasks — content quality
+    invariant introduced in v0.1.5 to prevent the v0.1.4 over-overlap
+    pattern from re-emerging (three basics in 88% of tasks)."""
+
+    from collections import Counter
+
+    md = load_probability_methodology(PROB_PATH)
+    counts: Counter[str] = Counter()
+    for t in md.tasks.values():
+        for s in t.required_skills:
+            counts[s] += 1
+    for skill in md.hypergraph.skill_ids:
+        n = counts.get(skill, 0)
+        assert n >= 3, f"skill {skill} has only {n} tasks (expected >= 3)"
+
+
+def test_mean_required_skills_per_task_low() -> None:
+    """Mean required_skills per task should be ~1 — each task targets a
+    primary skill, prerequisites are expressed via concept → skill
+    `requires` edges, not by inflating required_skills lists."""
+
+    md = load_probability_methodology(PROB_PATH)
+    sizes = [len(t.required_skills) for t in md.tasks.values()]
+    mean = sum(sizes) / len(sizes)
+    assert mean < 1.5, f"mean required_skills/task = {mean:.2f} (expected < 1.5)"
