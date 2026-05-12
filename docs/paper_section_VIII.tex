@@ -2,7 +2,7 @@
 
 \subsection{Simulation setup}
 
-We executed the simulation protocol of Sec.~\ref{sec:simulation} on $N=100$ synthetic students with $T=50$ tutoring steps each, on two methodologies: (i)~the Fano methodology drawn from the open L2T repository and (ii)~a synthetically generated abstract methodology with $K=10$ skills, $M=3$ meta-skills, and $40$ tasks. The four behaviour types from Sec.~\ref{sec:simulation}—honest, guesser, copier, help_seeker—appear in the proportions $0.60/0.15/0.10/0.15$.
+We executed the simulation protocol of Sec.~\ref{sec:simulation} on $N=1000$ synthetic students with $T=100$ tutoring steps each, on two methodologies: (i)~the Fano methodology drawn from the open L2T repository and (ii)~a synthetically generated abstract methodology with $K=10$ skills, $M=3$ meta-skills, and $40$ tasks. The four behaviour types from Sec.~\ref{sec:simulation}—honest, guesser, copier, help_seeker—appear in the proportions $0.60/0.15/0.10/0.15$.
 
 \subsection{Headline results: fano}
 
@@ -12,18 +12,18 @@ We executed the simulation protocol of Sec.~\ref{sec:simulation} on $N=100$ synt
 \hline
 Metric & B1\_random & B2\_bkt & B3\_l2t\_no\_q & B4\_full\_l2t \\
 \hline
-m\_mastery & 0.184 [0.147, 0.221] & 0.203 [0.147, 0.259] & 0.141 [0.109, 0.174] & 0.165 [0.133, 0.196] \\
-m\_transfer & 0.740 [0.650, 0.820] & 0.710 [0.630, 0.800] & 0.570 [0.470, 0.670] & 0.650 [0.560, 0.740] \\
-m\_retention\_1d & -0.100 [-0.210, 0.010] & 0.020 [-0.050, 0.080] & 0.050 [-0.040, 0.130] & 0.070 [-0.020, 0.160] \\
-m\_retention\_3d & -0.190 [-0.280, -0.100] & -0.110 [-0.200, -0.030] & -0.040 [-0.130, 0.050] & -0.060 [-0.150, 0.020] \\
-m\_retention\_7d & -0.300 [-0.390, -0.210] & -0.220 [-0.320, -0.130] & -0.100 [-0.200, 0.000] & -0.180 [-0.280, -0.070] \\
-m\_retention\_14d & -0.300 [-0.410, -0.180] & -0.480 [-0.590, -0.380] & -0.280 [-0.400, -0.160] & -0.350 [-0.450, -0.240] \\
-m\_hint & -0.812 [-0.853, -0.772] & 0.000 [0.000, 0.000] & -0.180 [-0.218, -0.143] & -0.180 [-0.220, -0.140] \\
-m\_robust & 1.000 [1.000, 1.000] & — & 0.869 [0.785, 0.950] & — \\
-m\_efficiency & 0.004 [0.003, 0.004] & 0.004 [0.003, 0.005] & 0.003 [0.002, 0.003] & 0.003 [0.003, 0.004] \\
-m\_meta & 0.000 [0.000, 0.000] & 0.000 [0.000, 0.000] & 0.000 [0.000, 0.000] & 0.000 [0.000, 0.000] \\
-m\_engage & 0.585 [0.571, 0.599] & 1.000 [1.000, 1.000] & 0.793 [0.766, 0.820] & 0.801 [0.775, 0.828] \\
-m\_calib & 0.218 [0.207, 0.230] & 0.205 [0.191, 0.220] & 0.261 [0.244, 0.278] & 0.284 [0.267, 0.299] \\
+m\_mastery & 0.261 [0.246, 0.276] & 0.274 [0.255, 0.293] & 0.242 [0.232, 0.252] & 0.248 [0.238, 0.259] \\
+m\_transfer & 0.762 [0.736, 0.788] & 0.761 [0.734, 0.787] & 0.758 [0.731, 0.784] & 0.752 [0.725, 0.778] \\
+m\_retention\_1d & -0.039 [-0.067, -0.011] & -0.057 [-0.084, -0.029] & -0.064 [-0.093, -0.034] & -0.049 [-0.078, -0.020] \\
+m\_retention\_3d & -0.091 [-0.123, -0.059] & -0.105 [-0.135, -0.074] & -0.112 [-0.144, -0.080] & -0.141 [-0.172, -0.110] \\
+m\_retention\_7d & -0.211 [-0.245, -0.176] & -0.231 [-0.265, -0.198] & -0.224 [-0.258, -0.189] & -0.228 [-0.262, -0.193] \\
+m\_retention\_14d & -0.387 [-0.424, -0.350] & -0.396 [-0.432, -0.359] & -0.375 [-0.411, -0.339] & -0.370 [-0.405, -0.335] \\
+m\_hint & -0.823 [-0.831, -0.815] & 0.000 [0.000, 0.000] & -0.230 [-0.250, -0.211] & -0.223 [-0.242, -0.205] \\
+m\_robust & 0.438 [0.385, 0.492] & — & 0.880 [0.855, 0.904] & 0.891 [0.867, 0.914] \\
+m\_efficiency & 0.003 [0.002, 0.003] & 0.003 [0.003, 0.003] & 0.002 [0.002, 0.003] & 0.002 [0.002, 0.003] \\
+m\_meta & 0.046 [0.044, 0.049] & 0.092 [0.088, 0.095] & 0.041 [0.038, 0.044] & 0.048 [0.046, 0.051] \\
+m\_engage & 0.576 [0.573, 0.579] & 1.000 [1.000, 1.000] & 0.813 [0.805, 0.820] & 0.817 [0.809, 0.824] \\
+m\_calib & 0.158 [0.155, 0.161] & 0.125 [0.121, 0.129] & 0.199 [0.195, 0.203] & 0.220 [0.216, 0.224] \\
 \hline
 \end{tabular}
 \caption{Headline results on the fano methodology (mean and 95\% bootstrap CI over $N=1000$ synthetic students).}
@@ -38,18 +38,18 @@ m\_calib & 0.218 [0.207, 0.230] & 0.205 [0.191, 0.220] & 0.261 [0.244, 0.278] & 
 \hline
 Metric & B1\_random & B2\_bkt & B3\_l2t\_no\_q & B4\_full\_l2t \\
 \hline
-m\_mastery & 0.192 [0.157, 0.227] & 0.226 [0.178, 0.274] & 0.178 [0.140, 0.216] & 0.211 [0.172, 0.248] \\
-m\_transfer & 0.680 [0.616, 0.738] & 0.686 [0.624, 0.752] & 0.656 [0.588, 0.721] & 0.679 [0.620, 0.739] \\
-m\_retention\_1d & -0.013 [-0.040, 0.016] & -0.051 [-0.080, -0.021] & -0.026 [-0.056, 0.004] & -0.034 [-0.068, -0.003] \\
-m\_retention\_3d & -0.096 [-0.134, -0.057] & -0.111 [-0.144, -0.079] & -0.098 [-0.139, -0.059] & -0.058 [-0.100, -0.020] \\
-m\_retention\_7d & -0.199 [-0.237, -0.162] & -0.229 [-0.266, -0.191] & -0.170 [-0.214, -0.124] & -0.211 [-0.258, -0.170] \\
-m\_retention\_14d & -0.346 [-0.391, -0.295] & -0.350 [-0.398, -0.302] & -0.349 [-0.399, -0.295] & -0.314 [-0.356, -0.274] \\
-m\_hint & -0.791 [-0.870, -0.714] & 0.000 [0.000, 0.000] & -0.155 [-0.177, -0.134] & -0.155 [-0.182, -0.128] \\
-m\_robust & 0.595 [0.357, 0.810] & — & 0.805 [0.706, 0.897] & — \\
-m\_efficiency & 0.004 [0.003, 0.005] & 0.005 [0.004, 0.005] & 0.004 [0.003, 0.004] & 0.004 [0.003, 0.005] \\
-m\_meta & 0.000 [0.000, 0.000] & 0.000 [0.000, 0.000] & 0.000 [0.000, 0.000] & 0.000 [0.000, 0.000] \\
-m\_engage & 0.861 [0.849, 0.872] & 1.000 [1.000, 1.000] & 0.863 [0.839, 0.885] & 0.867 [0.841, 0.891] \\
-m\_calib & 0.190 [0.176, 0.202] & 0.181 [0.170, 0.191] & 0.202 [0.188, 0.218] & 0.230 [0.214, 0.245] \\
+m\_mastery & 0.344 [0.328, 0.359] & 0.367 [0.351, 0.383] & 0.271 [0.257, 0.284] & 0.287 [0.274, 0.301] \\
+m\_transfer & 0.761 [0.741, 0.781] & 0.744 [0.723, 0.764] & 0.750 [0.731, 0.769] & 0.743 [0.723, 0.761] \\
+m\_retention\_1d & -0.038 [-0.048, -0.028] & -0.032 [-0.041, -0.022] & -0.042 [-0.052, -0.031] & -0.041 [-0.051, -0.030] \\
+m\_retention\_3d & -0.119 [-0.131, -0.108] & -0.104 [-0.115, -0.092] & -0.119 [-0.131, -0.106] & -0.114 [-0.125, -0.102] \\
+m\_retention\_7d & -0.229 [-0.242, -0.216] & -0.222 [-0.235, -0.208] & -0.223 [-0.236, -0.210] & -0.224 [-0.237, -0.210] \\
+m\_retention\_14d & -0.386 [-0.402, -0.371] & -0.367 [-0.382, -0.352] & -0.377 [-0.392, -0.362] & -0.380 [-0.395, -0.364] \\
+m\_hint & -0.814 [-0.829, -0.798] & 0.000 [0.000, 0.000] & -0.138 [-0.153, -0.123] & -0.136 [-0.151, -0.122] \\
+m\_robust & 0.517 [0.473, 0.559] & — & 0.902 [0.882, 0.920] & 0.892 [0.870, 0.913] \\
+m\_efficiency & 0.003 [0.003, 0.004] & 0.004 [0.004, 0.004] & 0.003 [0.003, 0.003] & 0.003 [0.003, 0.003] \\
+m\_meta & 0.028 [0.026, 0.029] & 0.035 [0.033, 0.037] & 0.007 [0.006, 0.007] & 0.011 [0.010, 0.012] \\
+m\_engage & 0.863 [0.861, 0.866] & 1.000 [1.000, 1.000] & 0.786 [0.780, 0.792] & 0.796 [0.789, 0.802] \\
+m\_calib & 0.182 [0.179, 0.184] & 0.141 [0.139, 0.144] & 0.197 [0.194, 0.200] & 0.213 [0.210, 0.217] \\
 \hline
 \end{tabular}
 \caption{Headline results on the synthetic methodology (mean and 95\% bootstrap CI over $N=1000$ synthetic students).}
@@ -60,20 +60,20 @@ m\_calib & 0.190 [0.176, 0.202] & 0.181 [0.170, 0.191] & 0.202 [0.188, 0.218] & 
 
 \paragraph{H1 (B4 > B3 on $m_{\mathrm{robust}}$, guesser+copier).}
 
-\verb|{'metric': 'm_robust', 'subsample': 'guesser+copier', 'n_b3': 8, 'n_b4': 0, 't': None, 'p_value': None, 'cohen_d': None, 'confirmed': False, 'note': 'insufficient low-q transfer observations to evaluate'}|\par
+\verb|{'metric': 'm_robust', 'subsample': 'guesser+copier', 'n_b3': 98, 'n_b4': 90, 'mean_b3': 0.8401276587872197, 'mean_b4': 0.8289295553285312, 't': -0.9681097914699024, 'p_value': 0.8325538598001161, 'cohen_d': -0.14328195491500378, 'confirmed': False}|\par
 
 \paragraph{H2 (B3,B4 > B2 on $m_{\mathrm{transfer}}$ and $m_{\mathrm{retention}}(7\mathrm{d})$).}
 
-\verb|{'m_transfer_b3_vs_b2': {'n_b2': 100, 'n_other': 100, 'mean_b2': 0.71, 'mean_other': 0.57, 't': -2.074232152964138, 'p_value': 0.9803195378325745, 'cohen_d': -0.2933407242232229, 'confirmed': False}, 'm_transfer_b4_vs_b2': {'n_b2': 100, 'n_other': 100, 'mean_b2': 0.71, 'mean_other': 0.65, 't': -0.90682689934778, 'p_value': 0.8171983258219172, 'cohen_d': -0.12824468997823724, 'confirmed': False}, 'm_retention_7d_b3_vs_b2': {'n_b2': 100, 'n_other': 100, 'mean_b2': -0.22, 'mean_other': -0.1, 't': 1.6532177214014578, 'p_value': 0.04994553289529793, 'cohen_d': 0.23380029231614868, 'confirmed': True}, 'm_retention_7d_b4_vs_b2': {'n_b2': 100, 'n_other': 100, 'mean_b2': -0.22, 'mean_other': -0.18, 't': 0.552344770738994, 'p_value': 0.2906711796920813, 'cohen_d': 0.07811334658849432, 'confirmed': False}}|\par
+\verb|{'m_transfer_b3_vs_b2': {'n_b2': 1000, 'n_other': 1000, 'mean_b2': 0.761, 'mean_other': 0.758, 't': -0.15688096293959714, 'p_value': 0.5623227429016509, 'cohen_d': -0.007015929950171289, 'confirmed': False}, 'm_transfer_b4_vs_b2': {'n_b2': 1000, 'n_other': 1000, 'mean_b2': 0.761, 'mean_other': 0.752, 't': -0.4686840554224797, 'p_value': 0.6803266883733953, 'cohen_d': -0.020960188157898872, 'confirmed': False}, 'm_retention_7d_b3_vs_b2': {'n_b2': 1000, 'n_other': 1000, 'mean_b2': -0.231, 'mean_other': -0.224, 't': 0.2838708961736611, 'p_value': 0.3882693830678814, 'cohen_d': 0.012695092413561824, 'confirmed': False}, 'm_retention_7d_b4_vs_b2': {'n_b2': 1000, 'n_other': 1000, 'mean_b2': -0.231, 'mean_other': -0.228, 't': 0.12244844356816495, 'p_value': 0.451278097242684, 'cohen_d': 0.005476060871149276, 'confirmed': False}}|\par
 
 \paragraph{H3 (B2,B3,B4 > B1).}
 
-\verb|{'m_mastery_b2_vs_b1': {'mean_b1': 0.18378660407577055, 'mean_other': 0.2028706819396499, 't': 0.5513466326686948, 'p_value': 0.29104254237973265, 'cohen_d': 0.07797218854888051, 'confirmed': False}, 'm_transfer_b2_vs_b1': {'mean_b1': 0.74, 'mean_other': 0.71, 't': -0.47297011332049466, 'p_value': 0.6816219637620642, 'cohen_d': -0.06688807488549832, 'confirmed': False}, 'm_retention_7d_b2_vs_b1': {'mean_b1': -0.3, 'mean_other': -0.22, 't': 1.1470024489687014, 'p_value': 0.12638337705760003, 'cohen_d': 0.16221064194066914, 'confirmed': False}, 'm_efficiency_b2_vs_b1': {'mean_b1': 0.003675732081515409, 'mean_other': 0.004057413638792999, 't': 0.551346632668698, 'p_value': 0.2910425423797314, 'cohen_d': 0.07797218854888097, 'confirmed': False}, 'm_mastery_b3_vs_b1': {'mean_b1': 0.18378660407577055, 'mean_other': 0.14134679607697181, 't': -1.628256009705072, 'p_value': 0.9474430929658048, 'cohen_d': -0.23027017319404108, 'confirmed': False}, 'm_transfer_b3_vs_b1': {'mean_b1': 0.74, 'mean_other': 0.57, 't': -2.557275335754276, 'p_value': 0.9943453824413172, 'cohen_d': -0.3616533462545908, 'confirmed': False}, 'm_retention_7d_b3_vs_b1': {'mean_b1': -0.3, 'mean_other': -0.1, 't': 2.7080128015453204, 'p_value': 0.0036821729945295274, 'cohen_d': 0.3829708431025352, 'confirmed': True}, 'm_efficiency_b3_vs_b1': {'mean_b1': 0.003675732081515409, 'mean_other': 0.002826935921539437, 't': -1.6282560097050673, 'p_value': 0.9474430929658043, 'cohen_d': -0.23027017319404042, 'confirmed': False}, 'm_mastery_b4_vs_b1': {'mean_b1': 0.18378660407577055, 'mean_other': 0.16527249136846744, 't': -0.7119970018354055, 'p_value': 0.7613327878364143, 'cohen_d': -0.1006915816364612, 'confirmed': False}, 'm_transfer_b4_vs_b1': {'mean_b1': 0.74, 'mean_other': 0.65, 't': -1.3819335781376674, 'p_value': 0.9157199611361767, 'cohen_d': -0.19543492085010683, 'confirmed': False}, 'm_retention_7d_b4_vs_b1': {'mean_b1': -0.3, 'mean_other': -0.18, 't': 1.6284304450254283, 'p_value': 0.05251574907656327, 'cohen_d': 0.23029484207362155, 'confirmed': False}, 'm_efficiency_b4_vs_b1': {'mean_b1': 0.003675732081515409, 'mean_other': 0.003305449827369349, 't': -0.7119970018354018, 'p_value': 0.7613327878364131, 'cohen_d': -0.10069158163646066, 'confirmed': False}}|\par
+\verb|{'m_mastery_b2_vs_b1': {'mean_b1': 0.26105441845980215, 'mean_other': 0.2743423789289811, 't': 1.0795429523441658, 'p_value': 0.14024158081362909, 'cohen_d': 0.04827862852144742, 'confirmed': False}, 'm_transfer_b2_vs_b1': {'mean_b1': 0.762, 'mean_other': 0.761, 't': -0.05244316569164802, 'p_value': 0.5209095886391555, 'cohen_d': -0.0023453296688361945, 'confirmed': False}, 'm_retention_7d_b2_vs_b1': {'mean_b1': -0.211, 'mean_other': -0.231, 't': -0.8173711477519054, 'p_value': 0.7930930771929147, 'cohen_d': -0.036553948984405706, 'confirmed': False}, 'm_efficiency_b2_vs_b1': {'mean_b1': 0.002610544184598021, 'mean_other': 0.002743423789289812, 't': 1.0795429523441755, 'p_value': 0.1402415808136269, 'cohen_d': 0.048278628521447854, 'confirmed': False}, 'm_mastery_b3_vs_b1': {'mean_b1': 0.26105441845980215, 'mean_other': 0.2417957131302831, 't': -2.095295488634803, 'p_value': 0.9818560231566322, 'cohen_d': -0.09370446291072114, 'confirmed': False}, 'm_transfer_b3_vs_b1': {'mean_b1': 0.762, 'mean_other': 0.758, 't': -0.2093245097147792, 'p_value': 0.582891870063291, 'cohen_d': -0.009361276661581229, 'confirmed': False}, 'm_retention_7d_b3_vs_b1': {'mean_b1': -0.211, 'mean_other': -0.224, 't': -0.522547073181192, 'p_value': 0.6993262864950669, 'cohen_d': -0.02336901554153405, 'confirmed': False}, 'm_efficiency_b3_vs_b1': {'mean_b1': 0.002610544184598021, 'mean_other': 0.0024179571313028307, 't': -2.095295488634804, 'p_value': 0.9818560231566322, 'cohen_d': -0.0937044629107212, 'confirmed': False}, 'm_mastery_b4_vs_b1': {'mean_b1': 0.26105441845980215, 'mean_other': 0.24840417556736175, 't': -1.3672026552015946, 'p_value': 0.9141324405410178, 'cohen_d': -0.061143161520979435, 'confirmed': False}, 'm_transfer_b4_vs_b1': {'mean_b1': 0.762, 'mean_other': 0.752, 't': -0.5211301299418615, 'p_value': 0.6988330568631179, 'cohen_d': -0.023305647913466017, 'confirmed': False}, 'm_retention_7d_b4_vs_b1': {'mean_b1': -0.211, 'mean_other': -0.228, 't': -0.6876866757980269, 'p_value': 0.7541350327818305, 'cohen_d': -0.03075428308610496, 'confirmed': False}, 'm_efficiency_b4_vs_b1': {'mean_b1': 0.002610544184598021, 'mean_other': 0.002484041755673617, 't': -1.3672026552015932, 'p_value': 0.9141324405410176, 'cohen_d': -0.06114316152097938, 'confirmed': False}}|\par
 
 \paragraph{H4 (No L2T trajectory violates the three invariants).}
 
-\verb|{'violations_b3': 0, 'violations_b4': 0, 'n_b3': 100, 'n_b4': 100, 'h4_confirmed': True}|\par
+\verb|{'violations_b3': 0, 'violations_b4': 0, 'n_b3': 1000, 'n_b4': 1000, 'h4_confirmed': True}|\par
 
 \subsection{Model-checking the controller FSM}
 
-BFS exploration of the controller automaton ($|Q|=16$, $|\delta|=24$, 0~traces, 0.5~ms) yields: \verb|theory_first=True, no_spoiler=True, transfer_gate=True|.
+BFS exploration of the controller automaton ($|Q|=16$, $|\delta|=24$, 5000~traces, 256.9~ms) yields: \verb|theory_first=True, no_spoiler=True, transfer_gate=True|.

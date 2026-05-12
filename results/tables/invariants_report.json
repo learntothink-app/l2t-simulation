@@ -1,0 +1,9 @@
+{
+  "theory_first": true,
+  "no_spoiler": true,
+  "transfer_gate": true,
+  "n_states": 16,
+  "n_transitions": 24,
+  "n_traces_checked": 5000,
+  "seconds": 0.256919782001205
+}

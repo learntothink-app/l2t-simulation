@@ -1,0 +1,161 @@
+{
+  "H1": {
+    "metric": "m_robust",
+    "subsample": "guesser+copier",
+    "n_b3": 98,
+    "n_b4": 90,
+    "mean_b3": 0.8401276587872197,
+    "mean_b4": 0.8289295553285312,
+    "t": -0.9681097914699024,
+    "p_value": 0.8325538598001161,
+    "cohen_d": -0.14328195491500378,
+    "confirmed": false
+  },
+  "H2": {
+    "m_transfer_b3_vs_b2": {
+      "n_b2": 1000,
+      "n_other": 1000,
+      "mean_b2": 0.761,
+      "mean_other": 0.758,
+      "t": -0.15688096293959714,
+      "p_value": 0.5623227429016509,
+      "cohen_d": -0.007015929950171289,
+      "confirmed": false
+    },
+    "m_transfer_b4_vs_b2": {
+      "n_b2": 1000,
+      "n_other": 1000,
+      "mean_b2": 0.761,
+      "mean_other": 0.752,
+      "t": -0.4686840554224797,
+      "p_value": 0.6803266883733953,
+      "cohen_d": -0.020960188157898872,
+      "confirmed": false
+    },
+    "m_retention_7d_b3_vs_b2": {
+      "n_b2": 1000,
+      "n_other": 1000,
+      "mean_b2": -0.231,
+      "mean_other": -0.224,
+      "t": 0.2838708961736611,
+      "p_value": 0.3882693830678814,
+      "cohen_d": 0.012695092413561824,
+      "confirmed": false
+    },
+    "m_retention_7d_b4_vs_b2": {
+      "n_b2": 1000,
+      "n_other": 1000,
+      "mean_b2": -0.231,
+      "mean_other": -0.228,
+      "t": 0.12244844356816495,
+      "p_value": 0.451278097242684,
+      "cohen_d": 0.005476060871149276,
+      "confirmed": false
+    }
+  },
+  "H3": {
+    "m_mastery_b2_vs_b1": {
+      "mean_b1": 0.26105441845980215,
+      "mean_other": 0.2743423789289811,
+      "t": 1.0795429523441658,
+      "p_value": 0.14024158081362909,
+      "cohen_d": 0.04827862852144742,
+      "confirmed": false
+    },
+    "m_transfer_b2_vs_b1": {
+      "mean_b1": 0.762,
+      "mean_other": 0.761,
+      "t": -0.05244316569164802,
+      "p_value": 0.5209095886391555,
+      "cohen_d": -0.0023453296688361945,
+      "confirmed": false
+    },
+    "m_retention_7d_b2_vs_b1": {
+      "mean_b1": -0.211,
+      "mean_other": -0.231,
+      "t": -0.8173711477519054,
+      "p_value": 0.7930930771929147,
+      "cohen_d": -0.036553948984405706,
+      "confirmed": false
+    },
+    "m_efficiency_b2_vs_b1": {
+      "mean_b1": 0.002610544184598021,
+      "mean_other": 0.002743423789289812,
+      "t": 1.0795429523441755,
+      "p_value": 0.1402415808136269,
+      "cohen_d": 0.048278628521447854,
+      "confirmed": false
+    },
+    "m_mastery_b3_vs_b1": {
+      "mean_b1": 0.26105441845980215,
+      "mean_other": 0.2417957131302831,
+      "t": -2.095295488634803,
+      "p_value": 0.9818560231566322,
+      "cohen_d": -0.09370446291072114,
+      "confirmed": false
+    },
+    "m_transfer_b3_vs_b1": {
+      "mean_b1": 0.762,
+      "mean_other": 0.758,
+      "t": -0.2093245097147792,
+      "p_value": 0.582891870063291,
+      "cohen_d": -0.009361276661581229,
+      "confirmed": false
+    },
+    "m_retention_7d_b3_vs_b1": {
+      "mean_b1": -0.211,
+      "mean_other": -0.224,
+      "t": -0.522547073181192,
+      "p_value": 0.6993262864950669,
+      "cohen_d": -0.02336901554153405,
+      "confirmed": false
+    },
+    "m_efficiency_b3_vs_b1": {
+      "mean_b1": 0.002610544184598021,
+      "mean_other": 0.0024179571313028307,
+      "t": -2.095295488634804,
+      "p_value": 0.9818560231566322,
+      "cohen_d": -0.0937044629107212,
+      "confirmed": false
+    },
+    "m_mastery_b4_vs_b1": {
+      "mean_b1": 0.26105441845980215,
+      "mean_other": 0.24840417556736175,
+      "t": -1.3672026552015946,
+      "p_value": 0.9141324405410178,
+      "cohen_d": -0.061143161520979435,
+      "confirmed": false
+    },
+    "m_transfer_b4_vs_b1": {
+      "mean_b1": 0.762,
+      "mean_other": 0.752,
+      "t": -0.5211301299418615,
+      "p_value": 0.6988330568631179,
+      "cohen_d": -0.023305647913466017,
+      "confirmed": false
+    },
+    "m_retention_7d_b4_vs_b1": {
+      "mean_b1": -0.211,
+      "mean_other": -0.228,
+      "t": -0.6876866757980269,
+      "p_value": 0.7541350327818305,
+      "cohen_d": -0.03075428308610496,
+      "confirmed": false
+    },
+    "m_efficiency_b4_vs_b1": {
+      "mean_b1": 0.002610544184598021,
+      "mean_other": 0.002484041755673617,
+      "t": -1.3672026552015932,
+      "p_value": 0.9141324405410176,
+      "cohen_d": -0.06114316152097938,
+      "confirmed": false
+    }
+  },
+  "H4": {
+    "violations_b3": 0,
+    "violations_b4": 0,
+    "n_b3": 1000,
+    "n_b4": 1000,
+    "h4_confirmed": true
+  }
+}

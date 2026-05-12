@@ -1,0 +1,38 @@
+{
+  "timestamp": "20260512_140736",
+  "config_path": "experiments/configs/medium.yaml",
+  "config": {
+    "n_students": 1000,
+    "t_steps": 100,
+    "master_seed": 42,
+    "method_seed": 1,
+    "n_bootstrap": 10000,
+    "behaviour_proportions": {
+      "honest": 0.6,
+      "guesser": 0.15,
+      "copier": 0.1,
+      "help_seeker": 0.15
+    },
+    "retention_intervals_days": [
+      1,
+      3,
+      7,
+      14
+    ],
+    "forgetting_lambda": 0.05,
+    "prereq_perturbation_eps": 0.1,
+    "n_jobs": -1
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Linux-7.0.3-arch1-2-x86_64-with-glibc2.43",
+    "git_hash": "d4af8c2452d50e2c830e901fe785cbd45ba6a501",
+    "packages": {
+      "numpy": "2.4.4",
+      "scipy": "1.17.1",
+      "pandas": "3.0.3",
+      "matplotlib": "3.10.9"
+    },
+    "timestamp": "2026-05-12T14:07:36"
+  }
+}
