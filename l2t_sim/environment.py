@@ -49,8 +49,11 @@ P_GUESS_HONEST: float = 0.20
 # Pedagogical benefit of theory exposure. Honest and help_seeker learners
 # get an additive bump to base p_correct proportional to the fraction of
 # the task's required concepts that have been studied via microtheory.
-# Tuned on `small` so that L2T outperforms Random on m_transfer.
-THEORY_BONUS: float = 0.10
+# Tuned on `small` so that L2T outperforms Random on m_transfer by 3–5 pp.
+# At 0.10 the gap was below the review-anticipated 5 pp on the synthetic
+# methodology (Random covers ~6/8 concepts by chance in 80 steps); 0.15
+# widens the gap without dominating the dynamics.
+THEORY_BONUS: float = 0.15
 
 # Retention probe: forgetting rate λ in p_true ← p_true·exp(-λ·Δt).
 FORGETTING_LAMBDA_PER_DAY: float = 0.05
