@@ -199,7 +199,7 @@ class L2TPolicy(Policy):
         low_mastery_threshold: float = 0.30,
         prereq_threshold: float = 0.70,
         retention_period: int = 7,
-        transfer_threshold: float = 0.70,
+        transfer_threshold: float = 0.90,
     ) -> None:
         self.methodology = methodology
         self.rng = rng
