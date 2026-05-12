@@ -66,6 +66,25 @@ across both methodologies (N≈2000 at the medium config). Per-methodology
 breakdowns for H1b, H2, H3 are saved to
 `results/tables/hypothesis_tests.json` under the `_per_methodology` key.
 
+## Sensitivity analysis
+
+The environment has one tuned parameter, `THEORY_BONUS` (default 0.15),
+controlling the magnitude of the additive boost an honest/help_seeker learner
+gets on tasks whose required concepts have been studied via microtheory. To
+verify that the headline results are not artefacts of this value, run:
+
+```bash
+python experiments/sensitivity_theory_bonus.py
+```
+
+Output: `results/sensitivity/theory_bonus_sweep.json` with H1b, H3, and H4
+statistics across `THEORY_BONUS ∈ {0.00, 0.05, 0.10, 0.15, 0.20, 0.25}`.
+The same table is reproduced as Appendix B of the paper.
+
+The script reads `THEORY_BONUS` from the `L2T_THEORY_BONUS` environment
+variable so joblib worker processes inherit the override; in-process
+monkey-patching of `environment.THEORY_BONUS` does NOT propagate to workers.
+
 ## Tests
 
 ```bash
