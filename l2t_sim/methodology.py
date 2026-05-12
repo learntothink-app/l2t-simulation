@@ -110,6 +110,189 @@ class MethodologyData:
 
 
 # ---------------------------------------------------------------------------
+# JSON-driven loader (used for probability_basics.json and any other
+# similarly-structured fixture).
+
+
+def _load_json_methodology(path: str | Path, name: str) -> MethodologyData:
+    """Build a :class:`MethodologyData` from a JSON fixture matching the
+    probability_basics schema (also compatible with the old Fano shape).
+
+    The last 8 transfer tasks are reserved as holdout battery when the
+    methodology has >= 16 transfer tasks; >8 but <16 yields a proportional
+    split; otherwise the holdout is empty.
+    """
+
+    raw = load_json(path)
+    H = Hypergraph()
+
+    kind_map = {
+        "concept": "concept",
+        "skill": "skill",
+        "metaskill": "metaskill",
+        "error": "error",
+        "topic": "topic",
+    }
+    for node in raw["hypergraph"]["nodes"]:
+        vkind = kind_map.get(node["kind"])
+        if vkind is None:
+            continue
+        if node["id"] in H.vertices:
+            continue
+        H.add_vertex(node["id"], vkind)
+
+    tasks: dict[str, Task] = {}
+    drills: dict[str, Task] = {}
+    probes: dict[str, Task] = {}
+    transfer_tasks: dict[str, Task] = {}
+    microtheories: dict[str, MicroTheory] = {}
+
+    def _safe_skill_refs(seq: Sequence[str] | None) -> tuple[str, ...]:
+        if not seq:
+            return ()
+        return tuple(s for s in seq if s in H.vertices and H.vertices[s].vtype == "skill")
+
+    def _safe_concept_refs(seq: Sequence[str] | None) -> tuple[str, ...]:
+        if not seq:
+            return ()
+        return tuple(c for c in seq if c in H.vertices and H.vertices[c].vtype == "concept")
+
+    for raw_t in raw.get("scaffolding_tasks", []) + raw.get("target_tasks", []):
+        tid = raw_t["id"]
+        if tid not in H.vertices:
+            H.add_vertex(tid, "task")
+        skills = _safe_skill_refs(raw_t.get("required_skills"))
+        concepts = _safe_concept_refs(raw_t.get("required_concepts"))
+        answer_format = str(raw_t.get("answer_format", "open_text"))
+        n_options = int(raw_t.get("n_options", 4))
+        tasks[tid] = Task(
+            id=tid,
+            kind="task",
+            required_skills=skills,
+            required_concepts=concepts,
+            answer_format=answer_format,
+            n_options=n_options,
+            time_estimate_seconds=60.0 * float(raw_t.get("time_estimate_minutes", 2)),
+        )
+        for sk in skills:
+            H.add_edge(f"R_{tid}_{sk}", (tid,), (sk,), "requires", weight=1.0)
+
+    for raw_d in raw.get("drills", []):
+        did = raw_d["id"]
+        if did not in H.vertices:
+            H.add_vertex(did, "drill")
+        train_skills = _safe_skill_refs(raw_d.get("trains_skills"))
+        drills[did] = Task(
+            id=did,
+            kind="drill",
+            required_skills=train_skills,
+            trains_skills=train_skills,
+            time_estimate_seconds=60.0 * float(raw_d.get("estimated_time_minutes", 3)),
+        )
+        for sk in train_skills:
+            eid = f"T_{did}_{sk}"
+            if eid in H.edges:
+                continue
+            H.add_edge(eid, (did,), (sk,), "trains", weight=1.0)
+
+    for raw_p in raw.get("probes", []):
+        pid = raw_p["id"]
+        if pid not in H.vertices:
+            H.add_vertex(pid, "probe")
+        diag_skills = _safe_skill_refs(raw_p.get("diagnoses_skills"))
+        diag_concepts = _safe_concept_refs(raw_p.get("diagnoses_concepts"))
+        probes[pid] = Task(
+            id=pid,
+            kind="probe",
+            required_skills=diag_skills,
+            required_concepts=diag_concepts,
+            diagnoses_skills=diag_skills,
+            answer_format="multiple_choice",
+            n_options=4,
+            time_estimate_seconds=60.0,
+        )
+        for sk in diag_skills:
+            eid = f"DG_{pid}_{sk}"
+            if eid in H.edges:
+                continue
+            H.add_edge(eid, (pid,), (sk,), "diagnoses", weight=1.0)
+
+    for ts in raw.get("transfer_sets", []):
+        target_skills = _safe_skill_refs(ts.get("target_skills"))
+        target_concepts = _safe_concept_refs(ts.get("target_concepts"))
+        for raw_t in ts.get("tasks", []):
+            tid = raw_t["id"]
+            if tid not in H.vertices:
+                H.add_vertex(tid, "task")
+            # Per-task required_skills override the set-level target_skills
+            # when present.
+            per_task_skills = _safe_skill_refs(raw_t.get("required_skills"))
+            per_task_concepts = _safe_concept_refs(raw_t.get("required_concepts"))
+            transfer_tasks[tid] = Task(
+                id=tid,
+                kind="transfer",
+                required_skills=per_task_skills or target_skills,
+                required_concepts=per_task_concepts or target_concepts,
+                answer_format=str(raw_t.get("answer_format", "open_text")),
+                n_options=int(raw_t.get("n_options", 4)),
+                time_estimate_seconds=60.0 * float(raw_t.get("time_estimate_minutes", 3)),
+            )
+            for sk in per_task_skills or target_skills:
+                eid = f"TV_{tid}_{sk}"
+                if eid in H.edges:
+                    continue
+                H.add_edge(eid, (tid,), (sk,), "transfer_variant", weight=1.0)
+
+    for mt in raw.get("micro_theories", []):
+        concepts = _safe_concept_refs(mt.get("concept_ids"))
+        microtheories[mt["id"]] = MicroTheory(
+            id=mt["id"], concepts=concepts, title=mt.get("title", "")
+        )
+
+    for raw_e in raw["hypergraph"]["hyperedges"]:
+        eid = raw_e["id"]
+        if eid in H.edges:
+            continue
+        tail = tuple(v for v in raw_e["tail"] if v in H.vertices)
+        head = tuple(v for v in raw_e["head"] if v in H.vertices)
+        if not tail or not head:
+            log.warning("dropping edge %s: tail/head missing from vertex set", eid)
+            continue
+        weight = hg.DEFAULT_TYPE_WEIGHTS.get(raw_e["kind"], 1.0)
+        H.add_edge(eid, tail, head, raw_e["kind"], weight=weight)
+
+    prereq = [(d["from"], d["to"]) for d in raw["hypergraph"].get("prereq_dag", [])]
+
+    transfer_ids_ordered = list(transfer_tasks.keys())
+    if len(transfer_ids_ordered) >= 16:
+        holdout_ids = frozenset(transfer_ids_ordered[-8:])
+    elif len(transfer_ids_ordered) > 8:
+        n_holdout = len(transfer_ids_ordered) - max(1, len(transfer_ids_ordered) // 2)
+        holdout_ids = frozenset(transfer_ids_ordered[-n_holdout:])
+    else:
+        holdout_ids = frozenset()
+
+    return MethodologyData(
+        name=name,
+        hypergraph=H,
+        tasks=tasks,
+        drills=drills,
+        probes=probes,
+        transfer_tasks=transfer_tasks,
+        microtheories=microtheories,
+        prereq_dag=prereq,
+        retention_schedule_days=tuple(raw.get("retention_schedule", [1, 3, 7, 14])),
+        hint_ladder_max=6,
+        holdout_transfer_ids=holdout_ids,
+    )
+
+
+def load_probability_methodology(path: str | Path) -> MethodologyData:
+    """Build the canonical probability_basics methodology."""
+    return _load_json_methodology(path, name="probability")
+
+
+# ---------------------------------------------------------------------------
 # Synthetic abstract methodology
 
 
