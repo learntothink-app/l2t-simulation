@@ -335,6 +335,10 @@ def generate_synthetic_methodology(
                 eid = f"TR_{tid}_{sk}"
                 if eid not in H.edges:
                     H.add_edge(eid, (tid,), (sk,), "trains", weight=1.0)
+        # 1..2 required concepts per task — drives the theory-first invariant
+        # and the theory-bonus mechanic in the environment.
+        n_concepts_req = int(rng.integers(1, 3))
+        req_concepts = tuple(rng.choice(concepts, size=n_concepts_req, replace=False))
         # half of tasks are multiple choice
         if rng.random() < 0.5:
             answer_format = "multiple_choice"
@@ -346,6 +350,7 @@ def generate_synthetic_methodology(
             id=tid,
             kind="task",
             required_skills=tuple(target),
+            required_concepts=req_concepts,
             answer_format=answer_format,
             n_options=n_options,
             hint_ladder_length=hint_ladder_max,
@@ -359,6 +364,7 @@ def generate_synthetic_methodology(
         tid = f"TR_{i}"
         H.add_vertex(tid, "task")
         required = tasks[base_tid].required_skills
+        base_concepts = tasks[base_tid].required_concepts
         H.add_edge(f"TV_{tid}_{base_tid}", (tid,), (base_tid,), "transfer_variant", weight=1.0)
         for sk in required:
             H.add_edge(f"R_{tid}_{sk}", (tid,), (sk,), "requires", weight=1.0)
@@ -366,6 +372,7 @@ def generate_synthetic_methodology(
             id=tid,
             kind="transfer",
             required_skills=required,
+            required_concepts=base_concepts,
             answer_format="open_text",
             time_estimate_seconds=float(rng.uniform(120.0, 360.0)),
         )

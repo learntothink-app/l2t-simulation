@@ -46,6 +46,12 @@ SIGMA_J: float = 0.10  # stochasticity of meta-skill dynamics
 P_SLIP_HONEST: float = 0.10
 P_GUESS_HONEST: float = 0.20
 
+# Pedagogical benefit of theory exposure. Honest and help_seeker learners
+# get an additive bump to base p_correct proportional to the fraction of
+# the task's required concepts that have been studied via microtheory.
+# Tuned on `small` so that L2T outperforms Random on m_transfer.
+THEORY_BONUS: float = 0.10
+
 # Retention probe: forgetting rate λ in p_true ← p_true·exp(-λ·Δt).
 FORGETTING_LAMBDA_PER_DAY: float = 0.05
 
@@ -82,6 +88,8 @@ class SyntheticStudent:
     # the help_seeker accumulates a P(correct) bonus.
     _hints_used: dict[str, int] = field(default_factory=dict)
     _retention_offset_days: float = 0.0  # how much forgetting has accumulated
+    # Concepts studied via microtheory actions — drive the theory bonus.
+    _concepts_studied: set[str] = field(default_factory=set)
 
     # -- factory ------------------------------------------------------------
 
@@ -146,6 +154,15 @@ class SyntheticStudent:
         logits = _logit_safe(self.p_true[idx])
         return float(expit(np.mean(logits)))
 
+    def _apply_theory_bonus(self, task: Task, base: float) -> float:
+        """Add THEORY_BONUS * (fraction of required concepts already studied)."""
+
+        if not task.required_concepts:
+            return base
+        studied = sum(1 for c in task.required_concepts if c in self._concepts_studied)
+        fraction = studied / len(task.required_concepts)
+        return min(0.99, base + THEORY_BONUS * fraction)
+
     def _error_signature_match(self, task: Task) -> str | None:
         """Pick an error type for a wrong answer, possibly matching an
         error_signature edge in the hypergraph. With probability 0.4 the error
@@ -173,7 +190,22 @@ class SyntheticStudent:
         task = self._task_lookup(action.target_id)
 
         # Non-content actions: theory / hint / retention return cheap defaults.
-        if action.type in ("microtheory", "retention"):
+        if action.type == "microtheory":
+            mt = self.methodology.microtheories.get(action.target_id)
+            if mt is not None:
+                for c in mt.concepts:
+                    self._concepts_studied.add(c)
+            return Observation(
+                correct=True,
+                answer_format="open_text",
+                time_seconds=10.0,
+                hint_requested=False,
+                n_hints_used=0,
+                hint_level_reached=0,
+                self_explanation=True,
+                copying_pattern=False,
+            )
+        if action.type == "retention":
             return Observation(
                 correct=True,
                 answer_format="open_text",
@@ -240,6 +272,7 @@ class SyntheticStudent:
 
         elif self.behaviour == "help_seeker":
             base = self._skill_mastery(task)
+            base = self._apply_theory_bonus(task, base)
             bonus_per_hint = 0.20
             n_hints = self._hints_used.get(action.target_id, 0)
             p_correct = min(0.95, base + bonus_per_hint * n_hints)
@@ -250,6 +283,7 @@ class SyntheticStudent:
 
         else:  # honest
             base = self._skill_mastery(task)
+            base = self._apply_theory_bonus(task, base)
             p_guess = 1.0 / task.n_options if task.answer_format == "multiple_choice" else P_GUESS_HONEST
             p_correct = base * (1.0 - P_SLIP_HONEST) + (1.0 - base) * p_guess
             time_seconds = float(rng.gamma(shape=4.0, scale=baseline_time / 4.0))
