@@ -76,3 +76,37 @@ def test_microtheory_concepts_resolve() -> None:
     for mt in md.microtheories.values():
         for c in mt.concepts:
             assert c in concept_ids, f"microtheory {mt.id} references missing concept {c}"
+
+
+def test_all_required_skills_have_trains_edges() -> None:
+    """Regression: every skill referenced by a task must be the head of at
+    least one ``trains`` edge. Without this, the typed-hypergraph
+    propagation operator has no direct task→skill channel for that skill."""
+
+    md = load_probability_methodology(PROB_PATH)
+    trained: set[str] = set()
+    for e in md.hypergraph.edges.values():
+        if e.kind == "trains":
+            trained.update(e.head)
+    required: set[str] = set()
+    for t in md.tasks.values():
+        required.update(t.required_skills)
+    missing = required - trained
+    assert not missing, f"skills with no trains edge: {sorted(missing)}"
+
+
+def test_minimum_edge_counts() -> None:
+    """Regression: catch silent regressions in the metaskill / trains graph
+    if a future edit drops to the multi-tail / multi-head form."""
+
+    from collections import Counter
+
+    md = load_probability_methodology(PROB_PATH)
+    kinds = Counter(e.kind for e in md.hypergraph.edges.values())
+    assert kinds["trains"] >= 40, f"trains edges: {kinds['trains']} (expected >= 40)"
+    assert (
+        kinds["trains_metaskill"] >= 30
+    ), f"trains_metaskill edges: {kinds['trains_metaskill']} (expected >= 30)"
+    assert (
+        kinds["meta_helps_learn"] >= 15
+    ), f"meta_helps_learn edges: {kinds['meta_helps_learn']} (expected >= 15)"
