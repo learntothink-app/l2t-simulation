@@ -8,6 +8,7 @@ expected mastery increment is given by Eq. (7); we sample around it.
 from __future__ import annotations
 
 import logging
+import os
 from dataclasses import dataclass, field
 from typing import Iterable
 
@@ -53,7 +54,12 @@ P_GUESS_HONEST: float = 0.20
 # At 0.10 the gap was below the review-anticipated 5 pp on the synthetic
 # methodology (Random covers ~6/8 concepts by chance in 80 steps); 0.15
 # widens the gap without dominating the dynamics.
-THEORY_BONUS: float = 0.15
+#
+# The value is read from the L2T_THEORY_BONUS environment variable so that
+# experiments/sensitivity_theory_bonus.py can sweep it via subprocesses
+# (joblib workers inherit env vars; in-process monkey-patching of this
+# module attribute does NOT propagate to workers).
+THEORY_BONUS: float = float(os.environ.get("L2T_THEORY_BONUS", "0.15"))
 
 # Retention probe: forgetting rate λ in p_true ← p_true·exp(-λ·Δt).
 FORGETTING_LAMBDA_PER_DAY: float = 0.05
