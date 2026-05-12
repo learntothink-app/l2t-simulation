@@ -528,6 +528,7 @@
     {
       "id": "TRS_fano",
       "target_skills": ["S_draw_tree", "S_find_free", "S_assign_codes", "S_compute_length"],
+      "target_concepts": ["C_prefix_free", "C_binary_tree", "C_occupied_branch", "C_branching", "C_greedy_short"],
       "constraints": {"no_hints_allowed": true, "max_time_minutes": 10},
       "tasks": [
         {"id": "T_transfer_01", "text": "Коды: A=0, B=100, C=101. Размести ещё 3 символа. Минимальная суммарная длина трёх новых кодов?", "answer": "9"}

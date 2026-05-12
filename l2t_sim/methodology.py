@@ -199,6 +199,7 @@ def load_fano_methodology(path: str | Path) -> MethodologyData:
 
     for ts in raw.get("transfer_sets", []):
         target_skills = _safe_skill_refs(ts.get("target_skills"))
+        target_concepts = _safe_concept_refs(ts.get("target_concepts"))
         for raw_t in ts.get("tasks", []):
             tid = raw_t["id"]
             if tid not in H.vertices:
@@ -207,6 +208,7 @@ def load_fano_methodology(path: str | Path) -> MethodologyData:
                 id=tid,
                 kind="transfer",
                 required_skills=target_skills,
+                required_concepts=target_concepts,
                 answer_format="open_text",
                 time_estimate_seconds=180.0,
             )

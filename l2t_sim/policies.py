@@ -303,6 +303,12 @@ class L2TPolicy(Policy):
             t_cands = md.transfer_ids_for_skill(best_skill)
             if t_cands:
                 tid = t_cands[int(self.rng.integers(0, len(t_cands)))]
+                t_task = md.transfer_tasks[tid]
+                pending_c = self._concept_theory_pending(t_task, context)
+                if pending_c is not None:
+                    mt = self._find_microtheory(pending_c)
+                    if mt is not None:
+                        return Action(type="microtheory", target_id=mt)
                 return Action(type="transfer", target_id=tid)
 
         # 6) work on the weakest eligible skill: theory → task → drill.
