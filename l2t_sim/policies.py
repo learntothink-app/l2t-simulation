@@ -89,7 +89,7 @@ class RandomPolicy(Policy):
         choices.extend(("task", t) for t in md.tasks)
         choices.extend(("drill", d) for d in md.drills)
         choices.extend(("probe", p) for p in md.probes)
-        choices.extend(("transfer", t) for t in md.transfer_tasks)
+        choices.extend(("transfer", t) for t in md.main_loop_transfer_ids())
         choices.extend(("microtheory", mt) for mt in md.microtheories)
         # random policy can also issue a proactive hint occasionally
         for tid in list(md.tasks.keys())[:5]:

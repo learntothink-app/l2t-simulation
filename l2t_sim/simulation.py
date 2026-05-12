@@ -218,8 +218,14 @@ def run_single_student(
     # Terminal transfer & retention probes ---------------------------------
     # To make m_transfer comparable across policies (BKT never picks transfer
     # items by construction), every student takes a fixed transfer battery at
-    # the end of the main loop.
-    sample_ids = list(methodology.transfer_tasks.keys())[:8]
+    # the end of the main loop. Prefer the methodology's holdout set so that
+    # the battery measures transfer to *novel* items rather than ones the
+    # policy already drilled in-loop; fall back to the first 8 transfer tasks
+    # if no holdout exists (e.g. Fano has only one transfer task total).
+    if methodology.holdout_transfer_ids:
+        sample_ids = sorted(methodology.holdout_transfer_ids)
+    else:
+        sample_ids = list(methodology.transfer_tasks.keys())[:8]
 
     def _probe(delta_days: float) -> tuple[float, list[StepRecord]]:
         orig_p = student.p_true.copy()

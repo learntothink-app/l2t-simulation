@@ -72,6 +72,12 @@ class MethodologyData:
     retention_schedule_days: tuple[int, ...] = (1, 3, 7, 14)
     hint_ladder_max: int = 6
     j_star_spoiler_level: int = 4  # "partial solution" threshold for m_hint
+    # Holdout subset of transfer_tasks reserved for the terminal battery.
+    # Policies must not pick these during the main loop — otherwise the
+    # terminal m_transfer measurement degenerates into "repeat known tasks"
+    # rather than "transfer to novel ones". Empty set = no split (e.g. when
+    # the methodology has too few transfer tasks to support a holdout).
+    holdout_transfer_ids: frozenset[str] = field(default_factory=frozenset)
 
     # -- selectors ----------------------------------------------------------
 
@@ -92,7 +98,15 @@ class MethodologyData:
         return [pid for pid, p in self.probes.items() if skill_id in p.diagnoses_skills]
 
     def transfer_ids_for_skill(self, skill_id: str) -> list[str]:
-        return [tid for tid, t in self.transfer_tasks.items() if skill_id in t.required_skills]
+        return [
+            tid
+            for tid, t in self.transfer_tasks.items()
+            if skill_id in t.required_skills and tid not in self.holdout_transfer_ids
+        ]
+
+    def main_loop_transfer_ids(self) -> list[str]:
+        """Transfer task ids visible to policies during the main loop."""
+        return [tid for tid in self.transfer_tasks if tid not in self.holdout_transfer_ids]
 
 
 # ---------------------------------------------------------------------------
@@ -436,6 +450,20 @@ def generate_synthetic_methodology(
         for c in concepts
     }
 
+    # Holdout battery: reserve the last 8 transfer tasks for the terminal
+    # probe. Policies see only the first n_transfer-8 during the main loop.
+    # Skip the split if we don't have enough tasks to leave a non-empty
+    # main-loop pool.
+    transfer_ids_ordered = list(transfer_tasks.keys())
+    if len(transfer_ids_ordered) >= 16:
+        holdout_ids = frozenset(transfer_ids_ordered[-8:])
+    elif len(transfer_ids_ordered) > 8:
+        # keep at least 1 transfer in main loop, rest are holdout
+        n_holdout = len(transfer_ids_ordered) - max(1, len(transfer_ids_ordered) // 2)
+        holdout_ids = frozenset(transfer_ids_ordered[-n_holdout:])
+    else:
+        holdout_ids = frozenset()
+
     md = MethodologyData(
         name="synthetic",
         hypergraph=H,
@@ -446,6 +474,7 @@ def generate_synthetic_methodology(
         microtheories=microtheories,
         prereq_dag=prereq,
         hint_ladder_max=hint_ladder_max,
+        holdout_transfer_ids=holdout_ids,
     )
     return md
 
