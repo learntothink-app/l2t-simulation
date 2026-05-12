@@ -11,13 +11,13 @@ Three formulas, each ``□(p → ◇^{-1} q)``-shaped (past-safety):
 
 from __future__ import annotations
 
+import copy
 import logging
 import time
-from collections import deque
 from dataclasses import dataclass, field
-from typing import Iterable
+from typing import Callable, Iterable
 
-from .fsm import ControllerFSM, EVENTS, STATES
+from .fsm import ControllerFSM, EVENTS, InvariantViolation, STATES
 
 
 log = logging.getLogger(__name__)
@@ -117,97 +117,76 @@ class InvariantReport:
         return self.theory_first and self.no_spoiler and self.transfer_gate
 
 
-def verify_invariants_on_fsm(max_depth: int = 50, j_star: int = 4) -> InvariantReport:
-    """Bounded BFS over reachable event-prefixes of the controller.
+def _kwargs_for_event(ev: str, j_star: int = 4) -> dict:
+    """Default event payloads used during BFS enumeration."""
 
-    The FSM is treated as a generator of event-trajectories.  Each branch
-    (e.g. ``correct`` vs. ``incorrect`` from ``EVAL_RESULT``) spawns a
-    distinct successor in the BFS frontier.  Because the controller refuses
-    illegal transitions at construction time, the witness that ``M_c`` admits
-    only compliant trajectories is *that the BFS finishes without raising*.
+    if ev == "theory_checked":
+        return {"concept": "C0", "j_star": j_star}
+    if ev == "task_presented":
+        return {"task": "T0", "concept": "C0", "j_star": j_star}
+    if ev == "hint_requested":
+        return {"task": "T0", "j_star": j_star}
+    if ev == "hint_delivered":
+        return {"task": "T0", "hint_level": 2, "j_star": j_star}
+    return {"j_star": j_star}
+
+
+def verify_invariants_on_fsm(
+    max_depth: int = 30,
+    j_star: int = 4,
+    max_traces: int = 5000,
+    fsm_factory: Callable[[], ControllerFSM] = ControllerFSM,
+    task_concepts: dict[str, list[str]] | None = None,
+) -> InvariantReport:
+    """Bounded DFS over reachable event-trajectories of the controller.
+
+    Each frontier element is a ``(fsm_clone, trace)`` pair. Branching at
+    ``EVAL_RESULT`` (correct/partial/incorrect), ``THEORY_CHECK``
+    (passed/failed), etc. spawns distinct successors. The controller refuses
+    illegal transitions inside :meth:`ControllerFSM.step`, so any trace that
+    survives to completion is by-construction compliant. We then verify
+    each completed trace explicitly against the three invariants.
+
+    ``fsm_factory`` lets callers inject a *broken* FSM subclass to assert
+    that the model-checker would catch a violated invariant — see the
+    negative test in :file:`tests/test_invariants.py`.
     """
 
     start = time.perf_counter()
     n_transitions = sum(len(out) for out in ControllerFSM._FORWARD.values())
+    if task_concepts is None:
+        task_concepts = {"T0": ["C0"], "T1": ["C0", "C1"]}
 
-    n_traces = 0
-    visited_state_event: set[tuple[str, str]] = set()
+    frontier: list[tuple[ControllerFSM, list[dict]]] = [(fsm_factory(), [])]
+    completed: list[list[dict]] = []
 
-    # frontier elements: (depth, trace_records, fsm_state_snapshot)
-    # We snapshot only the state + atomic-prop sets needed for guards.
-    init_record = {"event": "start"}
-
-    @dataclass
-    class _Node:
-        depth: int
-        trace: list[dict] = field(default_factory=list)
-        fsm: ControllerFSM = field(default_factory=ControllerFSM)
-
-    queue: deque[_Node] = deque([_Node(depth=0)])
-    invariants_ok = {"theory_first": True, "no_spoiler": True, "transfer_gate": True}
-
-    # synthetic task→concepts map used only inside the BFS
-    task_concepts = {"T0": ["C0"], "T1": ["C0", "C1"]}
-
-    while queue:
-        node = queue.popleft()
-        if node.depth >= max_depth:
-            n_traces += 1
-            invariants_ok["theory_first"] &= check_theory_first(node.trace, task_concepts)
-            invariants_ok["no_spoiler"] &= check_no_spoiler(node.trace, j_star=j_star)
-            invariants_ok["transfer_gate"] &= check_transfer_gate(node.trace)
+    while frontier and len(completed) < max_traces:
+        fsm, trace = frontier.pop()
+        if len(trace) >= max_depth or fsm.state == "BLOCK_DONE":
+            completed.append(trace)
             continue
-
-        admissible = node.fsm.admissible_events()
+        admissible = fsm.admissible_events()
         if not admissible:
-            n_traces += 1
-            invariants_ok["theory_first"] &= check_theory_first(node.trace, task_concepts)
-            invariants_ok["no_spoiler"] &= check_no_spoiler(node.trace, j_star=j_star)
-            invariants_ok["transfer_gate"] &= check_transfer_gate(node.trace)
+            completed.append(trace)
             continue
-
-        # Generate at most a handful of branchings per state to keep the BFS
-        # bounded; the controller is finite, so this still covers all unique
-        # (state, event) pairs.
         for ev in admissible:
-            key = (node.fsm.state, ev)
-            if key in visited_state_event and ev not in {"correct", "incorrect", "partial"}:
-                continue
-            visited_state_event.add(key)
-            child = _Node(depth=node.depth + 1, trace=list(node.trace))
-            child.fsm = ControllerFSM()
-            # Replay parent's path so the child FSM is consistent.
-            for rec in node.trace:
-                child.fsm.step(
-                    rec["event"],
-                    concept=rec.get("concept"),
-                    task=rec.get("task"),
-                    hint_level=rec.get("hint_level", 0),
-                    j_star=j_star,
-                )
-            # Provide side-condition-friendly context for events that need it.
-            kwargs: dict = {"j_star": j_star}
-            if ev == "theory_checked":
-                kwargs["concept"] = "C0"
-            elif ev == "task_presented":
-                kwargs["task"] = "T0"
-                kwargs["concept"] = "C0"
-            elif ev == "hint_requested":
-                kwargs["task"] = "T0"
-            elif ev == "hint_delivered":
-                kwargs["task"] = "T0"
-                kwargs["hint_level"] = 2  # below j* by default; still legal
+            kwargs = _kwargs_for_event(ev, j_star)
+            child = copy.deepcopy(fsm)
             try:
-                child.fsm.step(ev, **kwargs)
-            except Exception as exc:  # InvariantViolation = controller refused
-                # By construction this would be a counter-example; record it.
-                log.debug("BFS rejected %s --[%s]--> : %s", node.fsm.state, ev, exc)
+                child.step(ev, **kwargs)
+            except InvariantViolation:
                 continue
-            rec = {"event": ev}
-            rec.update(kwargs)
-            rec.pop("j_star", None)
-            child.trace.append(rec)
-            queue.append(child)
+            rec: dict = {"event": ev}
+            for k, v in kwargs.items():
+                if k != "j_star":
+                    rec[k] = v
+            frontier.append((child, trace + [rec]))
+
+    invariants_ok = {"theory_first": True, "no_spoiler": True, "transfer_gate": True}
+    for trace in completed:
+        invariants_ok["theory_first"] &= check_theory_first(trace, task_concepts)
+        invariants_ok["no_spoiler"] &= check_no_spoiler(trace, j_star=j_star)
+        invariants_ok["transfer_gate"] &= check_transfer_gate(trace)
 
     seconds = time.perf_counter() - start
     return InvariantReport(
@@ -216,9 +195,75 @@ def verify_invariants_on_fsm(max_depth: int = 50, j_star: int = 4) -> InvariantR
         transfer_gate=invariants_ok["transfer_gate"],
         n_states=len(STATES),
         n_transitions=n_transitions,
-        n_traces_checked=n_traces,
+        n_traces_checked=len(completed),
         seconds=seconds,
     )
+
+
+class UnguardedControllerFSM(ControllerFSM):
+    """A controller with the ``theory_first`` invariant deliberately removed.
+
+    Two changes from :class:`ControllerFSM`:
+    (a) the transition table allows a ``task_presented`` shortcut directly
+        from ``THEORY_PRESENT`` (skipping ``THEORY_CHECK``);
+    (b) the corresponding side-condition guard in :meth:`step` is dropped.
+
+    Used exclusively for the negative test of
+    :func:`verify_invariants_on_fsm` — the model-checker must produce
+    ``theory_first=False`` when this FSM is injected, demonstrating that
+    the verification machinery actually catches reachable violations
+    rather than being vacuously true.
+    """
+
+    _FORWARD: dict[str, dict[str, str]] = {
+        **ControllerFSM._FORWARD,
+        "THEORY_PRESENT": {
+            "theory_presented": "THEORY_CHECK",
+            "task_presented": "WAIT_INTENT",  # broken shortcut — skips theory
+        },
+    }
+
+    def step(
+        self,
+        event: str,
+        *,
+        concept: str | None = None,
+        task: str | None = None,
+        hint_level: int = 0,
+        j_star: int = 4,
+    ) -> str:
+        if event not in EVENTS:
+            raise InvariantViolation(f"unknown event: {event!r}")
+        # Theory-first guard DELIBERATELY OMITTED here.
+        # No-spoiler and transfer-gate guards (kept).
+        if event == "hint_delivered" and hint_level >= j_star:
+            if not task or task not in self.hint_requested_seen_for_task:
+                raise InvariantViolation(
+                    f"hint_delivered at level {hint_level} ≥ j*={j_star} without hint_requested"
+                )
+        if event == "block_done" and not self.transfer_passed:
+            raise InvariantViolation("block_done requires prior transfer_passed")
+        # Bookkeeping (same as parent).
+        if event == "theory_checked" and concept is not None:
+            self.theory_checked.add(concept)
+        if event == "hint_requested" and task is not None:
+            self.hint_requested_seen_for_task.add(task)
+        if event == "transfer_passed":
+            self.transfer_passed = True
+        if event == "theory_failed":
+            self.theory_attempts += 1
+        if event == "theory_checked":
+            self.theory_attempts = 0
+        table = self._FORWARD.get(self.state, {})
+        nxt = table.get(event)
+        if nxt is None:
+            raise InvariantViolation(
+                f"illegal transition: {self.state} --[{event}]-->"
+            )
+        self.state = nxt
+        self.trace.states.append(nxt)
+        self.trace.events.append(event)
+        return nxt
 
 
 # ---------------------------------------------------------------------------

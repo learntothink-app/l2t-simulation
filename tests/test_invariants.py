@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from l2t_sim.invariants import (
+    UnguardedControllerFSM,
     check_no_spoiler,
     check_theory_first,
     check_transfer_gate,
@@ -46,9 +47,33 @@ def test_transfer_gate() -> None:
 
 
 def test_fsm_model_checking_passes() -> None:
-    rep = verify_invariants_on_fsm(max_depth=8)
+    rep = verify_invariants_on_fsm(max_depth=20, max_traces=2000)
     assert rep.theory_first
     assert rep.no_spoiler
     assert rep.transfer_gate
     assert rep.n_states == 16
     assert rep.n_transitions > 0
+    # The verification must actually traverse traces — vacuously True is a bug.
+    assert rep.n_traces_checked >= 50, (
+        f"BFS produced only {rep.n_traces_checked} traces — invariants are "
+        "vacuously True. Frontier is collapsing prematurely."
+    )
+
+
+def test_fsm_model_checking_catches_broken_fsm() -> None:
+    """Inject a controller that drops the theory-first guard.
+
+    The model-checker must produce a `theory_first=False` verdict —
+    demonstrating that the BFS *can* detect a violated invariant rather
+    than always returning True by initialisation.
+    """
+    rep = verify_invariants_on_fsm(
+        max_depth=20,
+        max_traces=2000,
+        fsm_factory=UnguardedControllerFSM,
+    )
+    assert rep.n_traces_checked >= 50
+    assert not rep.theory_first, (
+        "Model-checker did not catch the missing theory-first guard — "
+        "the BFS is not exercising the task_presented shortcut."
+    )
