@@ -18,6 +18,9 @@ python -m pip install -e .
 # 10s smoke test
 python experiments/run_main.py --config experiments/configs/mini.yaml
 
+# Iteration / calibration (N=300)
+python experiments/run_main.py --config experiments/configs/small.yaml
+
 # Full run (N=1000, T=100, 4 policies × 2 methodologies)
 python experiments/run_main.py --config experiments/configs/medium.yaml
 
@@ -27,6 +30,17 @@ python experiments/run_model_checking.py
 # Sensitivity to hyperedge type weights w_kappa (±20%)
 python experiments/run_sensitivity.py
 ```
+
+### Expected runtimes
+
+| Config | N    | T   | wall time | Purpose                             |
+|--------|------|-----|-----------|-------------------------------------|
+| mini   | 100  | 50  | ~15 s     | CI / smoke test                     |
+| small  | 300  | 80  | ~30 s     | parameter tuning, fix iteration     |
+| medium | 1000 | 100 | ~3 min    | production run for paper §VIII      |
+
+Measured with `n_jobs=-1` joblib parallelism on a 24-core machine; on
+an 8-core laptop expect roughly 2–3× longer wall times.
 
 Results land in `results/` (tables, figures, `report.html`, raw trajectories)
 and a LaTeX fragment for §VIII is written to `docs/paper_section_VIII.tex`.
