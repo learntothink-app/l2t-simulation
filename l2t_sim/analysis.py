@@ -127,6 +127,53 @@ def test_h1(b3: list[TrajectoryMetrics], b4: list[TrajectoryMetrics]) -> dict:
     }
 
 
+def test_h1b(
+    b1: list[TrajectoryMetrics],
+    b3: list[TrajectoryMetrics],
+    b4: list[TrajectoryMetrics],
+) -> dict:
+    """H1b: pooled L2T (B3 ∪ B4) > Random (B1) on m_robust.
+
+    H1 (test_h1) tests the ablation B4>B3 — whether reliability
+    weighting *adds anything* on top of rule-based L2T. H1b tests the
+    main pedagogical claim: that L2T's curriculum yields more robust
+    correctness on contaminated (low-q) transfer attempts than Random.
+
+    Both methodologies are pooled — m_robust is per-student and has
+    NaN whenever the student had no low-q transfer attempts; those
+    are filtered out by ``_values``.
+    """
+
+    b1_v = _values(b1, "m_robust")
+    b34_v = _values(list(b3) + list(b4), "m_robust")
+    if b1_v.size == 0 or b34_v.size == 0:
+        return {
+            "metric": "m_robust",
+            "comparison": "L2T (B3+B4) vs Random (B1), pooled methodologies",
+            "n_b1": int(b1_v.size),
+            "n_l2t": int(b34_v.size),
+            "t": None,
+            "p_value": None,
+            "cohen_d": None,
+            "confirmed": False,
+            "note": "insufficient low-q transfer observations to evaluate",
+        }
+    t, p = _welch_t_one_sided(b34_v, b1_v)
+    d = cohen_d(b34_v, b1_v)
+    return {
+        "metric": "m_robust",
+        "comparison": "L2T (B3+B4) vs Random (B1), pooled methodologies",
+        "n_b1": int(b1_v.size),
+        "n_l2t": int(b34_v.size),
+        "mean_b1": float(b1_v.mean()),
+        "mean_l2t": float(b34_v.mean()),
+        "t": float(t),
+        "p_value": float(p),
+        "cohen_d": float(d),
+        "confirmed": bool(p < 0.05 and d > 0.2),
+    }
+
+
 def test_h2(
     b2: list[TrajectoryMetrics],
     b3: list[TrajectoryMetrics],

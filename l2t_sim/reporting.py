@@ -180,6 +180,7 @@ def render_html_report(
     figures: list[str],
     manifest: dict,
     output_path: str | os.PathLike,
+    h1b: dict | None = None,
 ) -> None:
     parts: list[str] = []
     parts.append("<!doctype html><html><head><meta charset='utf-8'><title>L2T simulation report</title>")
@@ -195,7 +196,11 @@ def render_html_report(
         parts.append(f"<h2>Headline table — {escape(meth)}</h2>")
         parts.append(render_markdown_table([r for r in rows if r.methodology == meth], meth).replace("\n", "<br/>\n"))
     parts.append("<h2>Hypothesis tests</h2>")
-    for name, body in (("H1", h1), ("H2", h2), ("H3", h3), ("H4", h4)):
+    test_blocks = [("H1", h1)]
+    if h1b is not None:
+        test_blocks.append(("H1b", h1b))
+    test_blocks.extend([("H2", h2), ("H3", h3), ("H4", h4)])
+    for name, body in test_blocks:
         parts.append(f"<h3>{name}</h3><pre>" + escape(repr(body)) + "</pre>")
     parts.append("<h2>Model-checking the controller FSM</h2>")
     parts.append("<pre>" + escape(repr(invariant_report)) + "</pre>")
@@ -227,6 +232,7 @@ def render_latex_section(
     output_path: str | os.PathLike,
     n_students: int,
     t_steps: int,
+    h1b: dict | None = None,
 ) -> None:
     methodologies = list(methodologies)
     lines: list[str] = []
@@ -245,8 +251,11 @@ def render_latex_section(
         lines.append(f"\\subsection{{Headline results: {meth}}}\n")
         lines.append(render_latex_table(rows, meth))
     lines.append("\\subsection{Hypothesis tests}\n")
-    lines.append("\\paragraph{H1 (B4 > B3 on $m_{\\mathrm{robust}}$, guesser+copier).}\n")
+    lines.append("\\paragraph{H1 (B4 > B3 on $m_{\\mathrm{robust}}$, guesser+copier, ablation).}\n")
     lines.append("\\verb|" + repr(h1) + "|\\par\n")
+    if h1b is not None:
+        lines.append("\\paragraph{H1b (L2T (B3$\\cup$B4) > B1 random on $m_{\\mathrm{robust}}$, pooled methodologies).}\n")
+        lines.append("\\verb|" + repr(h1b) + "|\\par\n")
     lines.append("\\paragraph{H2 (B3,B4 > B2 on $m_{\\mathrm{transfer}}$ and $m_{\\mathrm{retention}}(7\\mathrm{d})$).}\n")
     lines.append("\\verb|" + repr(h2) + "|\\par\n")
     lines.append("\\paragraph{H3 (B2,B3,B4 > B1).}\n")

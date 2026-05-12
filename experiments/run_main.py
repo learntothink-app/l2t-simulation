@@ -21,7 +21,7 @@ if str(ROOT) not in sys.path:
 
 import yaml  # type: ignore
 
-from l2t_sim.analysis import aggregate_table, test_h1, test_h2, test_h3, test_h4
+from l2t_sim.analysis import aggregate_table, test_h1, test_h1b, test_h2, test_h3, test_h4
 from l2t_sim.invariants import verify_invariants_on_fsm
 from l2t_sim.methodology import (
     generate_synthetic_methodology,
@@ -141,17 +141,30 @@ def main() -> int:
     log.info("wrote %s", table_dir / "main_results.csv")
 
     # Hypotheses ------------------------------------------------------------
+    # H1 stays Fano-only as an ablation comparison (B4 vs B3 only differ in
+    # the q_t weighting, the rest is identical). H1b pools both methodologies
+    # for the main L2T-vs-Random comparison on m_robust.
     fano_b3 = all_results[("fano", "B3_l2t_no_q")]
     fano_b4 = all_results[("fano", "B4_full_l2t")]
     fano_b2 = all_results[("fano", "B2_bkt")]
     fano_b1 = all_results[("fano", "B1_random")]
+
+    pooled: dict[str, list] = {p: [] for p in POLICY_NAMES}
+    for (_meth, pol), recs in all_results.items():
+        pooled[pol].extend(recs)
+
     h1 = test_h1(fano_b3, fano_b4)
+    h1b = test_h1b(pooled["B1_random"], pooled["B3_l2t_no_q"], pooled["B4_full_l2t"])
     h2 = test_h2(fano_b2, fano_b3, fano_b4)
     h3 = test_h3(fano_b1, fano_b2, fano_b3, fano_b4)
     h4 = test_h4(fano_b3, fano_b4)
     log.info("H1: %s", h1)
+    log.info("H1b: %s", h1b)
     log.info("H4: %s", h4)
-    save_json(table_dir / "hypothesis_tests.json", {"H1": h1, "H2": h2, "H3": h3, "H4": h4})
+    save_json(
+        table_dir / "hypothesis_tests.json",
+        {"H1": h1, "H1b": h1b, "H2": h2, "H3": h3, "H4": h4},
+    )
 
     # Model-checking --------------------------------------------------------
     log.info("running invariant verification (BFS on FSM)")
@@ -174,6 +187,7 @@ def main() -> int:
     render_html_report(
         rows=rows,
         h1=h1,
+        h1b=h1b,
         h2=h2,
         h3=h3,
         h4=h4,
@@ -186,6 +200,7 @@ def main() -> int:
     render_latex_section(
         rows=rows,
         h1=h1,
+        h1b=h1b,
         h2=h2,
         h3=h3,
         h4=h4,
