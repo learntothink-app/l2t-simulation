@@ -200,6 +200,7 @@ class L2TPolicy(Policy):
         prereq_threshold: float = 0.70,
         retention_period: int = 7,
         transfer_threshold: float = 0.90,
+        transfer_phase_threshold: float = 0.70,
     ) -> None:
         self.methodology = methodology
         self.rng = rng
@@ -208,6 +209,11 @@ class L2TPolicy(Policy):
         self.prereq_threshold = prereq_threshold
         self.retention_period = retention_period
         self.transfer_threshold = transfer_threshold
+        # Fraction of eligible skills that must individually exceed
+        # transfer_threshold before the policy enters its transfer phase.
+        # Without this, a single early-mastered skill triggers transfer
+        # spam while the rest of the topic stays under-trained.
+        self.transfer_phase_threshold = transfer_phase_threshold
 
         self.skill_ids = list(methodology.hypergraph.skill_ids)
         self.skill_index = {s: i for i, s in enumerate(self.skill_ids)}
@@ -297,19 +303,28 @@ class L2TPolicy(Policy):
                 eligible.append((float(p_hat[i]), sid))
         eligible.sort(key=lambda kv: kv[0])
 
-        # 5) transfer phase: if eligible top is well-mastered, try a transfer task.
-        if eligible and eligible[-1][0] > self.transfer_threshold:
-            best_skill = eligible[-1][1]
-            t_cands = md.transfer_ids_for_skill(best_skill)
-            if t_cands:
-                tid = t_cands[int(self.rng.integers(0, len(t_cands)))]
-                t_task = md.transfer_tasks[tid]
-                pending_c = self._concept_theory_pending(t_task, context)
-                if pending_c is not None:
-                    mt = self._find_microtheory(pending_c)
-                    if mt is not None:
-                        return Action(type="microtheory", target_id=mt)
-                return Action(type="transfer", target_id=tid)
+        # 5) Transfer phase: only enter when a *majority* of eligible skills
+        # are mastered. Pedagogical rationale: a teacher tests transfer once
+        # the topic is broadly understood, not after a single skill crosses
+        # threshold. Without this gate L2T spams transfer attempts on the
+        # one early-mastered skill while the rest of the topic stays weak.
+        if eligible:
+            n_mastered = sum(1 for p, _ in eligible if p > self.transfer_threshold)
+            if n_mastered / len(eligible) >= self.transfer_phase_threshold:
+                for p, sid in reversed(eligible):
+                    if p <= self.transfer_threshold:
+                        continue
+                    t_cands = md.transfer_ids_for_skill(sid)
+                    if not t_cands:
+                        continue
+                    tid = t_cands[int(self.rng.integers(0, len(t_cands)))]
+                    t_task = md.transfer_tasks[tid]
+                    pending_c = self._concept_theory_pending(t_task, context)
+                    if pending_c is not None:
+                        mt = self._find_microtheory(pending_c)
+                        if mt is not None:
+                            return Action(type="microtheory", target_id=mt)
+                    return Action(type="transfer", target_id=tid)
 
         # 6) work on the weakest eligible skill: theory → task → drill.
         if eligible:
