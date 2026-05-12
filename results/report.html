@@ -2,25 +2,25 @@
 <style>body{font-family:system-ui,sans-serif;max-width:980px;margin:2rem auto;padding:0 1rem;line-height:1.45}table{border-collapse:collapse;margin:1rem 0}th,td{border:1px solid #ccc;padding:.25rem .5rem;font-size:.9rem}code{background:#f4f4f4;padding:.05rem .25rem;border-radius:.2rem}h2{margin-top:2rem}</style></head><body>
 <h1>L2T simulation report</h1>
 <h2>Manifest</h2>
-<pre>timestamp: 20260512_145518
+<pre>timestamp: 20260512_153816
 config_path: experiments/configs/medium.yaml
 config: {&#x27;n_students&#x27;: 1000, &#x27;t_steps&#x27;: 100, &#x27;master_seed&#x27;: 42, &#x27;method_seed&#x27;: 1, &#x27;n_bootstrap&#x27;: 10000, &#x27;behaviour_proportions&#x27;: {&#x27;honest&#x27;: 0.6, &#x27;guesser&#x27;: 0.15, &#x27;copier&#x27;: 0.1, &#x27;help_seeker&#x27;: 0.15}, &#x27;retention_intervals_days&#x27;: [1, 3, 7, 14], &#x27;forgetting_lambda&#x27;: 0.05, &#x27;prereq_perturbation_eps&#x27;: 0.1, &#x27;n_jobs&#x27;: -1}
-environment: {&#x27;python&#x27;: &#x27;3.12.13&#x27;, &#x27;platform&#x27;: &#x27;Linux-7.0.3-arch1-2-x86_64-with-glibc2.43&#x27;, &#x27;git_hash&#x27;: &#x27;8f939ae5b56dba521740c0fcc3c26865950b26b0&#x27;, &#x27;packages&#x27;: {&#x27;numpy&#x27;: &#x27;2.4.4&#x27;, &#x27;scipy&#x27;: &#x27;1.17.1&#x27;, &#x27;pandas&#x27;: &#x27;3.0.3&#x27;, &#x27;matplotlib&#x27;: &#x27;3.10.9&#x27;}, &#x27;timestamp&#x27;: &#x27;2026-05-12T14:55:18&#x27;}</pre>
-<h2>Headline table — fano</h2>
+environment: {&#x27;python&#x27;: &#x27;3.12.13&#x27;, &#x27;platform&#x27;: &#x27;Linux-7.0.3-arch1-2-x86_64-with-glibc2.43&#x27;, &#x27;git_hash&#x27;: &#x27;8f36d2bbf42c7f4ce319905de2df95bfa877ba6b&#x27;, &#x27;packages&#x27;: {&#x27;numpy&#x27;: &#x27;2.4.4&#x27;, &#x27;scipy&#x27;: &#x27;1.17.1&#x27;, &#x27;pandas&#x27;: &#x27;3.0.3&#x27;, &#x27;matplotlib&#x27;: &#x27;3.10.9&#x27;}, &#x27;timestamp&#x27;: &#x27;2026-05-12T15:38:16&#x27;}</pre>
+<h2>Headline table — probability</h2>
 | Metric | B1_random | B2_bkt | B3_l2t_no_q | B4_full_l2t |<br/>
 |---|---|---|---|---|<br/>
-| m_mastery | 0.261 [0.246, 0.276] | 0.274 [0.255, 0.293] | 0.266 [0.255, 0.277] | 0.273 [0.262, 0.283] |<br/>
-| m_transfer | 0.762 [0.736, 0.788] | 0.761 [0.734, 0.787] | 0.752 [0.725, 0.778] | 0.730 [0.703, 0.757] |<br/>
-| m_retention_1d | -0.039 [-0.067, -0.011] | -0.057 [-0.084, -0.029] | -0.052 [-0.082, -0.021] | -0.025 [-0.056, 0.005] |<br/>
-| m_retention_3d | -0.091 [-0.123, -0.059] | -0.105 [-0.135, -0.074] | -0.124 [-0.155, -0.092] | -0.086 [-0.117, -0.055] |<br/>
-| m_retention_7d | -0.211 [-0.245, -0.176] | -0.231 [-0.265, -0.198] | -0.208 [-0.244, -0.173] | -0.194 [-0.229, -0.159] |<br/>
-| m_retention_14d | -0.387 [-0.424, -0.350] | -0.396 [-0.432, -0.359] | -0.369 [-0.404, -0.333] | -0.358 [-0.395, -0.322] |<br/>
-| m_hint | -0.823 [-0.831, -0.815] | 0.000 [0.000, 0.000] | -0.228 [-0.247, -0.209] | -0.224 [-0.243, -0.205] |<br/>
-| m_robust | 0.438 [0.385, 0.492] | — | 0.931 [0.895, 0.961] | 0.956 [0.904, 0.995] |<br/>
-| m_efficiency | 0.003 [0.002, 0.003] | 0.003 [0.003, 0.003] | 0.003 [0.003, 0.003] | 0.003 [0.003, 0.003] |<br/>
-| m_meta | 0.046 [0.044, 0.049] | 0.092 [0.088, 0.095] | 0.097 [0.093, 0.101] | 0.099 [0.095, 0.103] |<br/>
-| m_engage | 0.576 [0.573, 0.579] | 1.000 [1.000, 1.000] | 0.846 [0.839, 0.853] | 0.857 [0.849, 0.864] |<br/>
-| m_calib | 0.158 [0.155, 0.161] | 0.125 [0.121, 0.129] | 0.207 [0.203, 0.210] | 0.225 [0.221, 0.229] |<br/>
+| m_mastery | 0.315 [0.306, 0.324] | 0.359 [0.349, 0.368] | 0.216 [0.208, 0.225] | 0.221 [0.213, 0.229] |<br/>
+| m_transfer | 0.727 [0.710, 0.743] | 0.753 [0.736, 0.770] | 0.718 [0.701, 0.734] | 0.716 [0.699, 0.733] |<br/>
+| m_retention_1d | -0.039 [-0.051, -0.027] | -0.035 [-0.046, -0.024] | -0.040 [-0.052, -0.027] | -0.034 [-0.046, -0.021] |<br/>
+| m_retention_3d | -0.101 [-0.113, -0.088] | -0.112 [-0.124, -0.100] | -0.093 [-0.106, -0.081] | -0.100 [-0.114, -0.087] |<br/>
+| m_retention_7d | -0.213 [-0.227, -0.200] | -0.220 [-0.234, -0.207] | -0.212 [-0.228, -0.198] | -0.215 [-0.229, -0.201] |<br/>
+| m_retention_14d | -0.365 [-0.379, -0.351] | -0.382 [-0.397, -0.367] | -0.354 [-0.370, -0.339] | -0.364 [-0.379, -0.349] |<br/>
+| m_hint | -0.828 [-0.839, -0.816] | 0.000 [0.000, 0.000] | -0.151 [-0.165, -0.137] | -0.158 [-0.173, -0.143] |<br/>
+| m_robust | 0.594 [0.559, 0.630] | — | 0.898 [0.878, 0.918] | 0.905 [0.877, 0.930] |<br/>
+| m_efficiency | 0.003 [0.003, 0.003] | 0.004 [0.003, 0.004] | 0.002 [0.002, 0.002] | 0.002 [0.002, 0.002] |<br/>
+| m_meta | 0.131 [0.127, 0.135] | 0.243 [0.237, 0.250] | 0.123 [0.119, 0.126] | 0.147 [0.142, 0.152] |<br/>
+| m_engage | 0.760 [0.757, 0.762] | 1.000 [1.000, 1.000] | 0.802 [0.796, 0.809] | 0.813 [0.806, 0.819] |<br/>
+| m_calib | 0.195 [0.192, 0.198] | 0.185 [0.181, 0.188] | 0.231 [0.227, 0.235] | 0.246 [0.242, 0.250] |<br/>
 
 <h2>Headline table — synthetic</h2>
 | Metric | B1_random | B2_bkt | B3_l2t_no_q | B4_full_l2t |<br/>
@@ -39,26 +39,26 @@ environment: {&#x27;python&#x27;: &#x27;3.12.13&#x27;, &#x27;platform&#x27;: &#x
 | m_calib | 0.176 [0.173, 0.178] | 0.141 [0.139, 0.144] | 0.151 [0.148, 0.153] | 0.172 [0.168, 0.175] |<br/>
 
 <h2>Hypothesis tests</h2>
-<h3>H1</h3><pre>{&#x27;metric&#x27;: &#x27;m_robust&#x27;, &#x27;subsample&#x27;: &#x27;guesser+copier&#x27;, &#x27;n_b3&#x27;: 18, &#x27;n_b4&#x27;: 0, &#x27;t&#x27;: None, &#x27;p_value&#x27;: None, &#x27;cohen_d&#x27;: None, &#x27;confirmed&#x27;: False, &#x27;note&#x27;: &#x27;insufficient low-q transfer observations to evaluate&#x27;}</pre>
-<h3>H1b</h3><pre>{&#x27;metric&#x27;: &#x27;m_robust&#x27;, &#x27;comparison&#x27;: &#x27;L2T (B3+B4) vs Random (B1), pooled methodologies&#x27;, &#x27;n_b1&#x27;: 609, &#x27;n_l2t&#x27;: 671, &#x27;mean_b1&#x27;: 0.4730392167584285, &#x27;mean_l2t&#x27;: 0.8973488740169175, &#x27;t&#x27;: 21.311055670095726, &#x27;p_value&#x27;: 1.071770498347855e-82, &#x27;cohen_d&#x27;: 1.207843951195286, &#x27;confirmed&#x27;: True}</pre>
-<h3>H2</h3><pre>{&#x27;m_transfer_b3_vs_b2&#x27;: {&#x27;n_b2&#x27;: 1000, &#x27;n_other&#x27;: 1000, &#x27;mean_b2&#x27;: 0.761, &#x27;mean_other&#x27;: 0.752, &#x27;t&#x27;: -0.4686840554224797, &#x27;p_value&#x27;: 0.6803266883733953, &#x27;cohen_d&#x27;: -0.020960188157898872, &#x27;confirmed&#x27;: False}, &#x27;m_transfer_b4_vs_b2&#x27;: {&#x27;n_b2&#x27;: 1000, &#x27;n_other&#x27;: 1000, &#x27;mean_b2&#x27;: 0.761, &#x27;mean_other&#x27;: 0.73, &#x27;t&#x27;: -1.5916107552089755, &#x27;p_value&#x27;: 0.944184681332987, &#x27;cohen_d&#x27;: -0.07117899684734094, &#x27;confirmed&#x27;: False}, &#x27;m_retention_7d_b3_vs_b2&#x27;: {&#x27;n_b2&#x27;: 1000, &#x27;n_other&#x27;: 1000, &#x27;mean_b2&#x27;: -0.231, &#x27;mean_other&#x27;: -0.208, &#x27;t&#x27;: 0.9170671373862672, &#x27;p_value&#x27;: 0.1796093066404406, &#x27;cohen_d&#x27;: 0.041012489182536645, &#x27;confirmed&#x27;: False}, &#x27;m_retention_7d_b4_vs_b2&#x27;: {&#x27;n_b2&#x27;: 1000, &#x27;n_other&#x27;: 1000, &#x27;mean_b2&#x27;: -0.231, &#x27;mean_other&#x27;: -0.194, &#x27;t&#x27;: 1.4780742835468341, &#x27;p_value&#x27;: 0.06977305808302615, &#x27;cohen_d&#x27;: 0.06610149147610042, &#x27;confirmed&#x27;: False}}</pre>
-<h3>H3</h3><pre>{&#x27;m_mastery_b2_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.26105441845980215, &#x27;mean_other&#x27;: 0.2743423789289811, &#x27;t&#x27;: 1.0795429523441658, &#x27;p_value&#x27;: 0.14024158081362909, &#x27;cohen_d&#x27;: 0.04827862852144742, &#x27;confirmed&#x27;: False}, &#x27;m_transfer_b2_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.762, &#x27;mean_other&#x27;: 0.761, &#x27;t&#x27;: -0.05244316569164802, &#x27;p_value&#x27;: 0.5209095886391555, &#x27;cohen_d&#x27;: -0.0023453296688361945, &#x27;confirmed&#x27;: False}, &#x27;m_retention_7d_b2_vs_b1&#x27;: {&#x27;mean_b1&#x27;: -0.211, &#x27;mean_other&#x27;: -0.231, &#x27;t&#x27;: -0.8173711477519054, &#x27;p_value&#x27;: 0.7930930771929147, &#x27;cohen_d&#x27;: -0.036553948984405706, &#x27;confirmed&#x27;: False}, &#x27;m_efficiency_b2_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.002610544184598021, &#x27;mean_other&#x27;: 0.002743423789289812, &#x27;t&#x27;: 1.0795429523441755, &#x27;p_value&#x27;: 0.1402415808136269, &#x27;cohen_d&#x27;: 0.048278628521447854, &#x27;confirmed&#x27;: False}, &#x27;m_mastery_b3_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.26105441845980215, &#x27;mean_other&#x27;: 0.2660166760156103, &#x27;t&#x27;: 0.5280691647225028, &#x27;p_value&#x27;: 0.2987578975298253, &#x27;cohen_d&#x27;: 0.023615970982820998, &#x27;confirmed&#x27;: False}, &#x27;m_transfer_b3_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.762, &#x27;mean_other&#x27;: 0.752, &#x27;t&#x27;: -0.5211301299418615, &#x27;p_value&#x27;: 0.6988330568631179, &#x27;cohen_d&#x27;: -0.023305647913466017, &#x27;confirmed&#x27;: False}, &#x27;m_retention_7d_b3_vs_b1&#x27;: {&#x27;mean_b1&#x27;: -0.211, &#x27;mean_other&#x27;: -0.208, &#x27;t&#x27;: 0.11859886149464781, &#x27;p_value&#x27;: 0.4528025580504979, &#x27;cohen_d&#x27;: 0.005303902327122297, &#x27;confirmed&#x27;: False}, &#x27;m_efficiency_b3_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.002610544184598021, &#x27;mean_other&#x27;: 0.002660166760156103, &#x27;t&#x27;: 0.5280691647225052, &#x27;p_value&#x27;: 0.2987578975298245, &#x27;cohen_d&#x27;: 0.02361597098282111, &#x27;confirmed&#x27;: False}, &#x27;m_mastery_b4_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.26105441845980215, &#x27;mean_other&#x27;: 0.27251947025962214, &#x27;t&#x27;: 1.210571636720038, &#x27;p_value&#x27;: 0.11310761712000664, &#x27;cohen_d&#x27;: 0.05413840942678371, &#x27;confirmed&#x27;: False}, &#x27;m_transfer_b4_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.762, &#x27;mean_other&#x27;: 0.73, &#x27;t&#x27;: -1.6440878694023446, &#x27;p_value&#x27;: 0.9498421759083727, &#x27;cohen_d&#x27;: -0.07352584473932879, &#x27;confirmed&#x27;: False}, &#x27;m_retention_7d_b4_vs_b1&#x27;: {&#x27;mean_b1&#x27;: -0.211, &#x27;mean_other&#x27;: -0.194, &#x27;t&#x27;: 0.673310637303144, &#x27;p_value&#x27;: 0.25041385449216635, &#x27;cohen_d&#x27;: 0.03011136709967072, &#x27;confirmed&#x27;: False}, &#x27;m_efficiency_b4_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.002610544184598021, &#x27;mean_other&#x27;: 0.0027251947025962214, &#x27;t&#x27;: 1.2105716367200423, &#x27;p_value&#x27;: 0.11310761712000587, &#x27;cohen_d&#x27;: 0.054138409426783905, &#x27;confirmed&#x27;: False}}</pre>
-<h3>H4</h3><pre>{&#x27;violations_b3&#x27;: 0, &#x27;violations_b4&#x27;: 0, &#x27;n_b3&#x27;: 1000, &#x27;n_b4&#x27;: 1000, &#x27;h4_confirmed&#x27;: True}</pre>
+<h3>H1</h3><pre>{&#x27;metric&#x27;: &#x27;m_robust&#x27;, &#x27;subsample&#x27;: &#x27;guesser+copier&#x27;, &#x27;n_b3&#x27;: 205, &#x27;n_b4&#x27;: 42, &#x27;mean_b3&#x27;: 0.8362741249004796, &#x27;mean_b4&#x27;: 0.8285028254953067, &#x27;t&#x27;: -0.27264278073045994, &#x27;p_value&#x27;: 0.6068117210222767, &#x27;cohen_d&#x27;: -0.05488401756188783, &#x27;confirmed&#x27;: False}</pre>
+<h3>H1b</h3><pre>{&#x27;metric&#x27;: &#x27;m_robust&#x27;, &#x27;comparison&#x27;: &#x27;L2T (B3+B4) vs Random (B1), pooled methodologies&#x27;, &#x27;n_b1&#x27;: 769, &#x27;n_l2t&#x27;: 1310, &#x27;mean_b1&#x27;: 0.5523776586804656, &#x27;mean_l2t&#x27;: 0.8946183060626473, &#x27;t&#x27;: 21.47217982227362, &#x27;p_value&#x27;: 4.041099284134322e-86, &#x27;cohen_d&#x27;: 1.031709343479606, &#x27;confirmed&#x27;: True}</pre>
+<h3>H2</h3><pre>{&#x27;m_transfer_b3_vs_b2&#x27;: {&#x27;n_b2&#x27;: 2000, &#x27;n_other&#x27;: 2000, &#x27;mean_b2&#x27;: 0.7495625, &#x27;mean_other&#x27;: 0.7430625, &#x27;t&#x27;: -0.695111889837844, &#x27;p_value&#x27;: 0.7564871968456486, &#x27;cohen_d&#x27;: -0.021981368005516377, &#x27;confirmed&#x27;: False}, &#x27;m_transfer_b4_vs_b2&#x27;: {&#x27;n_b2&#x27;: 2000, &#x27;n_other&#x27;: 2000, &#x27;mean_b2&#x27;: 0.7495625, &#x27;mean_other&#x27;: 0.74175, &#x27;t&#x27;: -0.8352760085932439, &#x27;p_value&#x27;: 0.7981938678470165, &#x27;cohen_d&#x27;: -0.026413746620490265, &#x27;confirmed&#x27;: False}, &#x27;m_retention_7d_b3_vs_b2&#x27;: {&#x27;n_b2&#x27;: 2000, &#x27;n_other&#x27;: 2000, &#x27;mean_b2&#x27;: -0.22275, &#x27;mean_other&#x27;: -0.218, &#x27;t&#x27;: 0.6911397197888832, &#x27;p_value&#x27;: 0.24475896627297772, &#x27;cohen_d&#x27;: 0.021855756959434192, &#x27;confirmed&#x27;: False}, &#x27;m_retention_7d_b4_vs_b2&#x27;: {&#x27;n_b2&#x27;: 2000, &#x27;n_other&#x27;: 2000, &#x27;mean_b2&#x27;: -0.22275, &#x27;mean_other&#x27;: -0.219375, &#x27;t&#x27;: 0.4902416722957946, &#x27;p_value&#x27;: 0.31199492396262096, &#x27;cohen_d&#x27;: 0.015502802883845786, &#x27;confirmed&#x27;: False}}</pre>
+<h3>H3</h3><pre>{&#x27;m_mastery_b2_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.3287332728549436, &#x27;mean_other&#x27;: 0.36316251872607597, &#x27;t&#x27;: 5.246374643057645, &#x27;p_value&#x27;: 8.160891424200265e-08, &#x27;cohen_d&#x27;: 0.16590493330615047, &#x27;confirmed&#x27;: True}, &#x27;m_transfer_b2_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.7463125, &#x27;mean_other&#x27;: 0.7495625, &#x27;t&#x27;: 0.3511013655676903, &#x27;p_value&#x27;: 0.3627654215265899, &#x27;cohen_d&#x27;: 0.011102800047893184, &#x27;confirmed&#x27;: False}, &#x27;m_retention_7d_b2_vs_b1&#x27;: {&#x27;mean_b1&#x27;: -0.2208125, &#x27;mean_other&#x27;: -0.22275, &#x27;t&#x27;: -0.28469332776577216, &#x27;p_value&#x27;: 0.6120530727795328, &#x27;cohen_d&#x27;: -0.009002793503926954, &#x27;confirmed&#x27;: False}, &#x27;m_efficiency_b2_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.003287332728549436, &#x27;mean_other&#x27;: 0.0036316251872607597, &#x27;t&#x27;: 5.246374643057641, &#x27;p_value&#x27;: 8.160891424200432e-08, &#x27;cohen_d&#x27;: 0.1659049333061504, &#x27;confirmed&#x27;: True}, &#x27;m_mastery_b3_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.3287332728549436, &#x27;mean_other&#x27;: 0.29319483165916355, &#x27;t&#x27;: -5.392574456547728, &#x27;p_value&#x27;: 0.9999999632482497, &#x27;cohen_d&#x27;: -0.17052817734735523, &#x27;confirmed&#x27;: False}, &#x27;m_transfer_b3_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.7463125, &#x27;mean_other&#x27;: 0.7430625, &#x27;t&#x27;: -0.35570757369515316, &#x27;p_value&#x27;: 0.638960826343993, &#x27;cohen_d&#x27;: -0.011248461138488802, &#x27;confirmed&#x27;: False}, &#x27;m_retention_7d_b3_vs_b1&#x27;: {&#x27;mean_b1&#x27;: -0.2208125, &#x27;mean_other&#x27;: -0.218, &#x27;t&#x27;: 0.40507588264315975, &#x27;p_value&#x27;: 0.3427217070408155, &#x27;cohen_d&#x27;: 0.012809624143554525, &#x27;confirmed&#x27;: False}, &#x27;m_efficiency_b3_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.003287332728549436, &#x27;mean_other&#x27;: 0.002931948316591636, &#x27;t&#x27;: -5.392574456547726, &#x27;p_value&#x27;: 0.9999999632482497, &#x27;cohen_d&#x27;: -0.17052817734735515, &#x27;confirmed&#x27;: False}, &#x27;m_mastery_b4_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.3287332728549436, &#x27;mean_other&#x27;: 0.29919321816889793, &#x27;t&#x27;: -4.544930274271393, &#x27;p_value&#x27;: 0.9999971707960985, &#x27;cohen_d&#x27;: -0.14372331473351374, &#x27;confirmed&#x27;: False}, &#x27;m_transfer_b4_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.7463125, &#x27;mean_other&#x27;: 0.74175, &#x27;t&#x27;: -0.4992366209319044, &#x27;p_value&#x27;: 0.6911799095901039, &#x27;cohen_d&#x27;: -0.015787248135109108, &#x27;confirmed&#x27;: False}, &#x27;m_retention_7d_b4_vs_b1&#x27;: {&#x27;mean_b1&#x27;: -0.2208125, &#x27;mean_other&#x27;: -0.219375, &#x27;t&#x27;: 0.20669536738075583, &#x27;p_value&#x27;: 0.4181291531906446, &#x27;cohen_d&#x27;: 0.0065362814272846015, &#x27;confirmed&#x27;: False}, &#x27;m_efficiency_b4_vs_b1&#x27;: {&#x27;mean_b1&#x27;: 0.003287332728549436, &#x27;mean_other&#x27;: 0.0029919321816889795, &#x27;t&#x27;: -4.544930274271395, &#x27;p_value&#x27;: 0.9999971707960985, &#x27;cohen_d&#x27;: -0.1437233147335138, &#x27;confirmed&#x27;: False}}</pre>
+<h3>H4</h3><pre>{&#x27;violations_b3&#x27;: 0, &#x27;violations_b4&#x27;: 0, &#x27;n_b3&#x27;: 2000, &#x27;n_b4&#x27;: 2000, &#x27;h4_confirmed&#x27;: True}</pre>
 <h2>Model-checking the controller FSM</h2>
-<pre>InvariantReport(theory_first=True, no_spoiler=True, transfer_gate=True, n_states=16, n_transitions=24, n_traces_checked=5000, seconds=0.2542492510001466)</pre>
+<pre>InvariantReport(theory_first=True, no_spoiler=True, transfer_gate=True, n_states=16, n_transitions=24, n_traces_checked=5000, seconds=0.25303077299759025)</pre>
 <h2>Figures</h2>
-<div><img src='figures/fano_m_mastery.png' /></div>
-<div><img src='figures/fano_m_transfer.png' /></div>
-<div><img src='figures/fano_m_retention_1d.png' /></div>
-<div><img src='figures/fano_m_retention_3d.png' /></div>
-<div><img src='figures/fano_m_retention_7d.png' /></div>
-<div><img src='figures/fano_m_retention_14d.png' /></div>
-<div><img src='figures/fano_m_hint.png' /></div>
-<div><img src='figures/fano_m_robust.png' /></div>
-<div><img src='figures/fano_m_efficiency.png' /></div>
-<div><img src='figures/fano_m_meta.png' /></div>
-<div><img src='figures/fano_m_engage.png' /></div>
-<div><img src='figures/fano_m_calib.png' /></div>
+<div><img src='figures/probability_m_mastery.png' /></div>
+<div><img src='figures/probability_m_transfer.png' /></div>
+<div><img src='figures/probability_m_retention_1d.png' /></div>
+<div><img src='figures/probability_m_retention_3d.png' /></div>
+<div><img src='figures/probability_m_retention_7d.png' /></div>
+<div><img src='figures/probability_m_retention_14d.png' /></div>
+<div><img src='figures/probability_m_hint.png' /></div>
+<div><img src='figures/probability_m_robust.png' /></div>
+<div><img src='figures/probability_m_efficiency.png' /></div>
+<div><img src='figures/probability_m_meta.png' /></div>
+<div><img src='figures/probability_m_engage.png' /></div>
+<div><img src='figures/probability_m_calib.png' /></div>
 <div><img src='figures/synthetic_m_mastery.png' /></div>
 <div><img src='figures/synthetic_m_transfer.png' /></div>
 <div><img src='figures/synthetic_m_retention_1d.png' /></div>
@@ -71,6 +71,6 @@ environment: {&#x27;python&#x27;: &#x27;3.12.13&#x27;, &#x27;platform&#x27;: &#x
 <div><img src='figures/synthetic_m_meta.png' /></div>
 <div><img src='figures/synthetic_m_engage.png' /></div>
 <div><img src='figures/synthetic_m_calib.png' /></div>
-<div><img src='figures/fano_m_robust_box.png' /></div>
+<div><img src='figures/probability_m_robust_box.png' /></div>
 <div><img src='figures/synthetic_m_robust_box.png' /></div>
 </body></html>
