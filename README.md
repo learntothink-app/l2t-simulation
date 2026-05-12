@@ -1,5 +1,10 @@
 # L2T Simulation
 
+[![CI](https://github.com/learntothink-app/l2t-simulation/actions/workflows/ci.yml/badge.svg)](https://github.com/learntothink-app/l2t-simulation/actions/workflows/ci.yml)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Paper](https://img.shields.io/badge/paper-arXiv%20pending-b31b1b.svg)](https://learntothink.app)
+
 Implementation of the simulation protocol from §VII of *LearnToThink: Structuring Adaptive Tutoring via Typed Hypergraphs and Verifiable Pedagogy* (Yusupova, Popov, Smorchkov, Chuprov; 2026).
 
 The harness produces empirical numbers for hypotheses **H1–H4** and verifies the
@@ -102,3 +107,23 @@ single most useful smoke test.
 ## Mapping from paper formulas to code
 
 See `docs/formulas_to_code_map.md`.
+
+## Citing
+
+If you use this code, please cite the paper:
+
+```bibtex
+@article{yusupova2026learntothink,
+  title   = {LearnToThink: Structuring Adaptive Tutoring via Typed Hypergraphs and Verifiable Pedagogy},
+  author  = {Yusupova, Taya and Popov, Anatoly and Smorchkov, Dmitrii and Chuprov, Artem},
+  journal = {arXiv preprint},
+  year    = {2026},
+  note    = {arXiv ID pending submission}
+}
+```
+
+After arXiv submission this block will be updated with the canonical arXiv ID.
+
+## License
+
+Apache License 2.0 — see [LICENSE](LICENSE).
