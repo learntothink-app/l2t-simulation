@@ -1,0 +1,4531 @@
+{
+  "protocol_version": "0.1.0",
+  "manifest": {
+    "methodology_id": "synthetic",
+    "title": "Synthetic abstract"
+  },
+  "hypergraph": {
+    "nodes": [
+      {
+        "id": "S_0",
+        "kind": "skill"
+      },
+      {
+        "id": "S_1",
+        "kind": "skill"
+      },
+      {
+        "id": "S_2",
+        "kind": "skill"
+      },
+      {
+        "id": "S_3",
+        "kind": "skill"
+      },
+      {
+        "id": "S_4",
+        "kind": "skill"
+      },
+      {
+        "id": "S_5",
+        "kind": "skill"
+      },
+      {
+        "id": "S_6",
+        "kind": "skill"
+      },
+      {
+        "id": "S_7",
+        "kind": "skill"
+      },
+      {
+        "id": "S_8",
+        "kind": "skill"
+      },
+      {
+        "id": "S_9",
+        "kind": "skill"
+      },
+      {
+        "id": "C_0",
+        "kind": "concept"
+      },
+      {
+        "id": "C_1",
+        "kind": "concept"
+      },
+      {
+        "id": "C_2",
+        "kind": "concept"
+      },
+      {
+        "id": "C_3",
+        "kind": "concept"
+      },
+      {
+        "id": "C_4",
+        "kind": "concept"
+      },
+      {
+        "id": "C_5",
+        "kind": "concept"
+      },
+      {
+        "id": "C_6",
+        "kind": "concept"
+      },
+      {
+        "id": "C_7",
+        "kind": "concept"
+      },
+      {
+        "id": "M_0",
+        "kind": "metaskill"
+      },
+      {
+        "id": "M_1",
+        "kind": "metaskill"
+      },
+      {
+        "id": "M_2",
+        "kind": "metaskill"
+      },
+      {
+        "id": "E_0",
+        "kind": "error"
+      },
+      {
+        "id": "E_1",
+        "kind": "error"
+      },
+      {
+        "id": "E_2",
+        "kind": "error"
+      },
+      {
+        "id": "E_3",
+        "kind": "error"
+      },
+      {
+        "id": "E_4",
+        "kind": "error"
+      },
+      {
+        "id": "E_5",
+        "kind": "error"
+      },
+      {
+        "id": "E_6",
+        "kind": "error"
+      },
+      {
+        "id": "E_7",
+        "kind": "error"
+      },
+      {
+        "id": "E_8",
+        "kind": "error"
+      },
+      {
+        "id": "E_9",
+        "kind": "error"
+      },
+      {
+        "id": "E_10",
+        "kind": "error"
+      },
+      {
+        "id": "E_11",
+        "kind": "error"
+      },
+      {
+        "id": "T_0",
+        "kind": "task"
+      },
+      {
+        "id": "T_1",
+        "kind": "task"
+      },
+      {
+        "id": "T_2",
+        "kind": "task"
+      },
+      {
+        "id": "T_3",
+        "kind": "task"
+      },
+      {
+        "id": "T_4",
+        "kind": "task"
+      },
+      {
+        "id": "T_5",
+        "kind": "task"
+      },
+      {
+        "id": "T_6",
+        "kind": "task"
+      },
+      {
+        "id": "T_7",
+        "kind": "task"
+      },
+      {
+        "id": "T_8",
+        "kind": "task"
+      },
+      {
+        "id": "T_9",
+        "kind": "task"
+      },
+      {
+        "id": "T_10",
+        "kind": "task"
+      },
+      {
+        "id": "T_11",
+        "kind": "task"
+      },
+      {
+        "id": "T_12",
+        "kind": "task"
+      },
+      {
+        "id": "T_13",
+        "kind": "task"
+      },
+      {
+        "id": "T_14",
+        "kind": "task"
+      },
+      {
+        "id": "T_15",
+        "kind": "task"
+      },
+      {
+        "id": "T_16",
+        "kind": "task"
+      },
+      {
+        "id": "T_17",
+        "kind": "task"
+      },
+      {
+        "id": "T_18",
+        "kind": "task"
+      },
+      {
+        "id": "T_19",
+        "kind": "task"
+      },
+      {
+        "id": "T_20",
+        "kind": "task"
+      },
+      {
+        "id": "T_21",
+        "kind": "task"
+      },
+      {
+        "id": "T_22",
+        "kind": "task"
+      },
+      {
+        "id": "T_23",
+        "kind": "task"
+      },
+      {
+        "id": "T_24",
+        "kind": "task"
+      },
+      {
+        "id": "T_25",
+        "kind": "task"
+      },
+      {
+        "id": "T_26",
+        "kind": "task"
+      },
+      {
+        "id": "T_27",
+        "kind": "task"
+      },
+      {
+        "id": "T_28",
+        "kind": "task"
+      },
+      {
+        "id": "T_29",
+        "kind": "task"
+      },
+      {
+        "id": "T_30",
+        "kind": "task"
+      },
+      {
+        "id": "T_31",
+        "kind": "task"
+      },
+      {
+        "id": "T_32",
+        "kind": "task"
+      },
+      {
+        "id": "T_33",
+        "kind": "task"
+      },
+      {
+        "id": "T_34",
+        "kind": "task"
+      },
+      {
+        "id": "T_35",
+        "kind": "task"
+      },
+      {
+        "id": "T_36",
+        "kind": "task"
+      },
+      {
+        "id": "T_37",
+        "kind": "task"
+      },
+      {
+        "id": "T_38",
+        "kind": "task"
+      },
+      {
+        "id": "T_39",
+        "kind": "task"
+      },
+      {
+        "id": "TR_0",
+        "kind": "task"
+      },
+      {
+        "id": "TR_1",
+        "kind": "task"
+      },
+      {
+        "id": "TR_2",
+        "kind": "task"
+      },
+      {
+        "id": "TR_3",
+        "kind": "task"
+      },
+      {
+        "id": "TR_4",
+        "kind": "task"
+      },
+      {
+        "id": "TR_5",
+        "kind": "task"
+      },
+      {
+        "id": "TR_6",
+        "kind": "task"
+      },
+      {
+        "id": "TR_7",
+        "kind": "task"
+      },
+      {
+        "id": "TR_8",
+        "kind": "task"
+      },
+      {
+        "id": "TR_9",
+        "kind": "task"
+      },
+      {
+        "id": "TR_10",
+        "kind": "task"
+      },
+      {
+        "id": "TR_11",
+        "kind": "task"
+      },
+      {
+        "id": "TR_12",
+        "kind": "task"
+      },
+      {
+        "id": "TR_13",
+        "kind": "task"
+      },
+      {
+        "id": "TR_14",
+        "kind": "task"
+      },
+      {
+        "id": "D_0",
+        "kind": "drill"
+      },
+      {
+        "id": "D_1",
+        "kind": "drill"
+      },
+      {
+        "id": "D_2",
+        "kind": "drill"
+      },
+      {
+        "id": "D_3",
+        "kind": "drill"
+      },
+      {
+        "id": "D_4",
+        "kind": "drill"
+      },
+      {
+        "id": "D_5",
+        "kind": "drill"
+      },
+      {
+        "id": "D_6",
+        "kind": "drill"
+      },
+      {
+        "id": "D_7",
+        "kind": "drill"
+      },
+      {
+        "id": "D_8",
+        "kind": "drill"
+      },
+      {
+        "id": "D_9",
+        "kind": "drill"
+      },
+      {
+        "id": "D_10",
+        "kind": "drill"
+      },
+      {
+        "id": "D_11",
+        "kind": "drill"
+      },
+      {
+        "id": "D_12",
+        "kind": "drill"
+      },
+      {
+        "id": "D_13",
+        "kind": "drill"
+      },
+      {
+        "id": "D_14",
+        "kind": "drill"
+      },
+      {
+        "id": "D_15",
+        "kind": "drill"
+      },
+      {
+        "id": "D_16",
+        "kind": "drill"
+      },
+      {
+        "id": "D_17",
+        "kind": "drill"
+      },
+      {
+        "id": "D_18",
+        "kind": "drill"
+      },
+      {
+        "id": "D_19",
+        "kind": "drill"
+      },
+      {
+        "id": "P_0",
+        "kind": "probe"
+      },
+      {
+        "id": "P_1",
+        "kind": "probe"
+      },
+      {
+        "id": "P_2",
+        "kind": "probe"
+      },
+      {
+        "id": "P_3",
+        "kind": "probe"
+      },
+      {
+        "id": "P_4",
+        "kind": "probe"
+      },
+      {
+        "id": "P_5",
+        "kind": "probe"
+      },
+      {
+        "id": "P_6",
+        "kind": "probe"
+      },
+      {
+        "id": "P_7",
+        "kind": "probe"
+      }
+    ],
+    "hyperedges": [
+      {
+        "id": "RC_C_0_S_4",
+        "kind": "requires",
+        "tail": [
+          "C_0"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_0_S_6",
+        "kind": "requires",
+        "tail": [
+          "C_0"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_1_S_6",
+        "kind": "requires",
+        "tail": [
+          "C_1"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_1_S_1",
+        "kind": "requires",
+        "tail": [
+          "C_1"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_1_S_0",
+        "kind": "requires",
+        "tail": [
+          "C_1"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_2_S_6",
+        "kind": "requires",
+        "tail": [
+          "C_2"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_3_S_6",
+        "kind": "requires",
+        "tail": [
+          "C_3"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_3_S_1",
+        "kind": "requires",
+        "tail": [
+          "C_3"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_3_S_7",
+        "kind": "requires",
+        "tail": [
+          "C_3"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_4_S_4",
+        "kind": "requires",
+        "tail": [
+          "C_4"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_4_S_1",
+        "kind": "requires",
+        "tail": [
+          "C_4"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_5_S_8",
+        "kind": "requires",
+        "tail": [
+          "C_5"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_6_S_7",
+        "kind": "requires",
+        "tail": [
+          "C_6"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_6_S_8",
+        "kind": "requires",
+        "tail": [
+          "C_6"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_6_S_6",
+        "kind": "requires",
+        "tail": [
+          "C_6"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_7_S_9",
+        "kind": "requires",
+        "tail": [
+          "C_7"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "RC_C_7_S_2",
+        "kind": "requires",
+        "tail": [
+          "C_7"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "MH_M_0_S_2",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "M_0"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "MH_M_0_S_4",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "M_0"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "MH_M_0_S_6",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "M_0"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "MH_M_0_S_9",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "M_0"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "MH_M_1_S_1",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "M_1"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "MH_M_1_S_6",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "M_1"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "MH_M_1_S_9",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "M_1"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "MH_M_2_S_6",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "M_2"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "MH_M_2_S_1",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "M_2"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "MH_M_2_S_0",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "M_2"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "MH_M_2_S_7",
+        "kind": "meta_helps_learn",
+        "tail": [
+          "M_2"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_0_S_3",
+        "kind": "error_signature",
+        "tail": [
+          "E_0"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_0_S_5",
+        "kind": "error_signature",
+        "tail": [
+          "E_0"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_1_S_0",
+        "kind": "error_signature",
+        "tail": [
+          "E_1"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_1_S_4",
+        "kind": "error_signature",
+        "tail": [
+          "E_1"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_2_S_9",
+        "kind": "error_signature",
+        "tail": [
+          "E_2"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_3_S_7",
+        "kind": "error_signature",
+        "tail": [
+          "E_3"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_3_S_4",
+        "kind": "error_signature",
+        "tail": [
+          "E_3"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_4_S_6",
+        "kind": "error_signature",
+        "tail": [
+          "E_4"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_5_S_2",
+        "kind": "error_signature",
+        "tail": [
+          "E_5"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_6_S_8",
+        "kind": "error_signature",
+        "tail": [
+          "E_6"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_6_S_6",
+        "kind": "error_signature",
+        "tail": [
+          "E_6"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_7_S_3",
+        "kind": "error_signature",
+        "tail": [
+          "E_7"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_7_S_7",
+        "kind": "error_signature",
+        "tail": [
+          "E_7"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_8_S_4",
+        "kind": "error_signature",
+        "tail": [
+          "E_8"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_8_S_7",
+        "kind": "error_signature",
+        "tail": [
+          "E_8"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_9_S_3",
+        "kind": "error_signature",
+        "tail": [
+          "E_9"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_10_S_2",
+        "kind": "error_signature",
+        "tail": [
+          "E_10"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_10_S_0",
+        "kind": "error_signature",
+        "tail": [
+          "E_10"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_11_S_5",
+        "kind": "error_signature",
+        "tail": [
+          "E_11"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "ES_E_11_S_1",
+        "kind": "error_signature",
+        "tail": [
+          "E_11"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_0_S_6",
+        "kind": "requires",
+        "tail": [
+          "T_0"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_0_S_0",
+        "kind": "requires",
+        "tail": [
+          "T_0"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_1_S_0",
+        "kind": "requires",
+        "tail": [
+          "T_1"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_1_S_7",
+        "kind": "requires",
+        "tail": [
+          "T_1"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_2_S_8",
+        "kind": "requires",
+        "tail": [
+          "T_2"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_2_S_0",
+        "kind": "requires",
+        "tail": [
+          "T_2"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_3_S_2",
+        "kind": "requires",
+        "tail": [
+          "T_3"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_3_S_2",
+        "kind": "trains",
+        "tail": [
+          "T_3"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_4_S_1",
+        "kind": "requires",
+        "tail": [
+          "T_4"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_4_S_1",
+        "kind": "trains",
+        "tail": [
+          "T_4"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_5_S_9",
+        "kind": "requires",
+        "tail": [
+          "T_5"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_5_S_5",
+        "kind": "requires",
+        "tail": [
+          "T_5"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_6_S_2",
+        "kind": "requires",
+        "tail": [
+          "T_6"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_6_S_3",
+        "kind": "requires",
+        "tail": [
+          "T_6"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_6_S_2",
+        "kind": "trains",
+        "tail": [
+          "T_6"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_6_S_3",
+        "kind": "trains",
+        "tail": [
+          "T_6"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_7_S_1",
+        "kind": "requires",
+        "tail": [
+          "T_7"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_7_S_1",
+        "kind": "trains",
+        "tail": [
+          "T_7"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_8_S_8",
+        "kind": "requires",
+        "tail": [
+          "T_8"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_9_S_8",
+        "kind": "requires",
+        "tail": [
+          "T_9"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_9_S_2",
+        "kind": "requires",
+        "tail": [
+          "T_9"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_9_S_9",
+        "kind": "requires",
+        "tail": [
+          "T_9"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_9_S_8",
+        "kind": "trains",
+        "tail": [
+          "T_9"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_9_S_2",
+        "kind": "trains",
+        "tail": [
+          "T_9"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_9_S_9",
+        "kind": "trains",
+        "tail": [
+          "T_9"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_10_S_1",
+        "kind": "requires",
+        "tail": [
+          "T_10"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_11_S_7",
+        "kind": "requires",
+        "tail": [
+          "T_11"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_11_S_6",
+        "kind": "requires",
+        "tail": [
+          "T_11"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_11_S_5",
+        "kind": "requires",
+        "tail": [
+          "T_11"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_12_S_8",
+        "kind": "requires",
+        "tail": [
+          "T_12"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_13_S_8",
+        "kind": "requires",
+        "tail": [
+          "T_13"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_13_S_1",
+        "kind": "requires",
+        "tail": [
+          "T_13"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_13_S_0",
+        "kind": "requires",
+        "tail": [
+          "T_13"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_14_S_5",
+        "kind": "requires",
+        "tail": [
+          "T_14"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_14_S_4",
+        "kind": "requires",
+        "tail": [
+          "T_14"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_14_S_5",
+        "kind": "trains",
+        "tail": [
+          "T_14"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_14_S_4",
+        "kind": "trains",
+        "tail": [
+          "T_14"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_15_S_9",
+        "kind": "requires",
+        "tail": [
+          "T_15"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_16_S_3",
+        "kind": "requires",
+        "tail": [
+          "T_16"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_16_S_9",
+        "kind": "requires",
+        "tail": [
+          "T_16"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_16_S_3",
+        "kind": "trains",
+        "tail": [
+          "T_16"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_16_S_9",
+        "kind": "trains",
+        "tail": [
+          "T_16"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_17_S_4",
+        "kind": "requires",
+        "tail": [
+          "T_17"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_17_S_2",
+        "kind": "requires",
+        "tail": [
+          "T_17"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_17_S_7",
+        "kind": "requires",
+        "tail": [
+          "T_17"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_17_S_4",
+        "kind": "trains",
+        "tail": [
+          "T_17"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_17_S_2",
+        "kind": "trains",
+        "tail": [
+          "T_17"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_17_S_7",
+        "kind": "trains",
+        "tail": [
+          "T_17"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_18_S_9",
+        "kind": "requires",
+        "tail": [
+          "T_18"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_18_S_2",
+        "kind": "requires",
+        "tail": [
+          "T_18"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_18_S_3",
+        "kind": "requires",
+        "tail": [
+          "T_18"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_19_S_5",
+        "kind": "requires",
+        "tail": [
+          "T_19"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_19_S_3",
+        "kind": "requires",
+        "tail": [
+          "T_19"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_19_S_9",
+        "kind": "requires",
+        "tail": [
+          "T_19"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_19_S_5",
+        "kind": "trains",
+        "tail": [
+          "T_19"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_19_S_3",
+        "kind": "trains",
+        "tail": [
+          "T_19"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_19_S_9",
+        "kind": "trains",
+        "tail": [
+          "T_19"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_20_S_1",
+        "kind": "requires",
+        "tail": [
+          "T_20"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_20_S_7",
+        "kind": "requires",
+        "tail": [
+          "T_20"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_21_S_5",
+        "kind": "requires",
+        "tail": [
+          "T_21"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_21_S_2",
+        "kind": "requires",
+        "tail": [
+          "T_21"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_22_S_9",
+        "kind": "requires",
+        "tail": [
+          "T_22"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_22_S_7",
+        "kind": "requires",
+        "tail": [
+          "T_22"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_22_S_9",
+        "kind": "trains",
+        "tail": [
+          "T_22"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_22_S_7",
+        "kind": "trains",
+        "tail": [
+          "T_22"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_23_S_6",
+        "kind": "requires",
+        "tail": [
+          "T_23"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_23_S_0",
+        "kind": "requires",
+        "tail": [
+          "T_23"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_24_S_4",
+        "kind": "requires",
+        "tail": [
+          "T_24"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_24_S_4",
+        "kind": "trains",
+        "tail": [
+          "T_24"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_25_S_6",
+        "kind": "requires",
+        "tail": [
+          "T_25"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_25_S_5",
+        "kind": "requires",
+        "tail": [
+          "T_25"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_26_S_0",
+        "kind": "requires",
+        "tail": [
+          "T_26"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_26_S_0",
+        "kind": "trains",
+        "tail": [
+          "T_26"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_27_S_9",
+        "kind": "requires",
+        "tail": [
+          "T_27"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_27_S_8",
+        "kind": "requires",
+        "tail": [
+          "T_27"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_28_S_8",
+        "kind": "requires",
+        "tail": [
+          "T_28"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_28_S_9",
+        "kind": "requires",
+        "tail": [
+          "T_28"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_28_S_3",
+        "kind": "requires",
+        "tail": [
+          "T_28"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_28_S_8",
+        "kind": "trains",
+        "tail": [
+          "T_28"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_28_S_9",
+        "kind": "trains",
+        "tail": [
+          "T_28"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_28_S_3",
+        "kind": "trains",
+        "tail": [
+          "T_28"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_29_S_2",
+        "kind": "requires",
+        "tail": [
+          "T_29"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_29_S_2",
+        "kind": "trains",
+        "tail": [
+          "T_29"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_30_S_5",
+        "kind": "requires",
+        "tail": [
+          "T_30"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_31_S_1",
+        "kind": "requires",
+        "tail": [
+          "T_31"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_31_S_9",
+        "kind": "requires",
+        "tail": [
+          "T_31"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_31_S_5",
+        "kind": "requires",
+        "tail": [
+          "T_31"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_31_S_1",
+        "kind": "trains",
+        "tail": [
+          "T_31"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_31_S_9",
+        "kind": "trains",
+        "tail": [
+          "T_31"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_31_S_5",
+        "kind": "trains",
+        "tail": [
+          "T_31"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_32_S_0",
+        "kind": "requires",
+        "tail": [
+          "T_32"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_33_S_9",
+        "kind": "requires",
+        "tail": [
+          "T_33"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_33_S_7",
+        "kind": "requires",
+        "tail": [
+          "T_33"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_33_S_9",
+        "kind": "trains",
+        "tail": [
+          "T_33"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_33_S_7",
+        "kind": "trains",
+        "tail": [
+          "T_33"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_34_S_8",
+        "kind": "requires",
+        "tail": [
+          "T_34"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_34_S_1",
+        "kind": "requires",
+        "tail": [
+          "T_34"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_34_S_2",
+        "kind": "requires",
+        "tail": [
+          "T_34"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_34_S_8",
+        "kind": "trains",
+        "tail": [
+          "T_34"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_34_S_1",
+        "kind": "trains",
+        "tail": [
+          "T_34"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_34_S_2",
+        "kind": "trains",
+        "tail": [
+          "T_34"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_35_S_0",
+        "kind": "requires",
+        "tail": [
+          "T_35"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_35_S_8",
+        "kind": "requires",
+        "tail": [
+          "T_35"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_36_S_9",
+        "kind": "requires",
+        "tail": [
+          "T_36"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_37_S_6",
+        "kind": "requires",
+        "tail": [
+          "T_37"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_38_S_8",
+        "kind": "requires",
+        "tail": [
+          "T_38"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_38_S_6",
+        "kind": "requires",
+        "tail": [
+          "T_38"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_38_S_4",
+        "kind": "requires",
+        "tail": [
+          "T_38"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_38_S_8",
+        "kind": "trains",
+        "tail": [
+          "T_38"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_38_S_6",
+        "kind": "trains",
+        "tail": [
+          "T_38"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_38_S_4",
+        "kind": "trains",
+        "tail": [
+          "T_38"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_T_39_S_9",
+        "kind": "requires",
+        "tail": [
+          "T_39"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TR_T_39_S_9",
+        "kind": "trains",
+        "tail": [
+          "T_39"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_0_T_0",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_0"
+        ],
+        "head": [
+          "T_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_0_S_6",
+        "kind": "requires",
+        "tail": [
+          "TR_0"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_0_S_0",
+        "kind": "requires",
+        "tail": [
+          "TR_0"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_1_T_1",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_1"
+        ],
+        "head": [
+          "T_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_1_S_0",
+        "kind": "requires",
+        "tail": [
+          "TR_1"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_1_S_7",
+        "kind": "requires",
+        "tail": [
+          "TR_1"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_2_T_2",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_2"
+        ],
+        "head": [
+          "T_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_2_S_8",
+        "kind": "requires",
+        "tail": [
+          "TR_2"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_2_S_0",
+        "kind": "requires",
+        "tail": [
+          "TR_2"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_3_T_3",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_3"
+        ],
+        "head": [
+          "T_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_3_S_2",
+        "kind": "requires",
+        "tail": [
+          "TR_3"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_4_T_4",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_4"
+        ],
+        "head": [
+          "T_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_4_S_1",
+        "kind": "requires",
+        "tail": [
+          "TR_4"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_5_T_5",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_5"
+        ],
+        "head": [
+          "T_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_5_S_9",
+        "kind": "requires",
+        "tail": [
+          "TR_5"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_5_S_5",
+        "kind": "requires",
+        "tail": [
+          "TR_5"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_6_T_6",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_6"
+        ],
+        "head": [
+          "T_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_6_S_2",
+        "kind": "requires",
+        "tail": [
+          "TR_6"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_6_S_3",
+        "kind": "requires",
+        "tail": [
+          "TR_6"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_7_T_7",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_7"
+        ],
+        "head": [
+          "T_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_7_S_1",
+        "kind": "requires",
+        "tail": [
+          "TR_7"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_8_T_8",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_8"
+        ],
+        "head": [
+          "T_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_8_S_8",
+        "kind": "requires",
+        "tail": [
+          "TR_8"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_9_T_9",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_9"
+        ],
+        "head": [
+          "T_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_9_S_8",
+        "kind": "requires",
+        "tail": [
+          "TR_9"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_9_S_2",
+        "kind": "requires",
+        "tail": [
+          "TR_9"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_9_S_9",
+        "kind": "requires",
+        "tail": [
+          "TR_9"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_10_T_10",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_10"
+        ],
+        "head": [
+          "T_10"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_10_S_1",
+        "kind": "requires",
+        "tail": [
+          "TR_10"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_11_T_11",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_11"
+        ],
+        "head": [
+          "T_11"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_11_S_7",
+        "kind": "requires",
+        "tail": [
+          "TR_11"
+        ],
+        "head": [
+          "S_7"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_11_S_6",
+        "kind": "requires",
+        "tail": [
+          "TR_11"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_11_S_5",
+        "kind": "requires",
+        "tail": [
+          "TR_11"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_12_T_12",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_12"
+        ],
+        "head": [
+          "T_12"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_12_S_8",
+        "kind": "requires",
+        "tail": [
+          "TR_12"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_13_T_13",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_13"
+        ],
+        "head": [
+          "T_13"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_13_S_8",
+        "kind": "requires",
+        "tail": [
+          "TR_13"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_13_S_1",
+        "kind": "requires",
+        "tail": [
+          "TR_13"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_13_S_0",
+        "kind": "requires",
+        "tail": [
+          "TR_13"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TV_TR_14_T_14",
+        "kind": "transfer_variant",
+        "tail": [
+          "TR_14"
+        ],
+        "head": [
+          "T_14"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_14_S_5",
+        "kind": "requires",
+        "tail": [
+          "TR_14"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "R_TR_14_S_4",
+        "kind": "requires",
+        "tail": [
+          "TR_14"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_0_S_4",
+        "kind": "trains",
+        "tail": [
+          "D_0"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_0_S_3",
+        "kind": "trains",
+        "tail": [
+          "D_0"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_1_S_5",
+        "kind": "trains",
+        "tail": [
+          "D_1"
+        ],
+        "head": [
+          "S_5"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_1_S_1",
+        "kind": "trains",
+        "tail": [
+          "D_1"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_2_S_8",
+        "kind": "trains",
+        "tail": [
+          "D_2"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_3_S_6",
+        "kind": "trains",
+        "tail": [
+          "D_3"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_4_S_3",
+        "kind": "trains",
+        "tail": [
+          "D_4"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_4_S_2",
+        "kind": "trains",
+        "tail": [
+          "D_4"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_5_S_0",
+        "kind": "trains",
+        "tail": [
+          "D_5"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_6_S_1",
+        "kind": "trains",
+        "tail": [
+          "D_6"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_7_S_8",
+        "kind": "trains",
+        "tail": [
+          "D_7"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_8_S_2",
+        "kind": "trains",
+        "tail": [
+          "D_8"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_8_S_1",
+        "kind": "trains",
+        "tail": [
+          "D_8"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_9_S_3",
+        "kind": "trains",
+        "tail": [
+          "D_9"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_10_S_8",
+        "kind": "trains",
+        "tail": [
+          "D_10"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_10_S_6",
+        "kind": "trains",
+        "tail": [
+          "D_10"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_11_S_6",
+        "kind": "trains",
+        "tail": [
+          "D_11"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_11_S_1",
+        "kind": "trains",
+        "tail": [
+          "D_11"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_12_S_1",
+        "kind": "trains",
+        "tail": [
+          "D_12"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_13_S_3",
+        "kind": "trains",
+        "tail": [
+          "D_13"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_14_S_9",
+        "kind": "trains",
+        "tail": [
+          "D_14"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_15_S_9",
+        "kind": "trains",
+        "tail": [
+          "D_15"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_16_S_2",
+        "kind": "trains",
+        "tail": [
+          "D_16"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_17_S_9",
+        "kind": "trains",
+        "tail": [
+          "D_17"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_17_S_1",
+        "kind": "trains",
+        "tail": [
+          "D_17"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_18_S_4",
+        "kind": "trains",
+        "tail": [
+          "D_18"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_19_S_1",
+        "kind": "trains",
+        "tail": [
+          "D_19"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "T_D_19_S_0",
+        "kind": "trains",
+        "tail": [
+          "D_19"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "DG_P_0_S_8",
+        "kind": "diagnoses",
+        "tail": [
+          "P_0"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "DG_P_0_S_0",
+        "kind": "diagnoses",
+        "tail": [
+          "P_0"
+        ],
+        "head": [
+          "S_0"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "DG_P_1_S_6",
+        "kind": "diagnoses",
+        "tail": [
+          "P_1"
+        ],
+        "head": [
+          "S_6"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "DG_P_2_S_2",
+        "kind": "diagnoses",
+        "tail": [
+          "P_2"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "DG_P_3_S_3",
+        "kind": "diagnoses",
+        "tail": [
+          "P_3"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "DG_P_3_S_4",
+        "kind": "diagnoses",
+        "tail": [
+          "P_3"
+        ],
+        "head": [
+          "S_4"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "DG_P_4_S_9",
+        "kind": "diagnoses",
+        "tail": [
+          "P_4"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "DG_P_5_S_1",
+        "kind": "diagnoses",
+        "tail": [
+          "P_5"
+        ],
+        "head": [
+          "S_1"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "DG_P_5_S_2",
+        "kind": "diagnoses",
+        "tail": [
+          "P_5"
+        ],
+        "head": [
+          "S_2"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "DG_P_6_S_3",
+        "kind": "diagnoses",
+        "tail": [
+          "P_6"
+        ],
+        "head": [
+          "S_3"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "DG_P_6_S_8",
+        "kind": "diagnoses",
+        "tail": [
+          "P_6"
+        ],
+        "head": [
+          "S_8"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "DG_P_7_S_9",
+        "kind": "diagnoses",
+        "tail": [
+          "P_7"
+        ],
+        "head": [
+          "S_9"
+        ],
+        "weight": 1.0
+      }
+    ],
+    "prereq_dag": [
+      {
+        "from": "S_0",
+        "to": "S_3"
+      },
+      {
+        "from": "S_1",
+        "to": "S_2"
+      },
+      {
+        "from": "S_1",
+        "to": "S_9"
+      },
+      {
+        "from": "S_4",
+        "to": "S_6"
+      },
+      {
+        "from": "S_5",
+        "to": "S_7"
+      },
+      {
+        "from": "S_6",
+        "to": "S_7"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "T_0",
+      "kind": "task",
+      "required_skills": [
+        "S_6",
+        "S_0"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "time_estimate_seconds": 151.30182477276776
+    },
+    {
+      "id": "T_1",
+      "kind": "task",
+      "required_skills": [
+        "S_0",
+        "S_7"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 211.71242820004008
+    },
+    {
+      "id": "T_2",
+      "kind": "task",
+      "required_skills": [
+        "S_8",
+        "S_0"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "time_estimate_seconds": 299.0738856284707
+    },
+    {
+      "id": "T_3",
+      "kind": "task",
+      "required_skills": [
+        "S_2"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 5,
+      "time_estimate_seconds": 243.15084781057277
+    },
+    {
+      "id": "T_4",
+      "kind": "task",
+      "required_skills": [
+        "S_1"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 5,
+      "time_estimate_seconds": 161.02113470819108
+    },
+    {
+      "id": "T_5",
+      "kind": "task",
+      "required_skills": [
+        "S_9",
+        "S_5"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 234.35366647496892
+    },
+    {
+      "id": "T_6",
+      "kind": "task",
+      "required_skills": [
+        "S_2",
+        "S_3"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 3,
+      "time_estimate_seconds": 128.11355734659145
+    },
+    {
+      "id": "T_7",
+      "kind": "task",
+      "required_skills": [
+        "S_1"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 293.2055941487411
+    },
+    {
+      "id": "T_8",
+      "kind": "task",
+      "required_skills": [
+        "S_8"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 203.27705532570155
+    },
+    {
+      "id": "T_9",
+      "kind": "task",
+      "required_skills": [
+        "S_8",
+        "S_2",
+        "S_9"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "time_estimate_seconds": 111.07943888168023
+    },
+    {
+      "id": "T_10",
+      "kind": "task",
+      "required_skills": [
+        "S_1"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 130.80154627332467
+    },
+    {
+      "id": "T_11",
+      "kind": "task",
+      "required_skills": [
+        "S_7",
+        "S_6",
+        "S_5"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 5,
+      "time_estimate_seconds": 263.27960895209515
+    },
+    {
+      "id": "T_12",
+      "kind": "task",
+      "required_skills": [
+        "S_8"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 3,
+      "time_estimate_seconds": 154.1980262430198
+    },
+    {
+      "id": "T_13",
+      "kind": "task",
+      "required_skills": [
+        "S_8",
+        "S_1",
+        "S_0"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 226.46948032869966
+    },
+    {
+      "id": "T_14",
+      "kind": "task",
+      "required_skills": [
+        "S_5",
+        "S_4"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 108.28876817391946
+    },
+    {
+      "id": "T_15",
+      "kind": "task",
+      "required_skills": [
+        "S_9"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 5,
+      "time_estimate_seconds": 151.435569430341
+    },
+    {
+      "id": "T_16",
+      "kind": "task",
+      "required_skills": [
+        "S_3",
+        "S_9"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "time_estimate_seconds": 293.18361922725313
+    },
+    {
+      "id": "T_17",
+      "kind": "task",
+      "required_skills": [
+        "S_4",
+        "S_2",
+        "S_7"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 64.03854832325112
+    },
+    {
+      "id": "T_18",
+      "kind": "task",
+      "required_skills": [
+        "S_9",
+        "S_2",
+        "S_3"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 253.44856980650968
+    },
+    {
+      "id": "T_19",
+      "kind": "task",
+      "required_skills": [
+        "S_5",
+        "S_3",
+        "S_9"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "time_estimate_seconds": 174.4977613529639
+    },
+    {
+      "id": "T_20",
+      "kind": "task",
+      "required_skills": [
+        "S_1",
+        "S_7"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 3,
+      "time_estimate_seconds": 249.99748934168173
+    },
+    {
+      "id": "T_21",
+      "kind": "task",
+      "required_skills": [
+        "S_5",
+        "S_2"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 129.02774452703898
+    },
+    {
+      "id": "T_22",
+      "kind": "task",
+      "required_skills": [
+        "S_9",
+        "S_7"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 189.6026892231526
+    },
+    {
+      "id": "T_23",
+      "kind": "task",
+      "required_skills": [
+        "S_6",
+        "S_0"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 5,
+      "time_estimate_seconds": 221.9254549043466
+    },
+    {
+      "id": "T_24",
+      "kind": "task",
+      "required_skills": [
+        "S_4"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 97.04487181137704
+    },
+    {
+      "id": "T_25",
+      "kind": "task",
+      "required_skills": [
+        "S_6",
+        "S_5"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 3,
+      "time_estimate_seconds": 92.19215402922799
+    },
+    {
+      "id": "T_26",
+      "kind": "task",
+      "required_skills": [
+        "S_0"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "time_estimate_seconds": 168.2493326811339
+    },
+    {
+      "id": "T_27",
+      "kind": "task",
+      "required_skills": [
+        "S_9",
+        "S_8"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 262.8055419764031
+    },
+    {
+      "id": "T_28",
+      "kind": "task",
+      "required_skills": [
+        "S_8",
+        "S_9",
+        "S_3"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 3,
+      "time_estimate_seconds": 203.88587353278652
+    },
+    {
+      "id": "T_29",
+      "kind": "task",
+      "required_skills": [
+        "S_2"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "time_estimate_seconds": 237.82666877715815
+    },
+    {
+      "id": "T_30",
+      "kind": "task",
+      "required_skills": [
+        "S_5"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "time_estimate_seconds": 163.07139471333062
+    },
+    {
+      "id": "T_31",
+      "kind": "task",
+      "required_skills": [
+        "S_1",
+        "S_9",
+        "S_5"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 3,
+      "time_estimate_seconds": 159.5160386738997
+    },
+    {
+      "id": "T_32",
+      "kind": "task",
+      "required_skills": [
+        "S_0"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "time_estimate_seconds": 65.15133030652594
+    },
+    {
+      "id": "T_33",
+      "kind": "task",
+      "required_skills": [
+        "S_9",
+        "S_7"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 240.80770035080602
+    },
+    {
+      "id": "T_34",
+      "kind": "task",
+      "required_skills": [
+        "S_8",
+        "S_1",
+        "S_2"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 160.5007241553696
+    },
+    {
+      "id": "T_35",
+      "kind": "task",
+      "required_skills": [
+        "S_0",
+        "S_8"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 3,
+      "time_estimate_seconds": 171.8239778794234
+    },
+    {
+      "id": "T_36",
+      "kind": "task",
+      "required_skills": [
+        "S_9"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 67.69952366835689
+    },
+    {
+      "id": "T_37",
+      "kind": "task",
+      "required_skills": [
+        "S_6"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 220.87359521723448
+    },
+    {
+      "id": "T_38",
+      "kind": "task",
+      "required_skills": [
+        "S_8",
+        "S_6",
+        "S_4"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 214.97312773431204
+    },
+    {
+      "id": "T_39",
+      "kind": "task",
+      "required_skills": [
+        "S_9"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 75.69575168680002
+    }
+  ],
+  "transfer_tasks": [
+    {
+      "id": "TR_0",
+      "kind": "transfer",
+      "required_skills": [
+        "S_6",
+        "S_0"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 159.88923974231307
+    },
+    {
+      "id": "TR_1",
+      "kind": "transfer",
+      "required_skills": [
+        "S_0",
+        "S_7"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 186.5120003692776
+    },
+    {
+      "id": "TR_2",
+      "kind": "transfer",
+      "required_skills": [
+        "S_8",
+        "S_0"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 252.076380408178
+    },
+    {
+      "id": "TR_3",
+      "kind": "transfer",
+      "required_skills": [
+        "S_2"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 253.7781312218184
+    },
+    {
+      "id": "TR_4",
+      "kind": "transfer",
+      "required_skills": [
+        "S_1"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 239.75674855368356
+    },
+    {
+      "id": "TR_5",
+      "kind": "transfer",
+      "required_skills": [
+        "S_9",
+        "S_5"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 221.87126031169862
+    },
+    {
+      "id": "TR_6",
+      "kind": "transfer",
+      "required_skills": [
+        "S_2",
+        "S_3"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 258.1692384813837
+    },
+    {
+      "id": "TR_7",
+      "kind": "transfer",
+      "required_skills": [
+        "S_1"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 351.9989748930812
+    },
+    {
+      "id": "TR_8",
+      "kind": "transfer",
+      "required_skills": [
+        "S_8"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 229.9390945166686
+    },
+    {
+      "id": "TR_9",
+      "kind": "transfer",
+      "required_skills": [
+        "S_8",
+        "S_2",
+        "S_9"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 320.9931412316172
+    },
+    {
+      "id": "TR_10",
+      "kind": "transfer",
+      "required_skills": [
+        "S_1"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 133.4092716076491
+    },
+    {
+      "id": "TR_11",
+      "kind": "transfer",
+      "required_skills": [
+        "S_7",
+        "S_6",
+        "S_5"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 212.54094173521383
+    },
+    {
+      "id": "TR_12",
+      "kind": "transfer",
+      "required_skills": [
+        "S_8"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 254.51914647417578
+    },
+    {
+      "id": "TR_13",
+      "kind": "transfer",
+      "required_skills": [
+        "S_8",
+        "S_1",
+        "S_0"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 268.87693335718495
+    },
+    {
+      "id": "TR_14",
+      "kind": "transfer",
+      "required_skills": [
+        "S_5",
+        "S_4"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 180.0044015836827
+    }
+  ],
+  "drills": [
+    {
+      "id": "D_0",
+      "kind": "drill",
+      "required_skills": [
+        "S_4",
+        "S_3"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_4",
+        "S_3"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 68.93104524071694
+    },
+    {
+      "id": "D_1",
+      "kind": "drill",
+      "required_skills": [
+        "S_5",
+        "S_1"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_5",
+        "S_1"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 33.130575458588865
+    },
+    {
+      "id": "D_2",
+      "kind": "drill",
+      "required_skills": [
+        "S_8"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_8"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 38.26936655091798
+    },
+    {
+      "id": "D_3",
+      "kind": "drill",
+      "required_skills": [
+        "S_6"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_6"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 30.16482885615985
+    },
+    {
+      "id": "D_4",
+      "kind": "drill",
+      "required_skills": [
+        "S_3",
+        "S_2"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_3",
+        "S_2"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 68.4006334990606
+    },
+    {
+      "id": "D_5",
+      "kind": "drill",
+      "required_skills": [
+        "S_0"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_0"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 34.104578132503335
+    },
+    {
+      "id": "D_6",
+      "kind": "drill",
+      "required_skills": [
+        "S_1"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_1"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 46.30710787817277
+    },
+    {
+      "id": "D_7",
+      "kind": "drill",
+      "required_skills": [
+        "S_8"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_8"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 78.32691705785123
+    },
+    {
+      "id": "D_8",
+      "kind": "drill",
+      "required_skills": [
+        "S_2",
+        "S_1"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_2",
+        "S_1"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 79.46892863711622
+    },
+    {
+      "id": "D_9",
+      "kind": "drill",
+      "required_skills": [
+        "S_3"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_3"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 37.60888490144008
+    },
+    {
+      "id": "D_10",
+      "kind": "drill",
+      "required_skills": [
+        "S_8",
+        "S_6"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_8",
+        "S_6"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 40.66954701402635
+    },
+    {
+      "id": "D_11",
+      "kind": "drill",
+      "required_skills": [
+        "S_6",
+        "S_1"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_6",
+        "S_1"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 44.60956272168495
+    },
+    {
+      "id": "D_12",
+      "kind": "drill",
+      "required_skills": [
+        "S_1"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_1"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 61.33320167704851
+    },
+    {
+      "id": "D_13",
+      "kind": "drill",
+      "required_skills": [
+        "S_3"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_3"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 62.46846319825252
+    },
+    {
+      "id": "D_14",
+      "kind": "drill",
+      "required_skills": [
+        "S_9"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_9"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 76.71482208767472
+    },
+    {
+      "id": "D_15",
+      "kind": "drill",
+      "required_skills": [
+        "S_9"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_9"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 84.76099738314662
+    },
+    {
+      "id": "D_16",
+      "kind": "drill",
+      "required_skills": [
+        "S_2"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_2"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 48.22104317667509
+    },
+    {
+      "id": "D_17",
+      "kind": "drill",
+      "required_skills": [
+        "S_9",
+        "S_1"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_9",
+        "S_1"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 52.57783800908114
+    },
+    {
+      "id": "D_18",
+      "kind": "drill",
+      "required_skills": [
+        "S_4"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_4"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 59.907574957376994
+    },
+    {
+      "id": "D_19",
+      "kind": "drill",
+      "required_skills": [
+        "S_1",
+        "S_0"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [],
+      "trains_skills": [
+        "S_1",
+        "S_0"
+      ],
+      "hint_ladder_length": 6,
+      "answer_format": "open_text",
+      "n_options": 4,
+      "time_estimate_seconds": 33.10043634716376
+    }
+  ],
+  "probes": [
+    {
+      "id": "P_0",
+      "kind": "probe",
+      "required_skills": [
+        "S_8",
+        "S_0"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [
+        "S_8",
+        "S_0"
+      ],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 5,
+      "time_estimate_seconds": 56.95932501150247
+    },
+    {
+      "id": "P_1",
+      "kind": "probe",
+      "required_skills": [
+        "S_6"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [
+        "S_6"
+      ],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "time_estimate_seconds": 37.67717645816151
+    },
+    {
+      "id": "P_2",
+      "kind": "probe",
+      "required_skills": [
+        "S_2"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [
+        "S_2"
+      ],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "time_estimate_seconds": 45.29331945927659
+    },
+    {
+      "id": "P_3",
+      "kind": "probe",
+      "required_skills": [
+        "S_3",
+        "S_4"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [
+        "S_3",
+        "S_4"
+      ],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 5,
+      "time_estimate_seconds": 34.13403112586235
+    },
+    {
+      "id": "P_4",
+      "kind": "probe",
+      "required_skills": [
+        "S_9"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [
+        "S_9"
+      ],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "time_estimate_seconds": 37.10604204857796
+    },
+    {
+      "id": "P_5",
+      "kind": "probe",
+      "required_skills": [
+        "S_1",
+        "S_2"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [
+        "S_1",
+        "S_2"
+      ],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 3,
+      "time_estimate_seconds": 53.32140311164103
+    },
+    {
+      "id": "P_6",
+      "kind": "probe",
+      "required_skills": [
+        "S_3",
+        "S_8"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [
+        "S_3",
+        "S_8"
+      ],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 5,
+      "time_estimate_seconds": 52.4978840221137
+    },
+    {
+      "id": "P_7",
+      "kind": "probe",
+      "required_skills": [
+        "S_9"
+      ],
+      "required_concepts": [],
+      "diagnoses_skills": [
+        "S_9"
+      ],
+      "trains_skills": [],
+      "hint_ladder_length": 6,
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "time_estimate_seconds": 39.086779064029706
+    }
+  ],
+  "microtheories": [
+    {
+      "id": "MT_C_0",
+      "concepts": [
+        "C_0"
+      ],
+      "title": "Microtheory for C_0"
+    },
+    {
+      "id": "MT_C_1",
+      "concepts": [
+        "C_1"
+      ],
+      "title": "Microtheory for C_1"
+    },
+    {
+      "id": "MT_C_2",
+      "concepts": [
+        "C_2"
+      ],
+      "title": "Microtheory for C_2"
+    },
+    {
+      "id": "MT_C_3",
+      "concepts": [
+        "C_3"
+      ],
+      "title": "Microtheory for C_3"
+    },
+    {
+      "id": "MT_C_4",
+      "concepts": [
+        "C_4"
+      ],
+      "title": "Microtheory for C_4"
+    },
+    {
+      "id": "MT_C_5",
+      "concepts": [
+        "C_5"
+      ],
+      "title": "Microtheory for C_5"
+    },
+    {
+      "id": "MT_C_6",
+      "concepts": [
+        "C_6"
+      ],
+      "title": "Microtheory for C_6"
+    },
+    {
+      "id": "MT_C_7",
+      "concepts": [
+        "C_7"
+      ],
+      "title": "Microtheory for C_7"
+    }
+  ]
+}

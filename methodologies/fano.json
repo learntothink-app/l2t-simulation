@@ -1,0 +1,566 @@
+{
+  "protocol_version": "0.1.0",
+  "manifest": {
+    "methodology_id": "fano_coding_v2",
+    "title": "Prefix-Free Codes (Fano Condition)",
+    "author": "LearnToThink (based on lecture by A. Vattikov, tasks by M. Rubtsova)",
+    "created_at": "2026-04-03T00:00:00Z",
+    "license": "CC BY-SA 4.0",
+    "domain": "computer_science",
+    "language": "ru",
+    "description": "Полная методика: от понятия двоичного кода до решения задач на условие Фано. Теория, лесенка задач, 3 целевые задачи."
+  },
+
+  "hypergraph": {
+    "nodes": [
+      {"id": "C_binary_code", "kind": "concept", "title": "Двоичный код", "description": "Кодирование символов последовательностями из 0 и 1."},
+      {"id": "C_uniform_code", "kind": "concept", "title": "Равномерный код", "description": "Все кодовые слова одинаковой длины. Легко декодировать, но не экономно."},
+      {"id": "C_prefix_free", "kind": "concept", "title": "Условие Фано", "description": "Никакое кодовое слово не является началом другого кодового слова."},
+      {"id": "C_ambiguity", "kind": "concept", "title": "Неоднозначность декодирования", "description": "Когда одну последовательность можно расшифровать несколькими способами."},
+      {"id": "C_binary_tree", "kind": "concept", "title": "Двоичное дерево кодов", "description": "Яблоня: корень вверху, 0 — влево, 1 — вправо, буквы — яблоки на ветках."},
+      {"id": "C_occupied_branch", "kind": "concept", "title": "Занятые и свободные ветки", "description": "Под яблоком веток не бывает. Предки яблок тоже заняты."},
+      {"id": "C_branching", "kind": "concept", "title": "Разветвление веток", "description": "Не хватает свободных веток — спускаемся глубже, одна ветка → две."},
+      {"id": "C_alphabet_trap", "kind": "concept", "title": "Ловушка: оставь ветку для алфавита", "description": "Если закодированы ВСЕ буквы алфавита — нужна свободная ветка для остальных."},
+      {"id": "C_greedy_short", "kind": "concept", "title": "Оптимизация: частым буквам — короткие коды", "description": "Чем чаще буква в слове, тем короче должен быть её код."},
+
+      {"id": "S_verify_fano", "kind": "skill", "title": "Проверить условие Фано"},
+      {"id": "S_draw_tree", "kind": "skill", "title": "Построить дерево по кодам"},
+      {"id": "S_find_free", "kind": "skill", "title": "Найти свободные ветки"},
+      {"id": "S_branch_deeper", "kind": "skill", "title": "Разветвить ветку для новых кодов"},
+      {"id": "S_assign_codes", "kind": "skill", "title": "Назначить коды с минимальной длиной"},
+      {"id": "S_compute_length", "kind": "skill", "title": "Вычислить суммарную длину"},
+      {"id": "S_encode_word", "kind": "skill", "title": "Закодировать слово и посчитать длину"},
+      {"id": "S_check_alphabet", "kind": "skill", "title": "Проверить: нужно ли оставить ветку для алфавита"},
+
+      {"id": "MS_read_problem", "kind": "metaskill", "title": "Разбор условия задачи"},
+      {"id": "MS_self_check", "kind": "metaskill", "title": "Самопроверка ответа"},
+      {"id": "MS_count_letters", "kind": "metaskill", "title": "Подсчёт частот букв в слове"},
+
+      {"id": "E_prefix_violation", "kind": "error", "title": "Код является началом другого кода"},
+      {"id": "E_occupied_branch", "kind": "error", "title": "Размещение на занятой ветке"},
+      {"id": "E_no_free_branch", "kind": "error", "title": "Забыл оставить ветку для алфавита"},
+      {"id": "E_not_minimum", "kind": "error", "title": "Код не минимальной длины"},
+      {"id": "E_wrong_letter_count", "kind": "error", "title": "Неправильно посчитал буквы в слове"}
+    ],
+
+    "hyperedges": [
+      {"id": "HE_trains_verify", "kind": "trains", "tail": ["D_check_fano"], "head": ["S_verify_fano"]},
+      {"id": "HE_trains_tree", "kind": "trains", "tail": ["D_build_tree"], "head": ["S_draw_tree"]},
+      {"id": "HE_trains_free", "kind": "trains", "tail": ["D_find_free"], "head": ["S_find_free"]},
+      {"id": "HE_trains_assign", "kind": "trains", "tail": ["D_assign_codes"], "head": ["S_assign_codes", "S_compute_length"]},
+
+      {"id": "HE_err_prefix", "kind": "error_signature", "tail": ["E_prefix_violation"], "head": ["S_verify_fano"]},
+      {"id": "HE_err_occupied", "kind": "error_signature", "tail": ["E_occupied_branch"], "head": ["S_find_free"]},
+      {"id": "HE_err_alphabet", "kind": "error_signature", "tail": ["E_no_free_branch"], "head": ["S_check_alphabet"]},
+      {"id": "HE_err_notmin", "kind": "error_signature", "tail": ["E_not_minimum"], "head": ["S_assign_codes"]},
+      {"id": "HE_err_count", "kind": "error_signature", "tail": ["E_wrong_letter_count"], "head": ["S_encode_word"]},
+
+      {"id": "HE_meta_read", "kind": "meta_helps_learn", "tail": ["MS_read_problem"], "head": ["S_draw_tree", "S_find_free", "S_check_alphabet"]},
+      {"id": "HE_meta_check", "kind": "meta_helps_learn", "tail": ["MS_self_check"], "head": ["S_verify_fano", "S_compute_length"]},
+      {"id": "HE_meta_count", "kind": "meta_helps_learn", "tail": ["MS_count_letters"], "head": ["S_encode_word"]}
+    ],
+
+    "prereq_dag": [
+      {"from": "S_verify_fano", "to": "S_draw_tree"},
+      {"from": "S_draw_tree", "to": "S_find_free"},
+      {"from": "S_find_free", "to": "S_branch_deeper"},
+      {"from": "S_find_free", "to": "S_assign_codes"},
+      {"from": "S_branch_deeper", "to": "S_assign_codes"},
+      {"from": "S_assign_codes", "to": "S_compute_length"},
+      {"from": "S_assign_codes", "to": "S_encode_word"},
+      {"from": "S_assign_codes", "to": "S_check_alphabet"}
+    ]
+  },
+
+  "micro_theories": [
+    {
+      "id": "MT_01_why_coding",
+      "concept_ids": ["C_binary_code"],
+      "order": 1,
+      "title": "Зачем кодировать: провод и ток",
+      "content": "Представь: ты в одном доме, твой друг — в другом. Между окнами протянут провод. С твоей стороны — вилка, которую ты втыкаешь в розетку. С его стороны — он держит оголённые провода.\n\nТы втыкаешь вилку — его дёргает током. Это единица.\nНе втыкаешь — не дёргает. Это ноль.\n\nВсего два варианта: есть сигнал (1) или нет (0). Когда мы разговариваем, нужно различать 33 разных звука — это сложно. А двоичный код — маленькая вариативность, всего два варианта. Поэтому им удобно и передавать, и хранить информацию.\n\nНа флешке помещается тысяча книг — потому что книжки это буквы, а буквы это нолики и единички.\n\nПример кодирования:\nА = 00, Б = 01, В = 10, Г = 11\nСлово ВАБГ → 10 00 01 11",
+      "check_question": {
+        "text": "Коды: А=00, Б=01, В=10, Г=11. Закодируй слово ГБАВ. Сколько двоичных знаков?",
+        "answer": "8",
+        "evaluation_policy": "AUTO_COMPUTE"
+      }
+    },
+    {
+      "id": "MT_02_uniform",
+      "concept_ids": ["C_uniform_code"],
+      "order": 2,
+      "title": "Равномерный код: просто, но не экономно",
+      "content": "В примере выше все коды длины 2 — равномерный код. Расшифровать легко: режем на кусочки по 2 и по таблице смотрим.\n\n10 00 01 11 → В А Б Г\n\nНо если букв много, коды длинные. А ведь буква А встречается чаще, чем Щ. Зачем тратить одинаково? Хочется частым буквам — короткие коды, редким — длинные. Но тут начинаются проблемы...",
+      "check_question": {
+        "text": "Для равномерного кодирования 8 букв какая минимальная длина кода? Сколько вариантов даёт код длины 3?",
+        "answer": "3 (8 вариантов: 000, 001, 010, 011, 100, 101, 110, 111)",
+        "evaluation_policy": "SELF_CHECK_PROOF"
+      }
+    },
+    {
+      "id": "MT_03_ambiguity",
+      "concept_ids": ["C_ambiguity"],
+      "order": 3,
+      "title": "Неравномерный код: экономно, но опасно",
+      "content": "Попробуем неравномерный код:\nА = 0, Б = 011, В = 11, Г = 101\n\nТеперь расшифруй: 011\n\nЭто буква Б (011)? Или это А+В (0 + 11)?\n\nОдна и та же последовательность — два разных ответа! Неоднозначность.\n\nПричина: код А (0) является НАЧАЛОМ кода Б (011). Когда видим «0...», непонятно — это А или начало Б?\n\nПроблема не в слове, а в самом коде. Код плохо составлен.",
+      "check_question": {
+        "text": "Коды: А=1, Б=10, В=100. Есть ли проблема? Какой код является началом какого?",
+        "answer": "Да! А=1 — начало Б=10, Б=10 — начало В=100.",
+        "evaluation_policy": "SELF_CHECK_PROOF"
+      }
+    },
+    {
+      "id": "MT_04_fano",
+      "concept_ids": ["C_prefix_free"],
+      "order": 4,
+      "title": "Условие Фано: никакой код не начало другого",
+      "content": "Правило, которое решает проблему:\n\nУСЛОВИЕ ФАНО: никакое кодовое слово не является началом другого кодового слова.\n\nПример: А=0, Б=10, В=110, Г=111\n\n0 — начало 10? Нет (10 начинается с 1).\n10 — начало 110? Нет (110 начинается с 11).\n110 — начало 111? Нет (третий символ разный).\n\nВсё чисто! Расшифровка — слева направо:\n011010 → 0=А, 110=В, 10=Б → АВБ\n\nПочему работает? Нашёл А (код 0) — уверен, что это А: ничего длиннее с 0 начинаться не может, иначе А была бы началом того кода. А это запрещено!",
+      "check_question": {
+        "text": "Коды: А=0, Б=100, В=101, Г=11. Выполняется ли Фано? Расшифруй 1000101.",
+        "answer": "Да. 100=Б, 0=А, 101=В → БАВ",
+        "evaluation_policy": "SELF_CHECK_PROOF"
+      }
+    },
+    {
+      "id": "MT_05_tree",
+      "concept_ids": ["C_binary_tree"],
+      "order": 5,
+      "title": "Дерево — яблоня с кодами",
+      "content": "Лайфхак, который ускоряет решение в разы. Двоичное дерево — это яблоня, только растёт сверху вниз.\n\n0 → влево, 1 → вправо. Где код заканчивается — вешаем яблоко (букву).\n\nА=0, Б=10, В=110, Г=111:\n```\n      корень\n     /      \\\n   (А)       1\n            / \\\n          (Б)  11\n              / \\\n           (В)  (Г)\n```\n\nГлавное правило: ПОД ЯБЛОКОМ НЕ МОЖЕТ БЫТЬ ЕЩЁ ЯБЛОК!\n\nЕсли Б висит на «10», то ниже (100, 101...) ничего нельзя — иначе 10 будет началом того кода.\n\n«Яблоко — тупиковая ветка эволюции. Никаких детей не будет.»\n\nЗачем рисовать? На дереве ВИДНО, куда можно вешать новые буквы.",
+      "check_question": {
+        "text": "Нарисуй дерево: X=00, Y=01, Z=1. Можно ли добавить W=10?",
+        "answer": "Нет! Z=1 — яблоко. 10 — ниже Z (начинается с 1). Значит Z=1 будет началом W=10 → нарушение Фано.",
+        "evaluation_policy": "SELF_CHECK_PROOF"
+      }
+    },
+    {
+      "id": "MT_06_free_branches",
+      "concept_ids": ["C_occupied_branch"],
+      "order": 6,
+      "title": "Занятые и свободные ветки",
+      "content": "Когда часть кодов известна, нужно найти: КУДА можно вешать новые?\n\nЗанято:\n1. Ветка с яблоком (буквой) и ВСЕ ветки ниже неё\n2. Ветка, которая ведёт К яблоку (предок)\n\nСвободно: всё остальное.\n\nПример: А=10, Б=110\n```\n      корень\n     /      \\\n    0(?)     1\n            / \\\n          (А)  11\n              / \\\n           (Б) 111(?)\n```\n\nЗанято: 1 (предок), 10 (яблоко), 11 (предок), 110 (яблоко)\nСвободно: вся ветка 0 (и потомки: 00, 01...) и ветка 111",
+      "check_question": {
+        "text": "Коды: А=00, Б=010, В=011. Какие ветки свободны длины ≤ 2?",
+        "answer": "Свободна: 1 (длина 1) — вся правая ветка.",
+        "evaluation_policy": "SELF_CHECK_PROOF"
+      }
+    },
+    {
+      "id": "MT_07_branching",
+      "concept_ids": ["C_branching"],
+      "order": 7,
+      "title": "Не хватает веток — разветвляем!",
+      "content": "Иногда свободных веток меньше, чем букв. Что делать?\n\nСпускаемся глубже! Одна ветка → две.\n\nПример: А=0, Б=10. Свободна ветка 11. Нужно повесить В и Г.\n\n11 — одна ветка, а букв две. Разветвляем: 110 и 111.\n\n```\n  было: 11(?)          стало: 110(В), 111(Г)\n```\n\nЦена: коды стали длиной 3 вместо 2. Но другого выхода нет.",
+      "check_question": {
+        "text": "А=0, Б=10, свободна ветка 11. Нужно разместить В, Г, Д — три буквы. Минимальная суммарная длина В+Г+Д?",
+        "answer": "11 → 110, 111 (2 кода). Ещё нужен 1: разветвляем 110 → 1100, 1101. Итого: 111(3)+1100(4)+1101(4) = 11.",
+        "evaluation_policy": "AUTO_COMPUTE"
+      }
+    },
+    {
+      "id": "MT_08_alphabet_trap",
+      "concept_ids": ["C_alphabet_trap"],
+      "order": 8,
+      "title": "Ловушка: оставь ветку для остальных!",
+      "content": "В задачах бывает: «Закодировали ВСЕ буквы алфавита». Это значит: кроме букв в задаче есть ещё другие, и им тоже нужны коды!\n\nЛовушка: ты разместил все буквы из задачи, посчитал ответ... и ошибся на 1.\n\nПочему? Забыл оставить ветку для остальных букв!\n\nПравило: если «все буквы алфавита» → оставь хотя бы 1 свободную ветку. Одной хватит — её можно разветвлять сколько угодно.\n\nЕсли «только эти 8 букв» → оставлять не нужно.\n\nЭто меняет ответ на 1: одну букву придётся повесить глубже.",
+      "check_question": {
+        "text": "Закодировали все буквы алфавита. А=0, Б=10. Можно ли дать В=11?",
+        "answer": "Нет! Тогда все ветки заняты, остальным буквам некуда. Нужно: В=110 или В=111, оставив свободную ветку.",
+        "evaluation_policy": "SELF_CHECK_PROOF"
+      }
+    },
+    {
+      "id": "MT_09_optimization",
+      "concept_ids": ["C_greedy_short"],
+      "order": 9,
+      "title": "Частым буквам — короткие коды",
+      "content": "Когда минимизируем длину конкретного СЛОВА:\n\nБуква, которая встречается ЧАЩЕ → самый КОРОТКИЙ код.\n\nПочему? Если Т встречается 5 раз, каждый лишний бит в коде Т стоит 5 бит. А если Щ встречается 1 раз — только 1 бит.\n\nАлгоритм:\n1. Посчитай частоты букв в слове\n2. Самая частая → самая короткая свободная ветка\n3. Менее частые → более длинные ветки\n4. Буквы, которых нет в слове — на оставшиеся (длинные) ветки",
+      "check_question": {
+        "text": "Свободные ветки: 01(2), 110(3), 111(3). Слово ООММР (О×2, М×2, Р×1). Кому дать код 01?",
+        "answer": "О или М (обе ×2). Р — самую длинную ветку. Любой из {О,М} получает 01.",
+        "evaluation_policy": "SELF_CHECK_PROOF"
+      }
+    }
+  ],
+
+  "scaffolding_tasks": [
+    {
+      "id": "T_S00a_check_fano",
+      "level": 0,
+      "title": "Выполняется ли условие Фано?",
+      "text": "Коды: А=0, Б=11, В=100, Г=101. Выполняется ли условие Фано?",
+      "answer": "Да",
+      "difficulty_estimate": 0.1,
+      "time_estimate_minutes": 2,
+      "required_skills": ["S_verify_fano"],
+      "search_steps": [
+        {"id": "SS_S00a_1", "order": 1, "target_label": "Проверить каждую пару кодов", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": true,
+          "tips": [
+            {"order": 1, "text": "Возьми каждый код и проверь: начинается ли какой-то другой с тех же символов?", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "0 — начало 11? Нет. 0 — начало 100? Нет (100 начинается с 1). 11 — начало 100? Нет. Всё чисто.", "spoiler_level": 4, "tip_type": "partial_solution"}
+          ]}
+      ]
+    },
+    {
+      "id": "T_S00b_find_violation",
+      "level": 0,
+      "title": "Найди нарушение",
+      "text": "Коды: А=1, Б=01, В=10, Г=001. Выполняется ли Фано? Какая пара нарушает?",
+      "answer": "Нет. А=1 является началом В=10.",
+      "difficulty_estimate": 0.15,
+      "time_estimate_minutes": 2,
+      "required_skills": ["S_verify_fano"],
+      "search_steps": [
+        {"id": "SS_S00b_1", "order": 1, "target_label": "Найти пару где один код — начало другого", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": true,
+          "tips": [
+            {"order": 1, "text": "Начни с самого короткого кода. Является ли он началом какого-то другого?", "spoiler_level": 1, "tip_type": "directed_question"}
+          ]}
+      ]
+    },
+    {
+      "id": "T_S01a_build_tree",
+      "level": 1,
+      "title": "Построй дерево для 3 кодов",
+      "text": "Коды: А=0, Б=10, В=11. Нарисуй двоичное дерево.",
+      "answer": "Дерево с 2 уровнями, все коды — листья.",
+      "difficulty_estimate": 0.15,
+      "time_estimate_minutes": 3,
+      "required_skills": ["S_draw_tree"],
+      "search_steps": [
+        {"id": "SS_S01a_1", "order": 1, "target_label": "Нарисовать дерево", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": true,
+          "tips": [
+            {"order": 1, "text": "Начни с корня. А=0: один шаг влево — лист. Б=10: вправо, потом влево.", "spoiler_level": 2, "tip_type": "technique_hint"},
+            {"order": 2, "text": "```\n  корень\n  /    \\\n (А)    1\n        / \\\n      (Б) (В)\n```", "spoiler_level": 4, "tip_type": "partial_solution"}
+          ]}
+      ]
+    },
+    {
+      "id": "T_S01b_tree_4codes",
+      "level": 1,
+      "title": "Дерево для 4 кодов разной длины",
+      "text": "Коды: А=0, Б=10, В=110, Г=111. Нарисуй дерево. Какова глубина?",
+      "answer": "Глубина 3.",
+      "difficulty_estimate": 0.2,
+      "time_estimate_minutes": 3,
+      "required_skills": ["S_draw_tree"],
+      "search_steps": [
+        {"id": "SS_S01b_1", "order": 1, "target_label": "Нарисовать дерево с кодами разной длины", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": true,
+          "tips": [
+            {"order": 1, "text": "Начни с А=0 (лист на уровне 1). Потом Б=10 (уровень 2). В=110 и Г=111 (уровень 3).", "spoiler_level": 2, "tip_type": "technique_hint"}
+          ]}
+      ]
+    },
+    {
+      "id": "T_S02a_find_free",
+      "level": 2,
+      "title": "Найди свободные ветки",
+      "text": "Коды: А=0, Б=10. Нарисуй дерево и найди все свободные ветки длины ≤ 3.",
+      "answer": "Свободна ветка 11 (и потомки: 110, 111).",
+      "difficulty_estimate": 0.2,
+      "time_estimate_minutes": 3,
+      "required_skills": ["S_draw_tree", "S_find_free"],
+      "search_steps": [
+        {"id": "SS_S02a_1", "order": 1, "target_label": "Нарисовать дерево и определить свободные ветки", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": true,
+          "tips": [
+            {"order": 1, "text": "Нарисуй дерево. Какие ветки НЕ ведут к яблокам и не под яблоками?", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "А=0 (лист, уровень 1). Б=10 (лист, уровень 2). Ветка 11 никем не занята.", "spoiler_level": 3, "tip_type": "concrete_step"}
+          ]}
+      ]
+    },
+    {
+      "id": "T_S02b_count_free",
+      "level": 2,
+      "title": "Сколько свободных веток?",
+      "text": "Коды: А=00, Б=010, В=011, Г=10. Сколько свободных веток длины ≤ 3?",
+      "answer": "2 ветки: 001(3) и 11(2).",
+      "difficulty_estimate": 0.3,
+      "time_estimate_minutes": 4,
+      "required_skills": ["S_draw_tree", "S_find_free"],
+      "search_steps": [
+        {"id": "SS_S02b_1", "order": 1, "target_label": "Построить дерево и перечислить свободные ветки", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": true,
+          "tips": [
+            {"order": 1, "text": "Нарисуй дерево. Проверь каждую ветку уровней 1, 2, 3.", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "Уровень 2: 00 — предок А, занят. 01 — предок Б и В, занят. 10 — яблоко Г. 11 — свободен! Уровень 3: 001 — свободен.", "spoiler_level": 3, "tip_type": "concrete_step"}
+          ]}
+      ]
+    },
+    {
+      "id": "T_S03a_add_one",
+      "level": 3,
+      "title": "Добавь один код",
+      "text": "Коды: А=0, Б=10. Добавь самый короткий код для В (условие Фано). Суммарная длина А+Б+В?",
+      "answer": "5",
+      "difficulty_estimate": 0.25,
+      "time_estimate_minutes": 3,
+      "required_skills": ["S_draw_tree", "S_find_free", "S_assign_codes", "S_compute_length"],
+      "search_steps": [
+        {"id": "SS_S03a_1", "order": 1, "target_label": "Найти самую короткую свободную ветку", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": false,
+          "tips": [
+            {"order": 1, "text": "Нарисуй дерево. Какая ветка свободна?", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "Ветка 11 свободна — длина 2. В=11.", "spoiler_level": 3, "tip_type": "concrete_step"}
+          ]},
+        {"id": "SS_S03a_2", "order": 2, "target_label": "Вычислить суммарную длину", "evaluation_policy": "AUTO_COMPUTE", "is_final_step": true,
+          "tips": [
+            {"order": 1, "text": "А(1) + Б(2) + В(2) = ?", "spoiler_level": 1, "tip_type": "directed_question"}
+          ]}
+      ]
+    },
+    {
+      "id": "T_S03b_add_two",
+      "level": 3,
+      "title": "Добавь два кода",
+      "text": "Коды: А=00, Б=01. Добавь В и Г с минимальной суммой. Суммарная длина В+Г?",
+      "answer": "4",
+      "difficulty_estimate": 0.3,
+      "time_estimate_minutes": 4,
+      "required_skills": ["S_draw_tree", "S_find_free", "S_assign_codes", "S_compute_length"],
+      "search_steps": [
+        {"id": "SS_S03b_1", "order": 1, "target_label": "Найти свободные ветки и назначить коды", "evaluation_policy": "AUTO_COMPUTE", "is_final_step": true,
+          "tips": [
+            {"order": 1, "text": "Свободны: 10 и 11 (обе длины 2). В=10, Г=11. Сумма: 2+2=4.", "spoiler_level": 3, "tip_type": "concrete_step"}
+          ]}
+      ]
+    },
+    {
+      "id": "T_S04_branch",
+      "level": 4,
+      "title": "Не хватает веток — разветвляй!",
+      "text": "Коды: А=0, Б=10. Нужно разместить В, Г, Д — три буквы. Минимальная суммарная длина В+Г+Д?",
+      "answer": "11",
+      "difficulty_estimate": 0.4,
+      "time_estimate_minutes": 6,
+      "required_skills": ["S_draw_tree", "S_find_free", "S_branch_deeper", "S_assign_codes", "S_compute_length"],
+      "search_steps": [
+        {"id": "SS_S04_1", "order": 1, "target_label": "Определить что свободных веток не хватает", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": false,
+          "tips": [
+            {"order": 1, "text": "Свободна ветка 11 — одна. А букв три. Что делать?", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "Разветвляй! 11→110, 111. Но это только 2 кода, нужно 3.", "spoiler_level": 2, "tip_type": "technique_hint"}
+          ]},
+        {"id": "SS_S04_2", "order": 2, "target_label": "Разветвить и назначить коды", "evaluation_policy": "AUTO_COMPUTE", "is_final_step": true,
+          "tips": [
+            {"order": 1, "text": "110 разветвляем на 1100, 1101. Итого: 111(3), 1100(4), 1101(4). Сумма?", "spoiler_level": 3, "tip_type": "concrete_step"}
+          ]}
+      ]
+    }
+  ],
+
+  "target_tasks": [
+    {
+      "id": "T_target_01",
+      "title": "Задача 1: Цифры и арифметические знаки",
+      "text": "По каналу связи передаются сообщения, содержащие только цифры 2, 3, 4, 5 и четыре знака арифметических действий (+, -, ×, /). Для передачи используется двоичный код, удовлетворяющий условию Фано. Кодовые слова для цифр известны:\n\n| Символ | Код |\n|---|---|\n| 2 | 000 |\n| 3 | 010 |\n| 4 | 100 |\n| 5 | 101 |\n\nКакое наименьшее количество двоичных знаков требуется для кодирования четырёх знаков арифметических действий? В ответе запишите суммарную длину кодовых слов для знаков арифметических действий.",
+      "answer_tex": "12",
+      "difficulty_estimate": 0.4,
+      "time_estimate_minutes": 10,
+      "required_skills": ["S_draw_tree", "S_find_free", "S_assign_codes", "S_compute_length"],
+      "required_concepts": ["C_prefix_free", "C_binary_tree", "C_occupied_branch"],
+      "search_steps": [
+        {"id": "SS_T1_01", "order": 1, "target_label": "Разобрать условие", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": false,
+          "tips": [
+            {"order": 1, "text": "Что дано? Что нужно найти?", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "Даны коды 4 цифр. Нужно: суммарная длина кодов 4 арифметических знаков.", "spoiler_level": 2, "tip_type": "technique_hint"}
+          ]},
+        {"id": "SS_T1_02", "order": 2, "target_label": "Построить дерево", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": false,
+          "tips": [
+            {"order": 1, "text": "Нарисуй дерево для кодов 000, 010, 100, 101.", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "Начни: 000 → лево-лево-лево. 010 → лево-право-лево. 100 → право-лево-лево. 101 → право-лево-право.", "spoiler_level": 2, "tip_type": "technique_hint"},
+            {"order": 3, "text": "```\n        корень\n       /      \\\n      0        1\n     / \\      / \\\n    00  01   10  11(?)\n   / \\  / \\  / \\\n 000 001 010 011 100 101\n (2)  ?  (3)  ?  (4) (5)\n```", "spoiler_level": 4, "tip_type": "partial_solution"}
+          ]},
+        {"id": "SS_T1_03", "order": 3, "target_label": "Найти свободные ветки", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": false,
+          "tips": [
+            {"order": 1, "text": "Посмотри на дерево. Какие ветки свободны?", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "Свободны: 001, 011, и вся ветка 11 (потомки: 110, 111).", "spoiler_level": 3, "tip_type": "concrete_step"}
+          ]},
+        {"id": "SS_T1_04", "order": 4, "target_label": "Назначить 4 кода с минимальной суммой", "evaluation_policy": "AUTO_COMPUTE", "is_final_step": true,
+          "tips": [
+            {"order": 1, "text": "4 знака на свободные ветки. Какие самые короткие?", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "Выгоднее ли взять 11(2) целиком или разбить на 110(3)+111(3)? Посчитай оба варианта.", "spoiler_level": 2, "tip_type": "directed_question"},
+            {"order": 3, "text": "Вариант: {001, 011, 110, 111} = 3+3+3+3 = 12.", "spoiler_level": 4, "tip_type": "partial_solution"}
+          ]}
+      ]
+    },
+    {
+      "id": "T_target_02",
+      "title": "Задача 2 (Рубцова): Кодирование слова ПАНТЕТИН",
+      "text": "По каналу связи передаются сообщения, содержащие только буквы из набора: С, Т, А, Р, П, Е, Н, И. Для передачи используется двоичный код, удовлетворяющий условию Фано. Кодовые слова для некоторых букв известны:\n\n| Буква | Код |\n|---|---|\n| С | 10 |\n| Н | 110 |\n| П | 000 |\n\nКакое количество двоичных знаков требуется для кодирования слова ПАНТЕТИН, если известно, что оно закодировано минимально возможным количеством двоичных знаков?",
+      "answer_tex": "21",
+      "difficulty_estimate": 0.6,
+      "time_estimate_minutes": 15,
+      "required_skills": ["S_draw_tree", "S_find_free", "S_branch_deeper", "S_assign_codes", "S_encode_word", "S_compute_length"],
+      "required_concepts": ["C_prefix_free", "C_binary_tree", "C_occupied_branch", "C_branching", "C_greedy_short"],
+      "search_steps": [
+        {"id": "SS_T2_01", "order": 1, "target_label": "Разобрать условие и посчитать частоты", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": false,
+          "tips": [
+            {"order": 1, "text": "Сколько всего букв? Какие уже закодированы? Посчитай частоты в слове ПАНТЕТИН.", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "ПАНТЕТИН: П(1), А(1), Н(2), Т(2), Е(1), И(1). Буквы С и Р не в слове, но им тоже нужны коды.", "spoiler_level": 3, "tip_type": "concrete_step"}
+          ]},
+        {"id": "SS_T2_02", "order": 2, "target_label": "Построить дерево по С=10, Н=110, П=000", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": false,
+          "tips": [
+            {"order": 1, "text": "Нарисуй дерево для трёх известных кодов.", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "```\n      корень\n     /      \\\n    0        1\n   / \\      / \\\n  00  01   10  11\n / \\  (?)  (С) / \\\n000 001      110 111\n(П)  ?       (Н)  ?\n```\nСвободны: 001, 01 (целиком), 111.", "spoiler_level": 4, "tip_type": "partial_solution"}
+          ]},
+        {"id": "SS_T2_03", "order": 3, "target_label": "Определить сколько кодов нужно и хватает ли веток", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": false,
+          "tips": [
+            {"order": 1, "text": "Сколько букв без кодов? Сколько свободных веток?", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "5 букв (Т,А,Р,Е,И), 3 свободные ветки (001, 01, 111). Не хватает — нужно разветвлять.", "spoiler_level": 2, "tip_type": "technique_hint"}
+          ]},
+        {"id": "SS_T2_04", "order": 4, "target_label": "Назначить коды для минимизации длины слова", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": false,
+          "tips": [
+            {"order": 1, "text": "Какая неизвестная буква встречается в слове чаще всего? Ей — самый короткий код.", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "Т(×2) — самая частая. Но: если дать Т=01(2), потеряем ветку 01 и нужно будет разместить 4 буквы на 001 и 111. Подумай, что выгоднее.", "spoiler_level": 2, "tip_type": "directed_question"},
+            {"order": 3, "text": "Не бери 01 целиком — разбей на 010, 011. Тогда: 001, 010, 011, 111 = 4 кода длины 3. Для 5-й буквы разветвляй одну из них.", "spoiler_level": 3, "tip_type": "concrete_step"},
+            {"order": 4, "text": "Проверь: нужно ли оставить ветку для остальных букв алфавита? Прочитай условие — закодированы ТОЛЬКО эти 8 букв или ВСЕ?", "spoiler_level": 1, "tip_type": "directed_question"}
+          ]},
+        {"id": "SS_T2_05", "order": 5, "target_label": "Вычислить длину слова ПАНТЕТИН", "evaluation_policy": "AUTO_COMPUTE", "is_final_step": true,
+          "tips": [
+            {"order": 1, "text": "Замени каждую букву кодом, сложи длины.", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "Формула: Σ (частота × длина кода) для каждой буквы в слове.", "spoiler_level": 2, "tip_type": "technique_hint"}
+          ]}
+      ]
+    },
+    {
+      "id": "T_target_03",
+      "title": "Задача 3: Восемь букв (А-З)",
+      "text": "По каналу связи передаются сообщения, содержащие только восемь букв: А, Б, В, Г, Д, Е, Ж и З. Для передачи используется двоичный код, удовлетворяющий условию Фано. Кодовые слова для некоторых букв известны:\n\n| Буква | Код |\n|---|---|\n| Е | 10 |\n| Ж | 010 |\n| З | 011 |\n| Д | 11 |\n\nКакое наименьшее количество двоичных знаков требуется для кодирования четырёх оставшихся букв? В ответе запишите суммарную длину кодовых слов для букв: А, Б, В, Г.",
+      "answer_tex": "14",
+      "difficulty_estimate": 0.5,
+      "time_estimate_minutes": 12,
+      "required_skills": ["S_draw_tree", "S_find_free", "S_branch_deeper", "S_assign_codes", "S_compute_length"],
+      "required_concepts": ["C_prefix_free", "C_binary_tree", "C_occupied_branch", "C_branching"],
+      "search_steps": [
+        {"id": "SS_T3_01", "order": 1, "target_label": "Построить дерево для Е=10, Ж=010, З=011, Д=11", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": false,
+          "tips": [
+            {"order": 1, "text": "Нарисуй дерево для четырёх известных кодов.", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "Правая часть полностью занята: 10(Е), 11(Д). Ветка 01 тоже: 010(Ж), 011(З). Единственная свободная — ветка 00.", "spoiler_level": 3, "tip_type": "concrete_step"}
+          ]},
+        {"id": "SS_T3_02", "order": 2, "target_label": "Разместить 4 буквы на ветке 00", "evaluation_policy": "SELF_CHECK_PROOF", "is_final_step": false,
+          "tips": [
+            {"order": 1, "text": "Одна свободная ветка — 00. Сколько кодов длины 3 из неё можно сделать?", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "Длины 3: 000, 001 — только 2 кода. Нужно 4. Разветвляй глубже.", "spoiler_level": 2, "tip_type": "technique_hint"},
+            {"order": 3, "text": "Варианты: все 4 длины 4 (0000,0001,0010,0011) или комбинация 3+3+4+4. Посчитай оба.", "spoiler_level": 3, "tip_type": "concrete_step"}
+          ]},
+        {"id": "SS_T3_03", "order": 3, "target_label": "Вычислить минимальную суммарную длину", "evaluation_policy": "AUTO_COMPUTE", "is_final_step": true,
+          "tips": [
+            {"order": 1, "text": "Какой вариант даёт меньшую сумму?", "spoiler_level": 0, "tip_type": "framing"},
+            {"order": 2, "text": "Можно ли взять 00(2) как код одной буквы? Тогда 3 оставшиеся — откуда?", "spoiler_level": 2, "tip_type": "directed_question"}
+          ]}
+      ]
+    }
+  ],
+
+  "drills": [
+    {
+      "id": "D_check_fano",
+      "title": "Проверка условия Фано",
+      "trains_skills": ["S_verify_fano"],
+      "estimated_time_minutes": 4,
+      "items": [
+        {"text": "А=01, Б=10, В=001. Фано выполняется?", "answer": "Да", "evaluation_policy": "AUTO_COMPUTE"},
+        {"text": "А=0, Б=01, В=10. Фано выполняется?", "answer": "Нет (А начало Б)", "evaluation_policy": "SELF_CHECK_PROOF"},
+        {"text": "А=110, Б=10, В=0, Г=111. Фано?", "answer": "Да", "evaluation_policy": "AUTO_COMPUTE"}
+      ]
+    },
+    {
+      "id": "D_build_tree",
+      "title": "Построение деревьев",
+      "trains_skills": ["S_draw_tree"],
+      "estimated_time_minutes": 5,
+      "items": [
+        {"text": "А=0, Б=10, В=110, Г=111. Нарисуй дерево. Глубина?", "answer": "3", "evaluation_policy": "AUTO_COMPUTE"},
+        {"text": "А=00, Б=01, В=10, Г=110, Д=111. Нарисуй и проверь Фано.", "answer": "Да, выполняется", "evaluation_policy": "SELF_CHECK_PROOF"}
+      ]
+    },
+    {
+      "id": "D_find_free",
+      "title": "Поиск свободных веток",
+      "trains_skills": ["S_find_free"],
+      "estimated_time_minutes": 5,
+      "items": [
+        {"text": "Коды: А=00, Б=01. Перечисли свободные ветки длины ≤ 2.", "answer": "10, 11", "evaluation_policy": "SELF_CHECK_PROOF"},
+        {"text": "Коды: А=0, Б=100, В=101. Какие ветки свободны?", "answer": "11 (и потомки: 110, 111)", "evaluation_policy": "SELF_CHECK_PROOF"}
+      ]
+    },
+    {
+      "id": "D_assign_codes",
+      "title": "Назначение кодов и подсчёт",
+      "trains_skills": ["S_assign_codes", "S_compute_length"],
+      "estimated_time_minutes": 5,
+      "items": [
+        {"text": "Коды: А=0, Б=10. Назначь В. Суммарная длина А+Б+В?", "answer": "5", "evaluation_policy": "AUTO_COMPUTE"},
+        {"text": "Коды: А=00, Б=010, В=011. Размести 2 символа. Мин. сумма новых кодов?", "answer": "4 (10+11)", "evaluation_policy": "AUTO_COMPUTE"},
+        {"text": "Слово АББА. А=0, Б=10. Длина кодирования?", "answer": "6", "evaluation_policy": "AUTO_COMPUTE"}
+      ]
+    }
+  ],
+
+  "probes": [
+    {
+      "id": "P_knows_fano",
+      "title": "Понимает ли условие Фано?",
+      "purpose": "Различить: не знает → знает формулировку → умеет проверять",
+      "diagnoses_skills": ["S_verify_fano"],
+      "diagnoses_concepts": ["C_prefix_free"],
+      "items": [
+        {"text": "Что означает условие Фано?", "evaluation_policy": "SELF_CHECK_PROOF"},
+        {"text": "А=1, Б=10. Фано выполняется?", "answer": "Нет", "evaluation_policy": "AUTO_COMPUTE"}
+      ]
+    },
+    {
+      "id": "P_can_tree",
+      "title": "Может ли построить дерево?",
+      "purpose": "Проверить навык построения",
+      "diagnoses_skills": ["S_draw_tree", "S_find_free"],
+      "items": [
+        {"text": "Коды: X=01, Y=10, Z=110. Свободные ветки?", "answer": "00, 111", "evaluation_policy": "SELF_CHECK_PROOF"}
+      ]
+    }
+  ],
+
+  "transfer_sets": [
+    {
+      "id": "TRS_fano",
+      "target_skills": ["S_draw_tree", "S_find_free", "S_assign_codes", "S_compute_length"],
+      "constraints": {"no_hints_allowed": true, "max_time_minutes": 10},
+      "tasks": [
+        {"id": "T_transfer_01", "text": "Коды: A=0, B=100, C=101. Размести ещё 3 символа. Минимальная суммарная длина трёх новых кодов?", "answer": "9"}
+      ]
+    }
+  ],
+
+  "retention_schedule": {
+    "check_intervals_days": [1, 3, 7],
+    "check_method": "both",
+    "fail_action": "assign_drill"
+  },
+
+  "blocks": [
+    {
+      "id": "BL_fano",
+      "title": "Условие Фано: от нуля до решения задач",
+      "status": "active",
+      "increments": [
+        {
+          "id": "INC_01_theory",
+          "order": 1,
+          "goal": "Понять кодирование, условие Фано и двоичное дерево",
+          "micro_theory_ids": ["MT_01_why_coding", "MT_02_uniform", "MT_03_ambiguity", "MT_04_fano", "MT_05_tree", "MT_06_free_branches", "MT_07_branching", "MT_08_alphabet_trap", "MT_09_optimization"],
+          "tasks": []
+        },
+        {
+          "id": "INC_02_scaffolding",
+          "order": 2,
+          "goal": "Освоить каждый навык отдельно на простых задачах",
+          "micro_theory_ids": [],
+          "tasks": ["T_S00a_check_fano", "T_S00b_find_violation", "T_S01a_build_tree", "T_S01b_tree_4codes", "T_S02a_find_free", "T_S02b_count_free", "T_S03a_add_one", "T_S03b_add_two", "T_S04_branch"]
+        },
+        {
+          "id": "INC_03_target",
+          "order": 3,
+          "goal": "Решить целевые задачи уровня экзамена",
+          "micro_theory_ids": [],
+          "tasks": ["T_target_01", "T_target_03", "T_target_02"]
+        }
+      ]
+    }
+  ]
+}
