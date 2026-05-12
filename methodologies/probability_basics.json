@@ -1757,6 +1757,314 @@
           "S_apply_addition_mutually_exclusive"
         ],
         "weight": 1.0
+      },
+      {
+        "id": "TRN_T_count_card_face__S_count_favorable",
+        "kind": "trains",
+        "tail": [
+          "T_count_card_face"
+        ],
+        "head": [
+          "S_count_favorable"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRM_T_count_card_face__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_count_card_face"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_count_card_face__MS_enumerate_carefully",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_count_card_face"
+        ],
+        "head": [
+          "MS_enumerate_carefully"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRN_T_count_committee__S_count_favorable",
+        "kind": "trains",
+        "tail": [
+          "T_count_committee"
+        ],
+        "head": [
+          "S_count_favorable"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRM_T_count_committee__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_count_committee"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_count_committee__MS_enumerate_carefully",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_count_committee"
+        ],
+        "head": [
+          "MS_enumerate_carefully"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRN_T_simple_dice_one_or_six__S_compute_simple_probability",
+        "kind": "trains",
+        "tail": [
+          "T_simple_dice_one_or_six"
+        ],
+        "head": [
+          "S_compute_simple_probability"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRM_T_simple_dice_one_or_six__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_simple_dice_one_or_six"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_simple_dice_one_or_six__MS_distinguish_and_or",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_simple_dice_one_or_six"
+        ],
+        "head": [
+          "MS_distinguish_and_or"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRN_T_simple_lottery_pick__S_compute_simple_probability",
+        "kind": "trains",
+        "tail": [
+          "T_simple_lottery_pick"
+        ],
+        "head": [
+          "S_compute_simple_probability"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRM_T_simple_lottery_pick__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_simple_lottery_pick"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRM_T_simple_lottery_pick__MS_enumerate_carefully",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_simple_lottery_pick"
+        ],
+        "head": [
+          "MS_enumerate_carefully"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRN_T_indep_card_then_coin__S_recognize_independence",
+        "kind": "trains",
+        "tail": [
+          "T_indep_card_then_coin"
+        ],
+        "head": [
+          "S_recognize_independence"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRM_T_indep_card_then_coin__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_indep_card_then_coin"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRN_T_indep_with_replacement_vs_not__S_recognize_independence",
+        "kind": "trains",
+        "tail": [
+          "T_indep_with_replacement_vs_not"
+        ],
+        "head": [
+          "S_recognize_independence"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRM_T_indep_with_replacement_vs_not__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_indep_with_replacement_vs_not"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRN_T_bayes_spam_filter_basic__S_apply_bayes_simple",
+        "kind": "trains",
+        "tail": [
+          "T_bayes_spam_filter_basic"
+        ],
+        "head": [
+          "S_apply_bayes_simple"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRM_T_bayes_spam_filter_basic__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_bayes_spam_filter_basic"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRN_T_ev_coin_game__S_compute_expected_value_discrete",
+        "kind": "trains",
+        "tail": [
+          "T_ev_coin_game"
+        ],
+        "head": [
+          "S_compute_expected_value_discrete"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRM_T_ev_coin_game__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_ev_coin_game"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRN_T_ev_lottery_value__S_compute_expected_value_discrete",
+        "kind": "trains",
+        "tail": [
+          "T_ev_lottery_value"
+        ],
+        "head": [
+          "S_compute_expected_value_discrete"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRM_T_ev_lottery_value__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_ev_lottery_value"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRN_T_distinguish_coin_10_trials__S_distinguish_probability_frequency",
+        "kind": "trains",
+        "tail": [
+          "T_distinguish_coin_10_trials"
+        ],
+        "head": [
+          "S_distinguish_probability_frequency"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRM_T_distinguish_coin_10_trials__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_distinguish_coin_10_trials"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRN_T_distinguish_dice_small_sample__S_distinguish_probability_frequency",
+        "kind": "trains",
+        "tail": [
+          "T_distinguish_dice_small_sample"
+        ],
+        "head": [
+          "S_distinguish_probability_frequency"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRM_T_distinguish_dice_small_sample__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_distinguish_dice_small_sample"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
+      },
+      {
+        "id": "TRN_T_distinguish_LLN__S_distinguish_probability_frequency",
+        "kind": "trains",
+        "tail": [
+          "T_distinguish_LLN"
+        ],
+        "head": [
+          "S_distinguish_probability_frequency"
+        ],
+        "weight": 1.0
+      },
+      {
+        "id": "TRM_T_distinguish_LLN__MS_check_range_validity",
+        "kind": "trains_metaskill",
+        "tail": [
+          "T_distinguish_LLN"
+        ],
+        "head": [
+          "MS_check_range_validity"
+        ],
+        "weight": 0.5
       }
     ],
     "prereq_dag": [
@@ -1808,9 +2116,7 @@
       "title": "Two coins: at least one heads",
       "statement": "You flip a fair coin twice. What is the probability of getting at least one heads?",
       "required_skills": [
-        "S_enumerate_outcomes",
-        "S_count_favorable",
-        "S_compute_simple_probability"
+        "S_enumerate_outcomes"
       ],
       "required_concepts": [
         "C_sample_space",
@@ -1833,9 +2139,7 @@
       "title": "Fair die: even number",
       "statement": "You roll a fair six-sided die once. What is the probability of getting an even number?",
       "required_skills": [
-        "S_enumerate_outcomes",
-        "S_count_favorable",
-        "S_compute_simple_probability"
+        "S_enumerate_outcomes"
       ],
       "required_concepts": [
         "C_sample_space",
@@ -1858,9 +2162,7 @@
       "title": "Two dice: sum equals 7",
       "statement": "You roll two fair six-sided dice. What is the probability that their sum equals 7?",
       "required_skills": [
-        "S_enumerate_outcomes",
-        "S_count_favorable",
-        "S_compute_simple_probability"
+        "S_enumerate_outcomes"
       ],
       "required_concepts": [
         "C_sample_space",
@@ -1883,8 +2185,7 @@
       "title": "Bag of marbles: P(red)",
       "statement": "A bag contains 3 red marbles and 2 blue marbles. You draw one at random. What is the probability of drawing a red marble?",
       "required_skills": [
-        "S_count_favorable",
-        "S_compute_simple_probability"
+        "S_count_favorable"
       ],
       "required_concepts": [
         "C_sample_space",
@@ -1906,7 +2207,6 @@
       "title": "Standard deck: P(heart)",
       "statement": "You draw one card at random from a standard 52-card deck. What is the probability that it is a heart?",
       "required_skills": [
-        "S_count_favorable",
         "S_compute_simple_probability"
       ],
       "required_concepts": [
@@ -1929,8 +2229,7 @@
       "title": "Die: P(not 1)",
       "statement": "You roll a fair six-sided die once. Using the complement rule, what is the probability of NOT rolling a 1?",
       "required_skills": [
-        "S_apply_complement_rule",
-        "S_compute_simple_probability"
+        "S_apply_complement_rule"
       ],
       "required_concepts": [
         "C_complement",
@@ -1952,8 +2251,7 @@
       "title": "Two coins: P(not both tails)",
       "statement": "You flip a fair coin twice. What is the probability that NOT both flips are tails?",
       "required_skills": [
-        "S_apply_complement_rule",
-        "S_enumerate_outcomes"
+        "S_apply_complement_rule"
       ],
       "required_concepts": [
         "C_complement",
@@ -1975,8 +2273,7 @@
       "title": "Three dice: P(at least one 6)",
       "statement": "You roll three fair six-sided dice. What is the probability of getting at least one 6? (Hint: complement of 'no 6 on any roll'.)",
       "required_skills": [
-        "S_apply_complement_rule",
-        "S_compute_joint_independent"
+        "S_apply_complement_rule"
       ],
       "required_concepts": [
         "C_complement",
@@ -1992,6 +2289,90 @@
       ],
       "correct_index": 1,
       "time_estimate_minutes": 4
+    },
+    {
+      "id": "T_count_card_face",
+      "title": "Counting face cards",
+      "statement": "From a standard 52-card deck, how many cards are face cards (Jack, Queen, King)?",
+      "required_skills": [
+        "S_count_favorable"
+      ],
+      "required_concepts": [
+        "C_event"
+      ],
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "options": [
+        "8",
+        "12",
+        "16",
+        "20"
+      ],
+      "correct_index": 1,
+      "time_estimate_minutes": 2
+    },
+    {
+      "id": "T_count_committee",
+      "title": "Counting in a committee",
+      "statement": "A class of 30 students has 18 girls and 12 boys. The committee chair must be a girl. How many girls could be chosen?",
+      "required_skills": [
+        "S_count_favorable"
+      ],
+      "required_concepts": [
+        "C_event"
+      ],
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "options": [
+        "12",
+        "18",
+        "30",
+        "48"
+      ],
+      "correct_index": 1,
+      "time_estimate_minutes": 2
+    },
+    {
+      "id": "T_simple_dice_one_or_six",
+      "title": "Die: probability of 1 or 6",
+      "statement": "You roll a fair six-sided die. What is the probability of rolling a 1 or a 6?",
+      "required_skills": [
+        "S_compute_simple_probability"
+      ],
+      "required_concepts": [
+        "C_classical_probability"
+      ],
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "options": [
+        "1/6",
+        "1/3",
+        "1/2",
+        "2/3"
+      ],
+      "correct_index": 1,
+      "time_estimate_minutes": 2
+    },
+    {
+      "id": "T_simple_lottery_pick",
+      "title": "Small lottery: probability of winning",
+      "statement": "A lottery sells 100 tickets, 5 of which are winners. You buy one ticket. What is the probability you win?",
+      "required_skills": [
+        "S_compute_simple_probability"
+      ],
+      "required_concepts": [
+        "C_classical_probability"
+      ],
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "options": [
+        "1/100",
+        "1/20",
+        "1/10",
+        "5/95"
+      ],
+      "correct_index": 1,
+      "time_estimate_minutes": 2
     }
   ],
   "target_tasks": [
@@ -2000,7 +2381,6 @@
       "title": "Two coins: P(HH)",
       "statement": "You flip a fair coin twice independently. What is the probability of getting heads on both flips?",
       "required_skills": [
-        "S_recognize_independence",
         "S_compute_joint_independent"
       ],
       "required_concepts": [
@@ -2023,8 +2403,7 @@
       "title": "Die-then-coin: P(6 AND H)",
       "statement": "You roll a fair die and then flip a fair coin. What is the probability of rolling a 6 AND flipping heads?",
       "required_skills": [
-        "S_recognize_independence",
-        "S_compute_joint_independent"
+        "S_recognize_independence"
       ],
       "required_concepts": [
         "C_independence",
@@ -2046,9 +2425,7 @@
       "title": "Two bags: P(red from both)",
       "statement": "Bag A has 4 red and 6 blue marbles; bag B has 3 red and 7 blue. You draw one marble from each bag independently. What is the probability that both are red?",
       "required_skills": [
-        "S_recognize_independence",
-        "S_compute_joint_independent",
-        "S_compute_simple_probability"
+        "S_compute_joint_independent"
       ],
       "required_concepts": [
         "C_independence",
@@ -2070,7 +2447,6 @@
       "title": "Three coins: P(HHH)",
       "statement": "You flip a fair coin three times independently. What is the probability that all three flips show heads?",
       "required_skills": [
-        "S_recognize_independence",
         "S_compute_joint_independent"
       ],
       "required_concepts": [
@@ -2093,8 +2469,7 @@
       "title": "Die: P(roll 1 or 2)",
       "statement": "You roll a fair six-sided die once. What is the probability of rolling a 1 OR a 2?",
       "required_skills": [
-        "S_apply_addition_mutually_exclusive",
-        "S_compute_simple_probability"
+        "S_apply_addition_mutually_exclusive"
       ],
       "required_concepts": [
         "C_mutually_exclusive"
@@ -2115,8 +2490,7 @@
       "title": "Bag: P(red or blue)",
       "statement": "A bag contains 4 red, 3 blue, and 5 green marbles. You draw one. What is the probability of drawing a red OR a blue marble?",
       "required_skills": [
-        "S_apply_addition_mutually_exclusive",
-        "S_compute_simple_probability"
+        "S_apply_addition_mutually_exclusive"
       ],
       "required_concepts": [
         "C_mutually_exclusive"
@@ -2137,8 +2511,7 @@
       "title": "Deck: P(ace or king)",
       "statement": "You draw one card from a standard 52-card deck. What is the probability of drawing an ace OR a king?",
       "required_skills": [
-        "S_apply_addition_mutually_exclusive",
-        "S_compute_simple_probability"
+        "S_apply_addition_mutually_exclusive"
       ],
       "required_concepts": [
         "C_mutually_exclusive"
@@ -2159,8 +2532,7 @@
       "title": "Deck: P(red or face card)",
       "statement": "You draw one card from a standard 52-card deck. What is the probability of drawing a red card OR a face card (J, Q, K of any suit)?",
       "required_skills": [
-        "S_apply_addition_general",
-        "S_count_favorable"
+        "S_apply_addition_general"
       ],
       "required_concepts": [
         "C_classical_probability",
@@ -2182,8 +2554,7 @@
       "title": "Die: P(even or ≥4)",
       "statement": "You roll a fair six-sided die once. What is the probability of rolling an even number OR a number ≥ 4?",
       "required_skills": [
-        "S_apply_addition_general",
-        "S_enumerate_outcomes"
+        "S_apply_addition_general"
       ],
       "required_concepts": [
         "C_classical_probability",
@@ -2205,8 +2576,7 @@
       "title": "Two dice: P(first=1 or second=6)",
       "statement": "You roll two fair dice. What is the probability that the first die shows 1 OR the second die shows 6?",
       "required_skills": [
-        "S_apply_addition_general",
-        "S_enumerate_outcomes"
+        "S_apply_addition_general"
       ],
       "required_concepts": [
         "C_classical_probability",
@@ -2291,8 +2661,7 @@
       "title": "Bag: P(second red | first red, no replacement)",
       "statement": "A bag has 4 red and 6 blue marbles. You draw two without replacement. Given the first is red, what is the probability the second is also red?",
       "required_skills": [
-        "S_compute_conditional",
-        "S_recognize_independence"
+        "S_compute_conditional"
       ],
       "required_concepts": [
         "C_conditional_probability",
@@ -2314,8 +2683,7 @@
       "title": "Medical test: P(disease | positive)",
       "statement": "A disease has prevalence 1%. A test has 95% sensitivity and 90% specificity. Given a positive test, what is the probability the patient has the disease? (Approximate.)",
       "required_skills": [
-        "S_apply_bayes_simple",
-        "S_compute_conditional"
+        "S_apply_bayes_simple"
       ],
       "required_concepts": [
         "C_conditional_probability"
@@ -2336,8 +2704,7 @@
       "title": "Two coins: which one?",
       "statement": "Two coins look identical: one is fair, one always shows heads. You pick a coin uniformly at random and flip it once: it shows heads. What is the probability you picked the biased one?",
       "required_skills": [
-        "S_apply_bayes_simple",
-        "S_compute_conditional"
+        "S_apply_bayes_simple"
       ],
       "required_concepts": [
         "C_conditional_probability"
@@ -2370,6 +2737,174 @@
         "3.5",
         "4",
         "21"
+      ],
+      "correct_index": 1,
+      "time_estimate_minutes": 3
+    },
+    {
+      "id": "T_indep_card_then_coin",
+      "title": "Independence: card draw then coin flip",
+      "statement": "You draw a card from a deck (then return it), then flip a fair coin. Are the two outcomes independent events?",
+      "required_skills": [
+        "S_recognize_independence"
+      ],
+      "required_concepts": [
+        "C_independence"
+      ],
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "options": [
+        "Yes — they are separate experiments",
+        "No — they share the same outcome space",
+        "Only if the card is red",
+        "Cannot determine without more info"
+      ],
+      "correct_index": 0,
+      "time_estimate_minutes": 2
+    },
+    {
+      "id": "T_indep_with_replacement_vs_not",
+      "title": "Independence: replacement matters",
+      "statement": "You draw two cards from a 52-card deck. Which scenario makes the two draws independent?",
+      "required_skills": [
+        "S_recognize_independence"
+      ],
+      "required_concepts": [
+        "C_independence"
+      ],
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "options": [
+        "With replacement",
+        "Without replacement",
+        "Both equally",
+        "Neither — drawing cards is always dependent"
+      ],
+      "correct_index": 0,
+      "time_estimate_minutes": 2
+    },
+    {
+      "id": "T_bayes_spam_filter_basic",
+      "title": "Spam filter: P(spam | flagged)",
+      "statement": "A spam filter flags 90% of true spam and 5% of legitimate emails. 30% of incoming emails are spam. If an email is flagged, what is the approximate probability it is actually spam?",
+      "required_skills": [
+        "S_apply_bayes_simple"
+      ],
+      "required_concepts": [
+        "C_conditional_probability"
+      ],
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "options": [
+        "0.30",
+        "0.50",
+        "0.89",
+        "0.95"
+      ],
+      "correct_index": 2,
+      "time_estimate_minutes": 4
+    },
+    {
+      "id": "T_ev_coin_game",
+      "title": "Three coin flips: expected number of heads",
+      "statement": "You flip a fair coin three times. What is the expected number of heads?",
+      "required_skills": [
+        "S_compute_expected_value_discrete"
+      ],
+      "required_concepts": [
+        "C_expected_value"
+      ],
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "options": [
+        "0",
+        "1",
+        "1.5",
+        "3"
+      ],
+      "correct_index": 2,
+      "time_estimate_minutes": 3
+    },
+    {
+      "id": "T_ev_lottery_value",
+      "title": "Lottery: expected payoff",
+      "statement": "A lottery ticket: with probability 1/100 you win $1000, with probability 99/100 you win nothing. What is the expected payoff per ticket?",
+      "required_skills": [
+        "S_compute_expected_value_discrete"
+      ],
+      "required_concepts": [
+        "C_expected_value"
+      ],
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "options": [
+        "$1",
+        "$10",
+        "$100",
+        "$1000"
+      ],
+      "correct_index": 1,
+      "time_estimate_minutes": 3
+    },
+    {
+      "id": "T_distinguish_coin_10_trials",
+      "title": "Coin observed frequency vs probability",
+      "statement": "After 10 coin flips you observed 7 heads. What is the true theoretical probability of heads on the next flip (assuming the coin is fair)?",
+      "required_skills": [
+        "S_distinguish_probability_frequency"
+      ],
+      "required_concepts": [
+        "C_classical_probability"
+      ],
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "options": [
+        "0.5",
+        "0.7",
+        "Cannot say — depends on history",
+        "0.3"
+      ],
+      "correct_index": 0,
+      "time_estimate_minutes": 3
+    },
+    {
+      "id": "T_distinguish_dice_small_sample",
+      "title": "Small sample of die rolls",
+      "statement": "You roll a fair six-sided die 5 times and observe a 6 twice. Does this prove the die is unfair?",
+      "required_skills": [
+        "S_distinguish_probability_frequency"
+      ],
+      "required_concepts": [
+        "C_classical_probability"
+      ],
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "options": [
+        "Yes — 2/5 ≠ 1/6",
+        "Yes — the expected count is below 1",
+        "No — the sample is too small to conclude",
+        "Yes — P(6) is now 2/5"
+      ],
+      "correct_index": 2,
+      "time_estimate_minutes": 3
+    },
+    {
+      "id": "T_distinguish_LLN",
+      "title": "Law of large numbers",
+      "statement": "You flip a fair coin 1000 times vs 10 times and compute the observed frequency of heads. Which sequence is more likely to give a frequency closer to 0.5?",
+      "required_skills": [
+        "S_distinguish_probability_frequency"
+      ],
+      "required_concepts": [
+        "C_classical_probability"
+      ],
+      "answer_format": "multiple_choice",
+      "n_options": 4,
+      "options": [
+        "10 flips",
+        "1000 flips",
+        "Both equally",
+        "Neither — coin flips are random"
       ],
       "correct_index": 1,
       "time_estimate_minutes": 3
@@ -2983,6 +3518,26 @@
       ],
       "diagnoses_concepts": [
         "C_conditional_probability"
+      ]
+    },
+    {
+      "id": "P_distinguish_freq",
+      "title": "Frequency vs probability probe",
+      "diagnoses_skills": [
+        "S_distinguish_probability_frequency"
+      ],
+      "diagnoses_concepts": [
+        "C_classical_probability"
+      ]
+    },
+    {
+      "id": "P_ev",
+      "title": "Expected-value probe",
+      "diagnoses_skills": [
+        "S_compute_expected_value_discrete"
+      ],
+      "diagnoses_concepts": [
+        "C_expected_value"
       ]
     }
   ],
