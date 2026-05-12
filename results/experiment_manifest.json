@@ -1,5 +1,5 @@
 {
-  "timestamp": "20260512_160534",
+  "timestamp": "20260512_163658",
   "config_path": "experiments/configs/medium.yaml",
   "config": {
     "n_students": 1000,
@@ -26,13 +26,13 @@
   "environment": {
     "python": "3.12.13",
     "platform": "Linux-7.0.3-arch1-2-x86_64-with-glibc2.43",
-    "git_hash": "d6c9024d57d69ef4fa4e0e36456590473f3dc233",
+    "git_hash": "a3b7b946d93c9548d46d810290d34de906bfbc1a",
     "packages": {
       "numpy": "2.4.4",
       "scipy": "1.17.1",
       "pandas": "3.0.3",
       "matplotlib": "3.10.9"
     },
-    "timestamp": "2026-05-12T16:05:34"
+    "timestamp": "2026-05-12T16:36:59"
   }
 }
