@@ -64,16 +64,24 @@ def m_hint(
     return float(-mean_level_ratio - kappa * float(np.mean(spoiler_flags)))
 
 
-def m_robust(
+def m_selection_robust(
     records: Iterable[StepRecord],
     transfer_tasks: set[str],
     q_low: float = 0.50,
 ) -> float:
-    """Eq. (34): E[1{correct} | transfer ∧ q_t ≤ q_low].
+    """[v0.2.0] Eq. (34): selection-robust correctness — fraction of
+    correct answers on the transfer attempts the policy chose to make
+    under low-reliability conditions (q_t ≤ q_low).
 
-    ``q_low`` was raised from 0.30 to 0.50 so that guesser learners
-    (typical q_t ≈ 0.40) also contribute to the subsample — at 0.30
-    only copiers crossed the threshold and H1 had insufficient power.
+    Renamed from ``m_robust`` because the metric depends on which
+    transfer items the policy selects, not on inference quality alone.
+    A policy that *correctly avoids* transfer probes under noise has
+    fewer eligible attempts and is biased here. Use
+    :func:`m_inference_robust` for a selection-free measure.
+
+    ``q_low`` was raised from 0.30 to 0.50 in v0.1.1 so guesser
+    learners (typical q_t ≈ 0.40) also contribute to the subsample;
+    at 0.30 only copiers crossed the threshold.
     """
     cands = [
         r
@@ -85,6 +93,37 @@ def m_robust(
     if not cands:
         return float("nan")
     return float(np.mean([1.0 if r.observation.correct else 0.0 for r in cands]))
+
+
+# Backward-compatibility alias: paper v0.1.6 cited `m_robust` for what is
+# now `m_selection_robust`. Code that still uses the old name continues
+# to compute the same quantity.
+m_robust = m_selection_robust
+
+
+def m_inference_robust(
+    final_p_hat: np.ndarray,
+    final_p_true: np.ndarray,
+    behaviour: str,
+) -> float:
+    """[v0.2.0] Inference-robust belief quality — mean absolute error
+    between the policy's final per-skill belief ``b_T`` and ground-truth
+    mastery ``p_true_T``, restricted to *contaminated* students
+    (``behaviour ∈ {"guesser", "copier"}``).
+
+    Lower is better. Defined for all contaminated students regardless
+    of what the policy chose to probe — unlike
+    :func:`m_selection_robust`, this isolates the *inference* component
+    from selection.
+
+    Returns ``NaN`` for honest / help_seeker students (the metric is
+    only meaningful when the observation stream carries contamination).
+    """
+    if behaviour not in ("guesser", "copier"):
+        return float("nan")
+    if final_p_hat.size == 0:
+        return float("nan")
+    return float(np.mean(np.abs(final_p_hat - final_p_true)))
 
 
 def m_efficiency(p_T: np.ndarray, p_0: np.ndarray, T: int) -> float:
@@ -165,11 +204,15 @@ class TrajectoryMetrics:
     m_retention_7d: float
     m_retention_14d: float
     m_hint: float
-    m_robust: float
+    m_robust: float  # alias of m_selection_robust (paper v0.1.6 name)
     m_efficiency: float
     m_meta: float
     m_engage: float
     m_calib: float
+
+    # v0.2.0: clean inference-quality metric on contaminated students
+    # (NaN for honest/help_seeker; see m_inference_robust in metrics.py).
+    m_inference_robust: float = float("nan")
 
     invariants_held: dict[str, bool] = field(default_factory=dict)
     n_steps: int = 0

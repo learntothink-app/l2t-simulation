@@ -34,6 +34,7 @@ from .metrics import (
     m_efficiency,
     m_engage,
     m_hint,
+    m_inference_robust,
     m_mastery,
     m_meta,
     m_retention,
@@ -289,6 +290,7 @@ def run_single_student(
         m_meta=m_meta(student.m_true, m_true_0),
         m_engage=m_engage(records),
         m_calib=m_calib(records),
+        m_inference_robust=m_inference_robust(belief.p_hat, student.p_true, behaviour),
         invariants_held=invariants_held,
         n_steps=len(records),
     )

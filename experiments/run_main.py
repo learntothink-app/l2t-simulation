@@ -319,6 +319,7 @@ _PER_GRAPH_METRICS = (
     "m_retention_14d",
     "m_hint",
     "m_robust",
+    "m_inference_robust",
     "m_efficiency",
     "m_meta",
     "m_engage",
