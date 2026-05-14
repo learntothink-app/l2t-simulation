@@ -1,0 +1,307 @@
+{
+  "metric": "m_inference_robust",
+  "description": "Mean absolute error between final per-skill belief b_T and ground-truth p_true_T, restricted to contaminated students (behaviour in {guesser, copier}). Lower raw value = better; cohen_d is reported with positive sign meaning the policy beats the baseline (B1 or B3 depending on cell).",
+  "main_finding": "Heuristic q_t per Eq. (23) is behaviour-pattern aware but not observation-information aware. On guesser observations (p_correct ≈ 1/n_options, independent of mastery), q_t correctly downweights noise and B4 improves inference. On copier observations (systematic correctness with copying pattern flag), q_t over-downweights by a factor of ~3 and loses informative correctness signal, so B4 inference degrades below Random. Empirical motivation for the trained-classifier replacement of Eq. (23) (paper §III.F, Appendix E): a learned q̂_t can in principle separate 'suspicious behaviour' from 'informative observation' by training on per-behaviour ground truth.",
+  "pooled": {
+    "B3_vs_B1": {
+      "mean_b1": 0.20669296349300365,
+      "mean_other": 0.15304014879878075,
+      "t": 41.128897477036205,
+      "p_value": 0.0,
+      "cohen_d": 0.6417387761141489,
+      "lower_is_better": true,
+      "n_b1": 8215,
+      "n_other": 8215,
+      "confirmed": true
+    },
+    "B4_vs_B1": {
+      "mean_b1": 0.20669296349300365,
+      "mean_other": 0.2436395075211296,
+      "t": -25.691846268607556,
+      "p_value": 1.0,
+      "cohen_d": -0.40087274378640064,
+      "lower_is_better": true,
+      "n_b1": 8215,
+      "n_other": 8215,
+      "confirmed": false
+    },
+    "B4_vs_B3_new_H1": {
+      "metric": "m_inference_robust",
+      "comparison": "B4 vs B3 (q_t isolated ablation, positive d = B4 better)",
+      "n_b3": 8215,
+      "n_b4": 8215,
+      "mean_b3": 0.15304014879878075,
+      "mean_b4": 0.2436395075211296,
+      "t": -66.08093026362994,
+      "p_value": 1.0,
+      "cohen_d": -1.0310681275991787,
+      "confirmed": false
+    },
+    "per_behaviour": {
+      "b3_vs_b1_guesser": {
+        "behaviour": "guesser",
+        "n_b1": 5053,
+        "n_other": 5053,
+        "mean_b1": 0.2421886372576939,
+        "mean_other": 0.1943647032222626,
+        "t": 29.278339495920484,
+        "p_value": 6.949774682757114e-181,
+        "cohen_d": 0.5824877428472957,
+        "confirmed": true
+      },
+      "b3_vs_b1_copier": {
+        "behaviour": "copier",
+        "n_b1": 3162,
+        "n_other": 3162,
+        "mean_b1": 0.14996948482982217,
+        "mean_other": 0.08700189025929497,
+        "t": 71.46106375748616,
+        "p_value": 0.0,
+        "cohen_d": 1.7972295133589617,
+        "confirmed": true
+      },
+      "b4_vs_b1_guesser": {
+        "behaviour": "guesser",
+        "n_b1": 5053,
+        "n_other": 5053,
+        "mean_b1": 0.2421886372576939,
+        "mean_other": 0.18088599504162198,
+        "t": 38.85472228477073,
+        "p_value": 3.053014751184205e-306,
+        "cohen_d": 0.7730083014362246,
+        "confirmed": true
+      },
+      "b4_vs_b1_copier": {
+        "behaviour": "copier",
+        "n_b1": 3162,
+        "n_other": 3162,
+        "mean_b1": 0.14996948482982217,
+        "mean_other": 0.34392208138544067,
+        "t": -220.0733584042885,
+        "p_value": 1.0,
+        "cohen_d": -5.5347949503029525,
+        "confirmed": false
+      }
+    }
+  },
+  "per_methodology": {
+    "probability": {
+      "B3_vs_B1": {
+        "mean_b1": 0.3455538009143356,
+        "mean_other": 0.19703443946641763,
+        "t": 13.479300392882706,
+        "p_value": 3.015044958123169e-35,
+        "cohen_d": 1.1710067885067168,
+        "lower_is_better": true,
+        "n_b1": 265,
+        "n_other": 265,
+        "confirmed": true
+      },
+      "B4_vs_B1": {
+        "mean_b1": 0.3455538009143356,
+        "mean_other": 0.2809204306162713,
+        "t": 6.309042140818614,
+        "p_value": 4.0452129817964567e-10,
+        "cohen_d": 0.5480945568788197,
+        "lower_is_better": true,
+        "n_b1": 265,
+        "n_other": 265,
+        "confirmed": true
+      },
+      "B4_vs_B3": {
+        "metric": "m_inference_robust",
+        "comparison": "B4 vs B3 (q_t isolated ablation, positive d = B4 better)",
+        "n_b3": 265,
+        "n_b4": 265,
+        "mean_b3": 0.19703443946641763,
+        "mean_b4": 0.2809204306162713,
+        "t": -11.649515283017587,
+        "p_value": 1.0,
+        "cohen_d": -1.0120452161174003,
+        "confirmed": false
+      },
+      "per_behaviour": {
+        "b3_vs_b1_guesser": {
+          "behaviour": "guesser",
+          "n_b1": 163,
+          "n_other": 163,
+          "mean_b1": 0.4543767817057332,
+          "mean_other": 0.25245446631189866,
+          "t": 24.184544375388455,
+          "p_value": 7.571774844449216e-75,
+          "cohen_d": 2.6789160582555684,
+          "confirmed": true
+        },
+        "b3_vs_b1_copier": {
+          "behaviour": "copier",
+          "n_b1": 102,
+          "n_other": 102,
+          "mean_b1": 0.171650410041808,
+          "mean_other": 0.10847106323295272,
+          "t": 11.047548097408098,
+          "p_value": 9.358223497321871e-23,
+          "cohen_d": 1.5469661578142095,
+          "confirmed": true
+        },
+        "b4_vs_b1_guesser": {
+          "behaviour": "guesser",
+          "n_b1": 163,
+          "n_other": 163,
+          "mean_b1": 0.4543767817057332,
+          "mean_other": 0.2485360841332048,
+          "t": 26.09079908596907,
+          "p_value": 1.3139099579020163e-81,
+          "cohen_d": 2.8900714257512066,
+          "confirmed": true
+        },
+        "b4_vs_b1_copier": {
+          "behaviour": "copier",
+          "n_b1": 102,
+          "n_other": 102,
+          "mean_b1": 0.171650410041808,
+          "mean_other": 0.3326718862705834,
+          "t": -33.38661587040144,
+          "p_value": 1.0,
+          "cohen_d": -4.675061327641662,
+          "confirmed": false
+        }
+      }
+    },
+    "synthetic": {
+      "B3_vs_B1": {
+        "mean_b1": 0.20206426891229257,
+        "mean_other": 0.1515736724431928,
+        "t": 40.03237799704644,
+        "p_value": 0.0,
+        "cohen_d": 0.6349548170125165,
+        "lower_is_better": true,
+        "n_b1": 7950,
+        "n_other": 7950,
+        "confirmed": true
+      },
+      "B4_vs_B1": {
+        "mean_b1": 0.20206426891229257,
+        "mean_other": 0.24239681008462483,
+        "t": -28.5020099752737,
+        "p_value": 1.0,
+        "cohen_d": -0.4520712841409033,
+        "lower_is_better": true,
+        "n_b1": 7950,
+        "n_other": 7950,
+        "confirmed": false
+      },
+      "B4_vs_B3": {
+        "metric": "m_inference_robust",
+        "comparison": "B4 vs B3 (q_t isolated ablation, positive d = B4 better)",
+        "n_b3": 7950,
+        "n_b4": 7950,
+        "mean_b3": 0.1515736724431928,
+        "mean_b4": 0.24239681008462483,
+        "t": -65.28564827928476,
+        "p_value": 1.0,
+        "cohen_d": -1.0354977378504762,
+        "confirmed": false
+      },
+      "per_behaviour": {
+        "b3_vs_b1_guesser": {
+          "behaviour": "guesser",
+          "n_b1": 4890,
+          "n_other": 4890,
+          "mean_b1": 0.23511569910942592,
+          "mean_other": 0.19242837778594138,
+          "t": 27.37856461931378,
+          "p_value": 2.897799359358096e-159,
+          "cohen_d": 0.5536958186186743,
+          "confirmed": true
+        },
+        "b3_vs_b1_copier": {
+          "behaviour": "copier",
+          "n_b1": 3060,
+          "n_other": 3060,
+          "mean_b1": 0.14924678732275598,
+          "mean_other": 0.08628625116017305,
+          "t": 71.17151147601827,
+          "p_value": 0.0,
+          "cohen_d": 1.8195352501818283,
+          "confirmed": true
+        },
+        "b4_vs_b1_guesser": {
+          "behaviour": "guesser",
+          "n_b1": 4890,
+          "n_other": 4890,
+          "mean_b1": 0.23511569910942592,
+          "mean_other": 0.17863099207190256,
+          "t": 37.7421180178324,
+          "p_value": 2.3765373129712302e-290,
+          "cohen_d": 0.7632851912749438,
+          "confirmed": true
+        },
+        "b4_vs_b1_copier": {
+          "behaviour": "copier",
+          "n_b1": 3060,
+          "n_other": 3060,
+          "mean_b1": 0.14924678732275598,
+          "mean_other": 0.34429708788926927,
+          "t": -218.47754606901768,
+          "p_value": 1.0,
+          "cohen_d": -5.5854876228075,
+          "confirmed": false
+        }
+      }
+    }
+  },
+  "isolated_q_t_stream_test": {
+    "description": "Isolated test of q_t: B3's (action, observation, q_t) stream is replayed through B4's belief update on the same student. Δ(B4-B3) > 0 ⇒ q_t weight degrades inference on this stream.",
+    "seeds": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1010,
+      1011,
+      1012,
+      1013,
+      1014,
+      1015,
+      1016,
+      1017,
+      1018,
+      1019,
+      1020,
+      1021,
+      1022,
+      1023,
+      1024,
+      1025,
+      1026,
+      1027,
+      1028,
+      1029
+    ],
+    "methodology_seed": 1,
+    "per_behaviour": {
+      "guesser": {
+        "B3_MAE_mean": 0.18475129126727058,
+        "B4_MAE_mean": 0.15901030411438402,
+        "delta_B4_minus_B3_mean": -0.025740987152886592,
+        "delta_B4_minus_B3_std": 0.03529187881808546,
+        "seeds_B4_worse": "5/30",
+        "interpretation": "q_t correctly downweights noise: observations under this behaviour carry little mastery information; downweighting stabilises the belief."
+      },
+      "copier": {
+        "B3_MAE_mean": 0.08541001147581716,
+        "B4_MAE_mean": 0.3715268201251744,
+        "delta_B4_minus_B3_mean": 0.2861168086493572,
+        "delta_B4_minus_B3_std": 0.013566080789261763,
+        "seeds_B4_worse": "30/30",
+        "interpretation": "q_t over-downweights informative correctness signal: behaviour flag triggers downweight even when the observation itself carries valid mastery-correlated information."
+      }
+    }
+  }
+}

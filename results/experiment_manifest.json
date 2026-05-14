@@ -1,12 +1,13 @@
 {
-  "timestamp": "20260512_174417",
-  "config_path": "experiments/configs/medium.yaml",
+  "timestamp": "20260514_201101",
+  "config_path": "/home/nt/projects/article/l2t_simulation/experiments/configs/medium.yaml",
   "config": {
     "n_students": 1000,
     "t_steps": 100,
     "master_seed": 42,
     "method_seed": 1,
     "n_bootstrap": 10000,
+    "synthetic_ensemble_k": 30,
     "behaviour_proportions": {
       "honest": 0.6,
       "guesser": 0.15,
@@ -26,13 +27,13 @@
   "environment": {
     "python": "3.12.13",
     "platform": "Linux-7.0.3-arch1-2-x86_64-with-glibc2.43",
-    "git_hash": "3ac77170a0d8a6625dd7dee6f04c13aa18d614b3",
+    "git_hash": "51799ce3ce8e6639b4accdc2c2cab14256f55905",
     "packages": {
       "numpy": "2.4.4",
       "scipy": "1.17.1",
       "pandas": "3.0.3",
       "matplotlib": "3.10.9"
     },
-    "timestamp": "2026-05-12T17:44:18"
+    "timestamp": "2026-05-14T20:11:01"
   }
 }

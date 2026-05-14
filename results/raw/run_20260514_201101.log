@@ -1,0 +1,263 @@
+20:11:01 [INFO] run_main: loaded config /home/nt/projects/article/l2t_simulation/experiments/configs/medium.yaml
+20:11:01 [INFO] run_main: config: {'n_students': 1000, 't_steps': 100, 'master_seed': 42, 'method_seed': 1, 'n_bootstrap': 10000, 'synthetic_ensemble_k': 30, 'behaviour_proportions': {'honest': 0.6, 'guesser': 0.15, 'copier': 0.1, 'help_seeker': 0.15}, 'retention_intervals_days': [1, 3, 7, 14], 'forgetting_lambda': 0.05, 'prereq_perturbation_eps': 0.1, 'n_jobs': -1}
+20:11:01 [INFO] run_main: loading probability methodology from /home/nt/projects/article/l2t_simulation/methodologies/probability_basics.json
+20:11:01 [INFO] run_main: probability: 102 vertices, 249 edges, 12 skills, 37 tasks, 18 transfer, 8 holdout
+20:11:01 [INFO] run_main: synthetic ensemble: K=30 random graphs (seeds 1..30)
+20:11:01 [INFO] run_main: synthetic (seed=1 sample): 116 vertices, 265 edges, 10 skills, 40 tasks, 15 transfer, 8 holdout
+20:11:01 [INFO] run_main: running B1_random on probability
+20:11:10 [INFO] run_main:   done in 8.8s (1000 records, mean m_mastery=0.333, mean m_transfer=0.734)
+20:11:10 [INFO] run_main: running B2_bkt on probability
+20:11:15 [INFO] run_main:   done in 4.8s (1000 records, mean m_mastery=0.354, mean m_transfer=0.719)
+20:11:15 [INFO] run_main: running B3_l2t_no_q on probability
+20:11:20 [INFO] run_main:   done in 4.9s (1000 records, mean m_mastery=0.333, mean m_transfer=0.782)
+20:11:20 [INFO] run_main: running B4_full_l2t on probability
+20:11:26 [INFO] run_main:   done in 6.0s (1000 records, mean m_mastery=0.332, mean m_transfer=0.775)
+20:11:26 [INFO] run_main: running B1_random on synthetic graph seed=1
+20:11:32 [INFO] run_main:   done in 5.7s (1000 records, mean m_mastery=0.342, mean m_transfer=0.766)
+20:11:32 [INFO] run_main: running B2_bkt on synthetic graph seed=1
+20:11:38 [INFO] run_main:   done in 6.2s (1000 records, mean m_mastery=0.367, mean m_transfer=0.746)
+20:11:38 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=1
+20:11:43 [INFO] run_main:   done in 5.7s (1000 records, mean m_mastery=0.381, mean m_transfer=0.770)
+20:11:43 [INFO] run_main: running B4_full_l2t on synthetic graph seed=1
+20:11:49 [INFO] run_main:   done in 5.8s (1000 records, mean m_mastery=0.384, mean m_transfer=0.768)
+20:11:49 [INFO] run_main: running B1_random on synthetic graph seed=2
+20:11:55 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.333, mean m_transfer=0.754)
+20:11:55 [INFO] run_main: running B2_bkt on synthetic graph seed=2
+20:12:00 [INFO] run_main:   done in 5.6s (1000 records, mean m_mastery=0.383, mean m_transfer=0.752)
+20:12:00 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=2
+20:12:06 [INFO] run_main:   done in 6.1s (1000 records, mean m_mastery=0.384, mean m_transfer=0.767)
+20:12:06 [INFO] run_main: running B4_full_l2t on synthetic graph seed=2
+20:12:12 [INFO] run_main:   done in 6.0s (1000 records, mean m_mastery=0.386, mean m_transfer=0.772)
+20:12:12 [INFO] run_main: running B1_random on synthetic graph seed=3
+20:12:19 [INFO] run_main:   done in 7.1s (1000 records, mean m_mastery=0.342, mean m_transfer=0.762)
+20:12:19 [INFO] run_main: running B2_bkt on synthetic graph seed=3
+20:12:26 [INFO] run_main:   done in 6.5s (1000 records, mean m_mastery=0.379, mean m_transfer=0.754)
+20:12:26 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=3
+20:12:33 [INFO] run_main:   done in 7.0s (1000 records, mean m_mastery=0.382, mean m_transfer=0.771)
+20:12:33 [INFO] run_main: running B4_full_l2t on synthetic graph seed=3
+20:12:39 [INFO] run_main:   done in 6.6s (1000 records, mean m_mastery=0.384, mean m_transfer=0.768)
+20:12:39 [INFO] run_main: running B1_random on synthetic graph seed=4
+20:12:45 [INFO] run_main:   done in 5.6s (1000 records, mean m_mastery=0.309, mean m_transfer=0.748)
+20:12:45 [INFO] run_main: running B2_bkt on synthetic graph seed=4
+20:12:51 [INFO] run_main:   done in 5.9s (1000 records, mean m_mastery=0.363, mean m_transfer=0.737)
+20:12:51 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=4
+20:12:56 [INFO] run_main:   done in 5.3s (1000 records, mean m_mastery=0.376, mean m_transfer=0.766)
+20:12:56 [INFO] run_main: running B4_full_l2t on synthetic graph seed=4
+20:13:02 [INFO] run_main:   done in 5.5s (1000 records, mean m_mastery=0.380, mean m_transfer=0.763)
+20:13:02 [INFO] run_main: running B1_random on synthetic graph seed=5
+20:13:07 [INFO] run_main:   done in 5.3s (1000 records, mean m_mastery=0.330, mean m_transfer=0.744)
+20:13:07 [INFO] run_main: running B2_bkt on synthetic graph seed=5
+20:13:12 [INFO] run_main:   done in 5.3s (1000 records, mean m_mastery=0.376, mean m_transfer=0.747)
+20:13:12 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=5
+20:13:18 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.389, mean m_transfer=0.766)
+20:13:18 [INFO] run_main: running B4_full_l2t on synthetic graph seed=5
+20:13:23 [INFO] run_main:   done in 5.1s (1000 records, mean m_mastery=0.391, mean m_transfer=0.769)
+20:13:23 [INFO] run_main: running B1_random on synthetic graph seed=6
+20:13:28 [INFO] run_main:   done in 5.0s (1000 records, mean m_mastery=0.312, mean m_transfer=0.746)
+20:13:28 [INFO] run_main: running B2_bkt on synthetic graph seed=6
+20:13:33 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.355, mean m_transfer=0.746)
+20:13:33 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=6
+20:13:38 [INFO] run_main:   done in 5.1s (1000 records, mean m_mastery=0.375, mean m_transfer=0.767)
+20:13:38 [INFO] run_main: running B4_full_l2t on synthetic graph seed=6
+20:13:43 [INFO] run_main:   done in 5.0s (1000 records, mean m_mastery=0.375, mean m_transfer=0.770)
+20:13:43 [INFO] run_main: running B1_random on synthetic graph seed=7
+20:13:49 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.315, mean m_transfer=0.758)
+20:13:49 [INFO] run_main: running B2_bkt on synthetic graph seed=7
+20:13:54 [INFO] run_main:   done in 5.6s (1000 records, mean m_mastery=0.380, mean m_transfer=0.752)
+20:13:54 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=7
+20:14:00 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.380, mean m_transfer=0.768)
+20:14:00 [INFO] run_main: running B4_full_l2t on synthetic graph seed=7
+20:14:05 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.384, mean m_transfer=0.765)
+20:14:05 [INFO] run_main: running B1_random on synthetic graph seed=8
+20:14:10 [INFO] run_main:   done in 5.5s (1000 records, mean m_mastery=0.325, mean m_transfer=0.759)
+20:14:10 [INFO] run_main: running B2_bkt on synthetic graph seed=8
+20:14:16 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.361, mean m_transfer=0.751)
+20:14:16 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=8
+20:14:21 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.374, mean m_transfer=0.762)
+20:14:21 [INFO] run_main: running B4_full_l2t on synthetic graph seed=8
+20:14:26 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.381, mean m_transfer=0.764)
+20:14:26 [INFO] run_main: running B1_random on synthetic graph seed=9
+20:14:32 [INFO] run_main:   done in 5.3s (1000 records, mean m_mastery=0.318, mean m_transfer=0.746)
+20:14:32 [INFO] run_main: running B2_bkt on synthetic graph seed=9
+20:14:37 [INFO] run_main:   done in 5.6s (1000 records, mean m_mastery=0.363, mean m_transfer=0.752)
+20:14:37 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=9
+20:14:42 [INFO] run_main:   done in 5.1s (1000 records, mean m_mastery=0.373, mean m_transfer=0.762)
+20:14:42 [INFO] run_main: running B4_full_l2t on synthetic graph seed=9
+20:14:47 [INFO] run_main:   done in 5.1s (1000 records, mean m_mastery=0.375, mean m_transfer=0.769)
+20:14:47 [INFO] run_main: running B1_random on synthetic graph seed=10
+20:14:52 [INFO] run_main:   done in 5.0s (1000 records, mean m_mastery=0.326, mean m_transfer=0.757)
+20:14:52 [INFO] run_main: running B2_bkt on synthetic graph seed=10
+20:14:58 [INFO] run_main:   done in 5.7s (1000 records, mean m_mastery=0.368, mean m_transfer=0.750)
+20:14:58 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=10
+20:15:04 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.382, mean m_transfer=0.772)
+20:15:04 [INFO] run_main: running B4_full_l2t on synthetic graph seed=10
+20:15:09 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.380, mean m_transfer=0.770)
+20:15:09 [INFO] run_main: running B1_random on synthetic graph seed=11
+20:15:14 [INFO] run_main:   done in 5.1s (1000 records, mean m_mastery=0.328, mean m_transfer=0.753)
+20:15:14 [INFO] run_main: running B2_bkt on synthetic graph seed=11
+20:15:19 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.365, mean m_transfer=0.743)
+20:15:19 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=11
+20:15:25 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.369, mean m_transfer=0.772)
+20:15:25 [INFO] run_main: running B4_full_l2t on synthetic graph seed=11
+20:15:30 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.369, mean m_transfer=0.768)
+20:15:30 [INFO] run_main: running B1_random on synthetic graph seed=12
+20:15:35 [INFO] run_main:   done in 5.3s (1000 records, mean m_mastery=0.355, mean m_transfer=0.764)
+20:15:35 [INFO] run_main: running B2_bkt on synthetic graph seed=12
+20:15:41 [INFO] run_main:   done in 6.1s (1000 records, mean m_mastery=0.372, mean m_transfer=0.756)
+20:15:41 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=12
+20:15:47 [INFO] run_main:   done in 5.7s (1000 records, mean m_mastery=0.384, mean m_transfer=0.772)
+20:15:47 [INFO] run_main: running B4_full_l2t on synthetic graph seed=12
+20:15:52 [INFO] run_main:   done in 5.5s (1000 records, mean m_mastery=0.384, mean m_transfer=0.770)
+20:15:52 [INFO] run_main: running B1_random on synthetic graph seed=13
+20:15:58 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.295, mean m_transfer=0.747)
+20:15:58 [INFO] run_main: running B2_bkt on synthetic graph seed=13
+20:16:03 [INFO] run_main:   done in 5.9s (1000 records, mean m_mastery=0.352, mean m_transfer=0.740)
+20:16:03 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=13
+20:16:09 [INFO] run_main:   done in 5.6s (1000 records, mean m_mastery=0.373, mean m_transfer=0.764)
+20:16:09 [INFO] run_main: running B4_full_l2t on synthetic graph seed=13
+20:16:14 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.371, mean m_transfer=0.772)
+20:16:14 [INFO] run_main: running B1_random on synthetic graph seed=14
+20:16:20 [INFO] run_main:   done in 6.0s (1000 records, mean m_mastery=0.330, mean m_transfer=0.758)
+20:16:20 [INFO] run_main: running B2_bkt on synthetic graph seed=14
+20:16:26 [INFO] run_main:   done in 6.0s (1000 records, mean m_mastery=0.359, mean m_transfer=0.751)
+20:16:26 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=14
+20:16:32 [INFO] run_main:   done in 5.7s (1000 records, mean m_mastery=0.374, mean m_transfer=0.765)
+20:16:32 [INFO] run_main: running B4_full_l2t on synthetic graph seed=14
+20:16:38 [INFO] run_main:   done in 5.6s (1000 records, mean m_mastery=0.377, mean m_transfer=0.765)
+20:16:38 [INFO] run_main: running B1_random on synthetic graph seed=15
+20:16:43 [INFO] run_main:   done in 5.3s (1000 records, mean m_mastery=0.329, mean m_transfer=0.759)
+20:16:43 [INFO] run_main: running B2_bkt on synthetic graph seed=15
+20:16:48 [INFO] run_main:   done in 5.3s (1000 records, mean m_mastery=0.366, mean m_transfer=0.751)
+20:16:48 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=15
+20:16:53 [INFO] run_main:   done in 5.1s (1000 records, mean m_mastery=0.377, mean m_transfer=0.763)
+20:16:53 [INFO] run_main: running B4_full_l2t on synthetic graph seed=15
+20:16:59 [INFO] run_main:   done in 5.8s (1000 records, mean m_mastery=0.378, mean m_transfer=0.769)
+20:16:59 [INFO] run_main: running B1_random on synthetic graph seed=16
+20:17:05 [INFO] run_main:   done in 5.5s (1000 records, mean m_mastery=0.343, mean m_transfer=0.764)
+20:17:05 [INFO] run_main: running B2_bkt on synthetic graph seed=16
+20:17:11 [INFO] run_main:   done in 6.0s (1000 records, mean m_mastery=0.376, mean m_transfer=0.756)
+20:17:11 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=16
+20:17:17 [INFO] run_main:   done in 6.2s (1000 records, mean m_mastery=0.388, mean m_transfer=0.772)
+20:17:17 [INFO] run_main: running B4_full_l2t on synthetic graph seed=16
+20:17:23 [INFO] run_main:   done in 5.9s (1000 records, mean m_mastery=0.387, mean m_transfer=0.774)
+20:17:23 [INFO] run_main: running B1_random on synthetic graph seed=17
+20:17:29 [INFO] run_main:   done in 6.5s (1000 records, mean m_mastery=0.329, mean m_transfer=0.749)
+20:17:29 [INFO] run_main: running B2_bkt on synthetic graph seed=17
+20:17:35 [INFO] run_main:   done in 6.0s (1000 records, mean m_mastery=0.364, mean m_transfer=0.749)
+20:17:35 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=17
+20:17:41 [INFO] run_main:   done in 5.8s (1000 records, mean m_mastery=0.381, mean m_transfer=0.758)
+20:17:41 [INFO] run_main: running B4_full_l2t on synthetic graph seed=17
+20:17:46 [INFO] run_main:   done in 5.3s (1000 records, mean m_mastery=0.383, mean m_transfer=0.765)
+20:17:46 [INFO] run_main: running B1_random on synthetic graph seed=18
+20:17:52 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.304, mean m_transfer=0.754)
+20:17:52 [INFO] run_main: running B2_bkt on synthetic graph seed=18
+20:17:57 [INFO] run_main:   done in 5.5s (1000 records, mean m_mastery=0.355, mean m_transfer=0.745)
+20:17:57 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=18
+20:18:02 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.368, mean m_transfer=0.764)
+20:18:02 [INFO] run_main: running B4_full_l2t on synthetic graph seed=18
+20:18:07 [INFO] run_main:   done in 5.1s (1000 records, mean m_mastery=0.370, mean m_transfer=0.770)
+20:18:07 [INFO] run_main: running B1_random on synthetic graph seed=19
+20:18:13 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.321, mean m_transfer=0.744)
+20:18:13 [INFO] run_main: running B2_bkt on synthetic graph seed=19
+20:18:18 [INFO] run_main:   done in 5.8s (1000 records, mean m_mastery=0.370, mean m_transfer=0.753)
+20:18:18 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=19
+20:18:24 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.375, mean m_transfer=0.763)
+20:18:24 [INFO] run_main: running B4_full_l2t on synthetic graph seed=19
+20:18:29 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.379, mean m_transfer=0.767)
+20:18:29 [INFO] run_main: running B1_random on synthetic graph seed=20
+20:18:34 [INFO] run_main:   done in 5.1s (1000 records, mean m_mastery=0.304, mean m_transfer=0.736)
+20:18:34 [INFO] run_main: running B2_bkt on synthetic graph seed=20
+20:18:40 [INFO] run_main:   done in 5.5s (1000 records, mean m_mastery=0.355, mean m_transfer=0.739)
+20:18:40 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=20
+20:18:45 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.368, mean m_transfer=0.768)
+20:18:45 [INFO] run_main: running B4_full_l2t on synthetic graph seed=20
+20:18:50 [INFO] run_main:   done in 5.1s (1000 records, mean m_mastery=0.371, mean m_transfer=0.759)
+20:18:50 [INFO] run_main: running B1_random on synthetic graph seed=21
+20:18:55 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.315, mean m_transfer=0.742)
+20:18:55 [INFO] run_main: running B2_bkt on synthetic graph seed=21
+20:19:01 [INFO] run_main:   done in 5.9s (1000 records, mean m_mastery=0.348, mean m_transfer=0.737)
+20:19:01 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=21
+20:19:07 [INFO] run_main:   done in 6.0s (1000 records, mean m_mastery=0.372, mean m_transfer=0.768)
+20:19:07 [INFO] run_main: running B4_full_l2t on synthetic graph seed=21
+20:19:13 [INFO] run_main:   done in 6.0s (1000 records, mean m_mastery=0.377, mean m_transfer=0.773)
+20:19:13 [INFO] run_main: running B1_random on synthetic graph seed=22
+20:19:19 [INFO] run_main:   done in 5.6s (1000 records, mean m_mastery=0.317, mean m_transfer=0.755)
+20:19:19 [INFO] run_main: running B2_bkt on synthetic graph seed=22
+20:19:25 [INFO] run_main:   done in 5.6s (1000 records, mean m_mastery=0.361, mean m_transfer=0.744)
+20:19:25 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=22
+20:19:30 [INFO] run_main:   done in 5.7s (1000 records, mean m_mastery=0.378, mean m_transfer=0.765)
+20:19:30 [INFO] run_main: running B4_full_l2t on synthetic graph seed=22
+20:19:35 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.378, mean m_transfer=0.764)
+20:19:35 [INFO] run_main: running B1_random on synthetic graph seed=23
+20:19:41 [INFO] run_main:   done in 5.3s (1000 records, mean m_mastery=0.301, mean m_transfer=0.746)
+20:19:41 [INFO] run_main: running B2_bkt on synthetic graph seed=23
+20:19:47 [INFO] run_main:   done in 5.8s (1000 records, mean m_mastery=0.358, mean m_transfer=0.745)
+20:19:47 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=23
+20:19:53 [INFO] run_main:   done in 6.1s (1000 records, mean m_mastery=0.372, mean m_transfer=0.768)
+20:19:53 [INFO] run_main: running B4_full_l2t on synthetic graph seed=23
+20:19:59 [INFO] run_main:   done in 6.1s (1000 records, mean m_mastery=0.372, mean m_transfer=0.770)
+20:19:59 [INFO] run_main: running B1_random on synthetic graph seed=24
+20:20:05 [INFO] run_main:   done in 5.8s (1000 records, mean m_mastery=0.326, mean m_transfer=0.742)
+20:20:05 [INFO] run_main: running B2_bkt on synthetic graph seed=24
+20:20:11 [INFO] run_main:   done in 6.2s (1000 records, mean m_mastery=0.368, mean m_transfer=0.742)
+20:20:11 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=24
+20:20:16 [INFO] run_main:   done in 5.5s (1000 records, mean m_mastery=0.378, mean m_transfer=0.769)
+20:20:16 [INFO] run_main: running B4_full_l2t on synthetic graph seed=24
+20:20:22 [INFO] run_main:   done in 5.6s (1000 records, mean m_mastery=0.381, mean m_transfer=0.768)
+20:20:22 [INFO] run_main: running B1_random on synthetic graph seed=25
+20:20:27 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.347, mean m_transfer=0.755)
+20:20:27 [INFO] run_main: running B2_bkt on synthetic graph seed=25
+20:20:33 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.380, mean m_transfer=0.755)
+20:20:33 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=25
+20:20:39 [INFO] run_main:   done in 6.0s (1000 records, mean m_mastery=0.384, mean m_transfer=0.766)
+20:20:39 [INFO] run_main: running B4_full_l2t on synthetic graph seed=25
+20:20:44 [INFO] run_main:   done in 5.5s (1000 records, mean m_mastery=0.389, mean m_transfer=0.767)
+20:20:44 [INFO] run_main: running B1_random on synthetic graph seed=26
+20:20:50 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.307, mean m_transfer=0.743)
+20:20:50 [INFO] run_main: running B2_bkt on synthetic graph seed=26
+20:20:56 [INFO] run_main:   done in 6.3s (1000 records, mean m_mastery=0.362, mean m_transfer=0.748)
+20:20:56 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=26
+20:21:02 [INFO] run_main:   done in 6.0s (1000 records, mean m_mastery=0.378, mean m_transfer=0.765)
+20:21:02 [INFO] run_main: running B4_full_l2t on synthetic graph seed=26
+20:21:07 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.380, mean m_transfer=0.768)
+20:21:07 [INFO] run_main: running B1_random on synthetic graph seed=27
+20:21:12 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.330, mean m_transfer=0.754)
+20:21:12 [INFO] run_main: running B2_bkt on synthetic graph seed=27
+20:21:18 [INFO] run_main:   done in 5.5s (1000 records, mean m_mastery=0.356, mean m_transfer=0.743)
+20:21:18 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=27
+20:21:23 [INFO] run_main:   done in 5.5s (1000 records, mean m_mastery=0.377, mean m_transfer=0.768)
+20:21:23 [INFO] run_main: running B4_full_l2t on synthetic graph seed=27
+20:21:29 [INFO] run_main:   done in 5.5s (1000 records, mean m_mastery=0.379, mean m_transfer=0.765)
+20:21:29 [INFO] run_main: running B1_random on synthetic graph seed=28
+20:21:34 [INFO] run_main:   done in 5.8s (1000 records, mean m_mastery=0.322, mean m_transfer=0.757)
+20:21:34 [INFO] run_main: running B2_bkt on synthetic graph seed=28
+20:21:41 [INFO] run_main:   done in 6.5s (1000 records, mean m_mastery=0.364, mean m_transfer=0.750)
+20:21:41 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=28
+20:21:47 [INFO] run_main:   done in 5.9s (1000 records, mean m_mastery=0.378, mean m_transfer=0.767)
+20:21:47 [INFO] run_main: running B4_full_l2t on synthetic graph seed=28
+20:21:53 [INFO] run_main:   done in 5.8s (1000 records, mean m_mastery=0.381, mean m_transfer=0.770)
+20:21:53 [INFO] run_main: running B1_random on synthetic graph seed=29
+20:21:58 [INFO] run_main:   done in 5.7s (1000 records, mean m_mastery=0.325, mean m_transfer=0.756)
+20:21:58 [INFO] run_main: running B2_bkt on synthetic graph seed=29
+20:22:04 [INFO] run_main:   done in 5.5s (1000 records, mean m_mastery=0.362, mean m_transfer=0.744)
+20:22:04 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=29
+20:22:10 [INFO] run_main:   done in 5.8s (1000 records, mean m_mastery=0.376, mean m_transfer=0.767)
+20:22:10 [INFO] run_main: running B4_full_l2t on synthetic graph seed=29
+20:22:15 [INFO] run_main:   done in 5.7s (1000 records, mean m_mastery=0.383, mean m_transfer=0.769)
+20:22:15 [INFO] run_main: running B1_random on synthetic graph seed=30
+20:22:21 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.329, mean m_transfer=0.765)
+20:22:21 [INFO] run_main: running B2_bkt on synthetic graph seed=30
+20:22:26 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.365, mean m_transfer=0.742)
+20:22:26 [INFO] run_main: running B3_l2t_no_q on synthetic graph seed=30
+20:22:31 [INFO] run_main:   done in 5.2s (1000 records, mean m_mastery=0.378, mean m_transfer=0.761)
+20:22:31 [INFO] run_main: running B4_full_l2t on synthetic graph seed=30
+20:22:37 [INFO] run_main:   done in 5.4s (1000 records, mean m_mastery=0.382, mean m_transfer=0.765)
+20:24:16 [INFO] run_main: wrote /home/nt/projects/article/l2t_simulation/results/tables/main_results.csv
+20:24:17 [INFO] run_main: wrote /home/nt/projects/article/l2t_simulation/results/tables/synthetic_per_graph.csv
+20:24:17 [INFO] run_main: wrote /home/nt/projects/article/l2t_simulation/results/tables/synthetic_aggregate.csv
+20:24:18 [INFO] run_main: H1: {'metric': 'm_robust', 'subsample': 'guesser+copier', 'n_b3': 2054, 'n_b4': 0, 't': None, 'p_value': None, 'cohen_d': None, 'confirmed': False, 'note': 'insufficient low-q transfer observations to evaluate'}
+20:24:18 [INFO] run_main: H1b: {'metric': 'm_robust', 'comparison': 'L2T (B3+B4) vs Random (B1), pooled methodologies', 'n_b1': 10740, 'n_l2t': 5179, 'mean_b1': 0.4809475984046613, 'mean_l2t': 0.8787797367377711, 't': 73.75396299235423, 'p_value': 0.0, 'cohen_d': 1.1350274246746541, 'confirmed': True}
+20:24:18 [INFO] run_main: H4: {'violations_b3': 0, 'violations_b4': 0, 'n_b3': 31000, 'n_b4': 31000, 'h4_confirmed': True}
+20:24:19 [INFO] run_main: wrote /home/nt/projects/article/l2t_simulation/results/tables/inference_robust.json
+20:24:19 [INFO] run_main: running invariant verification (BFS on FSM)
+20:24:21 [INFO] run_main: report at /home/nt/projects/article/l2t_simulation/results/report.html
