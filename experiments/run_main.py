@@ -21,7 +21,15 @@ if str(ROOT) not in sys.path:
 
 import yaml  # type: ignore
 
-from l2t_sim.analysis import aggregate_table, test_h1, test_h1b, test_h2, test_h3, test_h4
+from l2t_sim.analysis import (
+    aggregate_table,
+    test_h1,
+    test_h1b,
+    test_h2,
+    test_h3,
+    test_h4,
+    test_inference_robust_breakdown,
+)
 from l2t_sim.invariants import verify_invariants_on_fsm
 from l2t_sim.methodology import (
     generate_synthetic_methodology,
@@ -254,6 +262,46 @@ def main() -> int:
             "_per_methodology": per_methodology,
         },
     )
+
+    # v0.2.0: dedicated m_inference_robust report — pooled + per
+    # methodology + per behaviour subgroup. Sign convention: positive d
+    # means the L2T policy beats Random on inference quality.
+    inference_robust_report: dict = {
+        "metric": "m_inference_robust",
+        "description": (
+            "Mean absolute error between final per-skill belief b_T and "
+            "ground-truth p_true_T, restricted to contaminated students "
+            "(behaviour in {guesser, copier}). Lower raw value = better; "
+            "cohen_d is reported with positive sign meaning the policy "
+            "beats Random."
+        ),
+        "pooled": {
+            "B3_vs_B1": test_h3(
+                pooled["B1_random"], pooled["B2_bkt"], pooled["B3_l2t_no_q"], pooled["B4_full_l2t"]
+            )["m_inference_robust_b3_vs_b1"],
+            "B4_vs_B1": test_h3(
+                pooled["B1_random"], pooled["B2_bkt"], pooled["B3_l2t_no_q"], pooled["B4_full_l2t"]
+            )["m_inference_robust_b4_vs_b1"],
+            "per_behaviour": test_inference_robust_breakdown(
+                pooled["B1_random"], pooled["B3_l2t_no_q"], pooled["B4_full_l2t"]
+            ),
+        },
+        "per_methodology": {},
+    }
+    for meth_name in methodologies:
+        b1 = all_results[(meth_name, "B1_random")]
+        b3 = all_results[(meth_name, "B3_l2t_no_q")]
+        b4 = all_results[(meth_name, "B4_full_l2t")]
+        meth_h3 = test_h3(
+            b1, all_results[(meth_name, "B2_bkt")], b3, b4
+        )
+        inference_robust_report["per_methodology"][meth_name] = {
+            "B3_vs_B1": meth_h3.get("m_inference_robust_b3_vs_b1"),
+            "B4_vs_B1": meth_h3.get("m_inference_robust_b4_vs_b1"),
+            "per_behaviour": test_inference_robust_breakdown(b1, b3, b4),
+        }
+    save_json(table_dir / "inference_robust.json", inference_robust_report)
+    log.info("wrote %s", table_dir / "inference_robust.json")
 
     # Model-checking --------------------------------------------------------
     log.info("running invariant verification (BFS on FSM)")

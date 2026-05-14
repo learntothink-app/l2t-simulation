@@ -199,14 +199,30 @@ def test_h2(
     return results
 
 
+_H3_LOWER_IS_BETTER = frozenset({"m_inference_robust"})
+
+
 def test_h3(
     b1: list[TrajectoryMetrics],
     b2: list[TrajectoryMetrics],
     b3: list[TrajectoryMetrics],
     b4: list[TrajectoryMetrics],
 ) -> dict:
-    """H3 sanity: B2/B3/B4 outperform B1 on every key metric."""
-    metrics = ("m_mastery", "m_transfer", "m_retention_7d", "m_efficiency")
+    """H3 sanity: B2/B3/B4 outperform B1 on every key metric.
+
+    For metrics where lower-is-better (currently only m_inference_robust)
+    the one-sided test flips: H1 becomes mean(arr) < mean(base). Cohen's
+    d is reported with sign such that **positive d = better than B1**
+    in all cells, so the same threshold ``d > 0.2`` works uniformly.
+    """
+
+    metrics = (
+        "m_mastery",
+        "m_transfer",
+        "m_retention_7d",
+        "m_efficiency",
+        "m_inference_robust",
+    )
     out: dict = {}
     b1_metrics = {attr: _values(b1, attr) for attr in metrics}
     for label, run in (("b2", b2), ("b3", b3), ("b4", b4)):
@@ -215,14 +231,67 @@ def test_h3(
             base = b1_metrics[attr]
             if arr.size == 0 or base.size == 0:
                 continue
-            t, p = _welch_t_one_sided(arr, base)
+            lower_is_better = attr in _H3_LOWER_IS_BETTER
+            if lower_is_better:
+                # Test base > arr (i.e. B1 has higher error than other policy).
+                t, p = _welch_t_one_sided(base, arr)
+                # Flip d so that positive => other policy better than B1.
+                d = -cohen_d(arr, base)
+            else:
+                t, p = _welch_t_one_sided(arr, base)
+                d = cohen_d(arr, base)
             out[f"{attr}_{label}_vs_b1"] = {
                 "mean_b1": float(base.mean()),
                 "mean_other": float(arr.mean()),
                 "t": t,
                 "p_value": p,
-                "cohen_d": cohen_d(arr, base),
-                "confirmed": bool(p < 0.05),
+                "cohen_d": d,
+                "lower_is_better": lower_is_better,
+                "n_b1": int(base.size),
+                "n_other": int(arr.size),
+                "confirmed": bool(p < 0.05 and d > 0.2),
+            }
+    return out
+
+
+def test_inference_robust_breakdown(
+    b1: list[TrajectoryMetrics],
+    b3: list[TrajectoryMetrics],
+    b4: list[TrajectoryMetrics],
+) -> dict:
+    """Per-behaviour breakdown of m_inference_robust for B3, B4 vs B1.
+
+    Returns a dict keyed by ``"{policy}_vs_b1_{behaviour}"`` with
+    means, n, cohen_d (positive = policy better than B1), p_value, CI.
+    Probabilities are not bootstrapped here — that lives in
+    aggregate_table; this function is for the dedicated inference table.
+    """
+
+    out: dict = {}
+    for policy_label, run in (("b3", b3), ("b4", b4)):
+        for behaviour in ("guesser", "copier"):
+            filt = {behaviour}
+            base = _values(b1, "m_inference_robust", filt)
+            arr = _values(run, "m_inference_robust", filt)
+            if base.size == 0 or arr.size == 0:
+                out[f"{policy_label}_vs_b1_{behaviour}"] = {
+                    "n_b1": int(base.size),
+                    "n_other": int(arr.size),
+                    "note": "insufficient observations",
+                }
+                continue
+            t, p = _welch_t_one_sided(base, arr)  # base > arr → policy better
+            d = -cohen_d(arr, base)
+            out[f"{policy_label}_vs_b1_{behaviour}"] = {
+                "behaviour": behaviour,
+                "n_b1": int(base.size),
+                "n_other": int(arr.size),
+                "mean_b1": float(base.mean()),
+                "mean_other": float(arr.mean()),
+                "t": float(t),
+                "p_value": float(p),
+                "cohen_d": float(d),
+                "confirmed": bool(p < 0.05 and d > 0.2),
             }
     return out
 
