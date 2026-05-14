@@ -62,36 +62,62 @@ def run_one(methodology, student_seed: int, behaviour: str) -> tuple[float, floa
 
 
 def main() -> None:
+    import json
+
     methodology = generate_synthetic_methodology(seed=1)
-    results = []
+    out: dict = {
+        "description": (
+            "Isolated test of q_t: B3's (action, observation, q_t) stream "
+            "is replayed through B4's belief update on the same student. "
+            "Δ(B4-B3) > 0 ⇒ q_t weight degrades inference on this stream."
+        ),
+        "seeds": list(range(1000, 1030)),
+        "methodology_seed": 1,
+        "per_behaviour": {},
+    }
     for behaviour in ("guesser", "copier"):
         diffs = []
         b3s = []
         b4s = []
-        for seed in range(1000, 1030):
+        for seed in out["seeds"]:
             mae_b3, mae_b4 = run_one(methodology, seed, behaviour)
             diffs.append(mae_b4 - mae_b3)
             b3s.append(mae_b3)
             b4s.append(mae_b4)
         diffs_arr = np.array(diffs)
+        n_pos = int(np.sum(diffs_arr > 0))
         print(f"\n=== {behaviour} ({len(diffs)} seeds, isolated q_t test on identical stream) ===")
         print(f"  mean MAE B3: {np.mean(b3s):.4f}")
         print(f"  mean MAE B4: {np.mean(b4s):.4f}")
         print(f"  Δ(B4-B3) mean: {diffs_arr.mean():+.4f}")
         print(f"  Δ(B4-B3) std:  {diffs_arr.std(ddof=1):+.4f}")
-        n_pos = int(np.sum(diffs_arr > 0))
         print(f"  seeds where B4 worse: {n_pos}/{len(diffs)}")
-        results.append((behaviour, n_pos, len(diffs), diffs_arr.mean()))
-
-    print("\nVerdict:")
-    for behaviour, n_pos, n, dmean in results:
-        if dmean > 0.02:
-            verdict = "B4 worse (consistent finding)"
-        elif dmean < -0.02:
-            verdict = "B4 better"
+        if diffs_arr.mean() > 0.02:
+            interp = (
+                "q_t over-downweights informative correctness signal: "
+                "behaviour flag triggers downweight even when the observation "
+                "itself carries valid mastery-correlated information."
+            )
+        elif diffs_arr.mean() < -0.02:
+            interp = (
+                "q_t correctly downweights noise: observations under this "
+                "behaviour carry little mastery information; downweighting "
+                "stabilises the belief."
+            )
         else:
-            verdict = "essentially identical"
-        print(f"  {behaviour}: Δ(B4-B3) = {dmean:+.4f}, {n_pos}/{n} seeds B4>B3 — {verdict}")
+            interp = "q_t makes essentially no difference on this stream."
+        out["per_behaviour"][behaviour] = {
+            "B3_MAE_mean": float(np.mean(b3s)),
+            "B4_MAE_mean": float(np.mean(b4s)),
+            "delta_B4_minus_B3_mean": float(diffs_arr.mean()),
+            "delta_B4_minus_B3_std": float(diffs_arr.std(ddof=1)),
+            "seeds_B4_worse": f"{n_pos}/{len(diffs)}",
+            "interpretation": interp,
+        }
+
+    out_path = ROOT / "scripts" / "sanity_b4_inference_results.json"
+    out_path.write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
+    print(f"\nWrote {out_path}")
 
 
 if __name__ == "__main__":

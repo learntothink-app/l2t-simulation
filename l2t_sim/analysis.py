@@ -254,6 +254,49 @@ def test_h3(
     return out
 
 
+def test_inference_robust_b4_vs_b3(
+    b3: list[TrajectoryMetrics],
+    b4: list[TrajectoryMetrics],
+) -> dict:
+    """B4 vs B3 ablation on m_inference_robust — the v0.2.0 'new H1'.
+
+    Tests whether the q_t reliability weighting (B4) adds isolated
+    benefit over rule-based L2T (B3, q_t=1) on belief quality for
+    contaminated students. Independent of the challenge-battery test
+    (Task 3) which is a triangulation on a fixed observation stream.
+
+    Sign convention: positive ``cohen_d`` means B4 beats B3 (i.e. B4
+    has lower MAE between belief and truth).
+    """
+
+    b3_v = _values(b3, "m_inference_robust")
+    b4_v = _values(b4, "m_inference_robust")
+    if b3_v.size == 0 or b4_v.size == 0:
+        return {
+            "metric": "m_inference_robust",
+            "comparison": "B4 vs B3 (q_t isolated ablation)",
+            "n_b3": int(b3_v.size),
+            "n_b4": int(b4_v.size),
+            "note": "insufficient inference_robust observations (need contaminated students)",
+            "confirmed": False,
+        }
+    # Lower is better. Test base=b3 > arr=b4 ⇒ B4 better (mean_b4 < mean_b3).
+    t, p = _welch_t_one_sided(b3_v, b4_v)
+    d = -cohen_d(b4_v, b3_v)
+    return {
+        "metric": "m_inference_robust",
+        "comparison": "B4 vs B3 (q_t isolated ablation, positive d = B4 better)",
+        "n_b3": int(b3_v.size),
+        "n_b4": int(b4_v.size),
+        "mean_b3": float(b3_v.mean()),
+        "mean_b4": float(b4_v.mean()),
+        "t": float(t),
+        "p_value": float(p),
+        "cohen_d": float(d),
+        "confirmed": bool(p < 0.05 and d > 0.2),
+    }
+
+
 def test_inference_robust_breakdown(
     b1: list[TrajectoryMetrics],
     b3: list[TrajectoryMetrics],

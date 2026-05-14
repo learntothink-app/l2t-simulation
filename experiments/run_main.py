@@ -9,6 +9,7 @@ Usage::
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import sys
 import time
@@ -28,6 +29,7 @@ from l2t_sim.analysis import (
     test_h2,
     test_h3,
     test_h4,
+    test_inference_robust_b4_vs_b3,
     test_inference_robust_breakdown,
 )
 from l2t_sim.invariants import verify_invariants_on_fsm
@@ -264,8 +266,24 @@ def main() -> int:
     )
 
     # v0.2.0: dedicated m_inference_robust report — pooled + per
-    # methodology + per behaviour subgroup. Sign convention: positive d
-    # means the L2T policy beats Random on inference quality.
+    # methodology + per behaviour subgroup + isolated q_t ablation
+    # (B4 vs B3). Sign convention: positive cohen_d in every cell means
+    # the L2T policy beats the baseline on inference quality (lower MAE).
+    pooled_h3 = test_h3(
+        pooled["B1_random"], pooled["B2_bkt"], pooled["B3_l2t_no_q"], pooled["B4_full_l2t"]
+    )
+
+    # Load the isolated-stream sanity result (B3's stream replayed through
+    # B4 on the same student) if available — see
+    # scripts/sanity_b4_inference_multi.py.
+    sanity_path = ROOT / "scripts" / "sanity_b4_inference_results.json"
+    sanity_payload: dict | None = None
+    if sanity_path.exists():
+        try:
+            sanity_payload = json.loads(sanity_path.read_text(encoding="utf-8"))
+        except Exception:  # pragma: no cover
+            sanity_payload = None
+
     inference_robust_report: dict = {
         "metric": "m_inference_robust",
         "description": (
@@ -273,31 +291,48 @@ def main() -> int:
             "ground-truth p_true_T, restricted to contaminated students "
             "(behaviour in {guesser, copier}). Lower raw value = better; "
             "cohen_d is reported with positive sign meaning the policy "
-            "beats Random."
+            "beats the baseline (B1 or B3 depending on cell)."
+        ),
+        "main_finding": (
+            "Heuristic q_t per Eq. (23) is behaviour-pattern aware but not "
+            "observation-information aware. On guesser observations "
+            "(p_correct ≈ 1/n_options, independent of mastery), q_t "
+            "correctly downweights noise and B4 improves inference. On "
+            "copier observations (systematic correctness with copying "
+            "pattern flag), q_t over-downweights by a factor of ~3 and "
+            "loses informative correctness signal, so B4 inference degrades "
+            "below Random. Empirical motivation for the trained-classifier "
+            "replacement of Eq. (23) (paper §III.F, Appendix E): a "
+            "learned q̂_t can in principle separate 'suspicious behaviour' "
+            "from 'informative observation' by training on per-behaviour "
+            "ground truth."
         ),
         "pooled": {
-            "B3_vs_B1": test_h3(
-                pooled["B1_random"], pooled["B2_bkt"], pooled["B3_l2t_no_q"], pooled["B4_full_l2t"]
-            )["m_inference_robust_b3_vs_b1"],
-            "B4_vs_B1": test_h3(
-                pooled["B1_random"], pooled["B2_bkt"], pooled["B3_l2t_no_q"], pooled["B4_full_l2t"]
-            )["m_inference_robust_b4_vs_b1"],
+            "B3_vs_B1": pooled_h3.get("m_inference_robust_b3_vs_b1"),
+            "B4_vs_B1": pooled_h3.get("m_inference_robust_b4_vs_b1"),
+            "B4_vs_B3_new_H1": test_inference_robust_b4_vs_b3(
+                pooled["B3_l2t_no_q"], pooled["B4_full_l2t"]
+            ),
             "per_behaviour": test_inference_robust_breakdown(
                 pooled["B1_random"], pooled["B3_l2t_no_q"], pooled["B4_full_l2t"]
             ),
         },
         "per_methodology": {},
+        "isolated_q_t_stream_test": (
+            sanity_payload
+            if sanity_payload is not None
+            else "see scripts/sanity_b4_inference_multi.py (not yet run)"
+        ),
     }
     for meth_name in methodologies:
         b1 = all_results[(meth_name, "B1_random")]
         b3 = all_results[(meth_name, "B3_l2t_no_q")]
         b4 = all_results[(meth_name, "B4_full_l2t")]
-        meth_h3 = test_h3(
-            b1, all_results[(meth_name, "B2_bkt")], b3, b4
-        )
+        meth_h3 = test_h3(b1, all_results[(meth_name, "B2_bkt")], b3, b4)
         inference_robust_report["per_methodology"][meth_name] = {
             "B3_vs_B1": meth_h3.get("m_inference_robust_b3_vs_b1"),
             "B4_vs_B1": meth_h3.get("m_inference_robust_b4_vs_b1"),
+            "B4_vs_B3": test_inference_robust_b4_vs_b3(b3, b4),
             "per_behaviour": test_inference_robust_breakdown(b1, b3, b4),
         }
     save_json(table_dir / "inference_robust.json", inference_robust_report)
