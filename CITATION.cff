@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite both the software and the paper."
 title: "L2T Simulation: Reproducible harness for the LearnToThink framework"
-version: "0.1.6"
-date-released: "2026-05-12"
+version: "0.2.0"
+date-released: "2026-05-14"
 authors:
   - family-names: "Yusupova"
     given-names: "Taya"

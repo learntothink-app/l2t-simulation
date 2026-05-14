@@ -108,6 +108,40 @@ single most useful smoke test.
 
 See `docs/formulas_to_code_map.md`.
 
+## Versions
+
+### v0.1.6 (paper v1 reference)
+
+Pinned to the original §VIII numbers. Use to reproduce paper v1 exactly:
+
+```bash
+git checkout v0.1.6
+python experiments/main.py --seed 42 --config medium
+```
+
+### v0.2.0 (methodological revisions; current `main`)
+
+Addresses internal peer-review feedback on §VIII methodology.
+**Numerical results differ from v0.1.6** — paper v2 (forthcoming)
+will cite v0.2.0. Changes include:
+
+- Synthetic methodology averaged over **K=30 random graphs** (was a
+  single graph at seed=1).
+- New metric `m_inference_robust` isolates belief-quality on
+  contaminated students from action-selection effects; old `m_robust`
+  preserved as `m_selection_robust` alias.
+- **Major finding** (paper §VIII.E rewrite): the heuristic q_t of
+  Eq. (23) is behaviour-pattern-aware but not observation-information
+  -aware. On copier observations it over-downweights valid
+  correctness signal, with Cohen's d ≈ −5.5 vs Random — empirical
+  motivation for the trained-classifier replacement of §III.F.
+- Adversarial invariant test (`experiments/adversarial_invariant_test.py`):
+  guarded vs permissive L2T baseline shows the controller guards do
+  real work (2000/1612/0 violations stripped vs 0/0/0 guarded).
+
+Full breakdown in `results/tables/inference_robust.json` and
+`CHANGELOG.md`.
+
 ## Citing
 
 If you use this code, please cite the paper:
