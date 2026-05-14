@@ -1,0 +1,51 @@
+{
+  "config": {
+    "n_students": 1000,
+    "t_steps": 100,
+    "master_seed": 42,
+    "method_seed": 1
+  },
+  "per_methodology": {
+    "probability": {
+      "B3_l2t_no_q": {
+        "theory_first": 0,
+        "no_spoiler": 0,
+        "transfer_gate": 0,
+        "n": 1000
+      },
+      "B3p_l2t_permissive": {
+        "theory_first": 1000,
+        "no_spoiler": 817,
+        "transfer_gate": 0,
+        "n": 1000
+      }
+    },
+    "synthetic": {
+      "B3_l2t_no_q": {
+        "theory_first": 0,
+        "no_spoiler": 0,
+        "transfer_gate": 0,
+        "n": 1000
+      },
+      "B3p_l2t_permissive": {
+        "theory_first": 1000,
+        "no_spoiler": 795,
+        "transfer_gate": 0,
+        "n": 1000
+      }
+    }
+  },
+  "pooled": {
+    "n_per_policy": 2000,
+    "B3_l2t_no_q": {
+      "theory_first": 0,
+      "no_spoiler": 0,
+      "transfer_gate": 0
+    },
+    "B3p_l2t_permissive": {
+      "theory_first": 2000,
+      "no_spoiler": 1612,
+      "transfer_gate": 0
+    }
+  }
+}

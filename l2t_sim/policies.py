@@ -357,3 +357,50 @@ class L2TPolicy(Policy):
         if md.probes:
             return Action(type="probe", target_id=next(iter(md.probes)))
         return Action(type="task", target_id="")
+
+
+# ---------------------------------------------------------------------------
+# B3p — Permissive L2T (adversarial baseline for H4-empirical)
+
+
+class PermissiveL2TPolicy(L2TPolicy):
+    """L2T policy with internal pedagogical guards stripped.
+
+    Used **only** by the adversarial invariant test
+    (``experiments/adversarial_invariant_test.py``) to demonstrate that
+    the guards in :class:`L2TPolicy` are doing real work: identical
+    action-selection intent, minus the side-condition checks that prevent
+    invariant violations.
+
+    Overrides relative to B3:
+
+    * ``_can_hint`` returns True stochastically — the policy proactively
+      issues hints regardless of ``hint_requested``. Combined with the
+      progressive hint-level ladder in the parent class, this saturates
+      to ``hint_level >= j_star`` after a few steps → ``no_spoiler``
+      violations.
+
+    * ``_concept_theory_pending`` always returns None — the policy
+      issues tasks immediately without scheduling microtheory study,
+      so ``task_presented`` may appear for a task whose required
+      concepts were never ``theory_checked`` → ``theory_first``
+      violations.
+
+    Transfer-gate is intentionally **not** in scope here; that
+    invariant requires a ``block_done`` event which the simulation
+    loop never emits in the T=100 horizon. The adversarial experiment
+    appends a synthetic block_done at the end of each trajectory to
+    exercise the third invariant.
+    """
+
+    PERMISSIVE_HINT_PROB: float = 0.30
+
+    @property
+    def name(self) -> str:
+        return "B3p_l2t_permissive"
+
+    def _can_hint(self, context: Context) -> bool:
+        return self.rng.random() < self.PERMISSIVE_HINT_PROB
+
+    def _concept_theory_pending(self, task: Task, context: Context) -> str | None:
+        return None

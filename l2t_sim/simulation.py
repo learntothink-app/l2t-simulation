@@ -40,7 +40,7 @@ from .metrics import (
     m_robust,
     m_transfer,
 )
-from .policies import BKTPolicy, Context, L2TPolicy, Policy, RandomPolicy
+from .policies import BKTPolicy, Context, L2TPolicy, PermissiveL2TPolicy, Policy, RandomPolicy
 from .reliability import compute_reliability
 from .student_model import BeliefState, StudentModel
 
@@ -126,6 +126,8 @@ def make_policy(name: str, methodology: MethodologyData, rng: np.random.Generato
         return L2TPolicy(methodology.hypergraph, methodology, rng, use_reliability=False)
     if name == "B4_full_l2t":
         return L2TPolicy(methodology.hypergraph, methodology, rng, use_reliability=True)
+    if name == "B3p_l2t_permissive":
+        return PermissiveL2TPolicy(methodology.hypergraph, methodology, rng, use_reliability=False)
     raise ValueError(f"unknown policy: {name}")
 
 
@@ -134,6 +136,7 @@ POLICY_USES_RELIABILITY = {
     "B2_bkt": False,
     "B3_l2t_no_q": False,
     "B4_full_l2t": True,
+    "B3p_l2t_permissive": False,
 }
 
 
