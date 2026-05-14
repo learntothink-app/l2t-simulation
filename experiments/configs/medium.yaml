@@ -5,6 +5,13 @@ master_seed: 42
 method_seed: 1
 n_bootstrap: 10000
 
+# v0.2.0 — synthetic is averaged over K=30 random graph topologies so
+# headline synthetic numbers are not n=1 samples in topology space.
+# Each graph runs N=n_students students; total 30 * 1000 = 30000
+# synthetic trajectories per policy. Probability methodology is real
+# and unchanged.
+synthetic_ensemble_k: 30
+
 behaviour_proportions:
   honest: 0.60
   guesser: 0.15

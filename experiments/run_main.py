@@ -105,20 +105,38 @@ def main() -> int:
         len(probability.holdout_transfer_ids),
     )
 
-    log.info("generating synthetic methodology (seed=%d)", cfg["method_seed"])
-    synth = generate_synthetic_methodology(seed=cfg["method_seed"])
-    save_synthetic_to_json(synth, ROOT / "methodologies" / "synthetic_abstract.json")
+    # v0.2.0: synthetic is an ensemble over K random graph topologies.
+    # K=1 reproduces v0.1.x single-graph behaviour.
+    K = int(cfg.get("synthetic_ensemble_k", 1))
+    if K == 1:
+        seed = int(cfg.get("method_seed", 1))
+        log.info("generating synthetic methodology (seed=%d)", seed)
+        synth = generate_synthetic_methodology(seed=seed)
+        save_synthetic_to_json(synth, ROOT / "methodologies" / "synthetic_abstract.json")
+        synthetic_ensemble = [(seed, synth)]
+    else:
+        log.info("synthetic ensemble: K=%d random graphs (seeds 1..%d)", K, K)
+        synthetic_ensemble = []
+        for graph_seed in range(1, K + 1):
+            synth = generate_synthetic_methodology(seed=graph_seed)
+            synthetic_ensemble.append((graph_seed, synth))
+        # Save the seed=1 graph for inspection; the others are reproducible
+        # from their seeds.
+        save_synthetic_to_json(
+            synthetic_ensemble[0][1], ROOT / "methodologies" / "synthetic_abstract.json"
+        )
     log.info(
-        "synthetic: %d vertices, %d edges, %d skills, %d tasks, %d transfer, %d holdout",
-        len(synth.hypergraph.vertices),
-        len(synth.hypergraph.edges),
-        len(synth.hypergraph.skill_ids),
-        len(synth.tasks),
-        len(synth.transfer_tasks),
-        len(synth.holdout_transfer_ids),
+        "synthetic (seed=%d sample): %d vertices, %d edges, %d skills, %d tasks, %d transfer, %d holdout",
+        synthetic_ensemble[0][0],
+        len(synthetic_ensemble[0][1].hypergraph.vertices),
+        len(synthetic_ensemble[0][1].hypergraph.edges),
+        len(synthetic_ensemble[0][1].hypergraph.skill_ids),
+        len(synthetic_ensemble[0][1].tasks),
+        len(synthetic_ensemble[0][1].transfer_tasks),
+        len(synthetic_ensemble[0][1].holdout_transfer_ids),
     )
 
-    methodologies = {"probability": probability, "synthetic": synth}
+    methodologies = {"probability": probability, "synthetic": synthetic_ensemble[0][1]}
 
     # Manifest --------------------------------------------------------------
     manifest = {
@@ -130,22 +148,44 @@ def main() -> int:
     save_json(results_root / "experiment_manifest.json", manifest)
 
     # Run simulation --------------------------------------------------------
-    all_results = {}
-    for meth_name, meth in methodologies.items():
+    all_results: dict[tuple[str, str], list] = {}
+    # Per-graph synthetic results: {(graph_seed, pol_name): records}
+    synthetic_per_graph: dict[tuple[int, str], list] = {}
+
+    sim_kwargs = dict(
+        n_students=int(cfg["n_students"]),
+        t_steps=int(cfg["t_steps"]),
+        master_seed=int(cfg["master_seed"]),
+        behaviour_proportions=cfg.get("behaviour_proportions"),
+        retention_days=tuple(cfg.get("retention_intervals_days", [1, 3, 7, 14])),
+        prereq_perturbation_eps=float(cfg.get("prereq_perturbation_eps", 0.10)),
+        n_jobs=int(cfg.get("n_jobs", 1)),
+    )
+
+    # Probability — single methodology run.
+    for pol_name in POLICY_NAMES:
+        t0 = time.perf_counter()
+        log.info("running %s on probability", pol_name)
+        recs = run_simulation(policy_name=pol_name, methodology=probability, **sim_kwargs)
+        secs = time.perf_counter() - t0
+        log.info(
+            "  done in %.1fs (%d records, mean m_mastery=%.3f, mean m_transfer=%.3f)",
+            secs,
+            len(recs),
+            _safe_mean([r.m_mastery for r in recs]),
+            _safe_mean([r.m_transfer for r in recs]),
+        )
+        all_results[("probability", pol_name)] = recs
+
+    # Synthetic — K-graph ensemble. Trajectories are pooled across graphs
+    # under ('synthetic', pol_name); the per-graph means feed into
+    # synthetic_aggregate.csv (mean ± std over graphs).
+    synth_pooled: dict[str, list] = {p: [] for p in POLICY_NAMES}
+    for graph_seed, synth_meth in synthetic_ensemble:
         for pol_name in POLICY_NAMES:
             t0 = time.perf_counter()
-            log.info("running %s on %s", pol_name, meth_name)
-            recs = run_simulation(
-                policy_name=pol_name,
-                methodology=meth,
-                n_students=int(cfg["n_students"]),
-                t_steps=int(cfg["t_steps"]),
-                master_seed=int(cfg["master_seed"]),
-                behaviour_proportions=cfg.get("behaviour_proportions"),
-                retention_days=tuple(cfg.get("retention_intervals_days", [1, 3, 7, 14])),
-                prereq_perturbation_eps=float(cfg.get("prereq_perturbation_eps", 0.10)),
-                n_jobs=int(cfg.get("n_jobs", 1)),
-            )
+            log.info("running %s on synthetic graph seed=%d", pol_name, graph_seed)
+            recs = run_simulation(policy_name=pol_name, methodology=synth_meth, **sim_kwargs)
             secs = time.perf_counter() - t0
             log.info(
                 "  done in %.1fs (%d records, mean m_mastery=%.3f, mean m_transfer=%.3f)",
@@ -154,13 +194,27 @@ def main() -> int:
                 _safe_mean([r.m_mastery for r in recs]),
                 _safe_mean([r.m_transfer for r in recs]),
             )
-            all_results[(meth_name, pol_name)] = recs
+            synthetic_per_graph[(graph_seed, pol_name)] = recs
+            synth_pooled[pol_name].extend(recs)
+    for pol_name in POLICY_NAMES:
+        all_results[("synthetic", pol_name)] = synth_pooled[pol_name]
 
     # Aggregate -------------------------------------------------------------
     rows = aggregate_table(all_results, n_bootstrap=int(cfg.get("n_bootstrap", 10000)))
     table_dir = results_root / "tables"
     write_csv_table(rows, table_dir / "main_results.csv")
     log.info("wrote %s", table_dir / "main_results.csv")
+
+    # Per-graph synthetic outputs (only meaningful when K > 1).
+    if K > 1:
+        _write_synthetic_per_graph_csv(
+            synthetic_per_graph, table_dir / "synthetic_per_graph.csv"
+        )
+        _write_synthetic_aggregate_csv(
+            synthetic_per_graph, table_dir / "synthetic_aggregate.csv"
+        )
+        log.info("wrote %s", table_dir / "synthetic_per_graph.csv")
+        log.info("wrote %s", table_dir / "synthetic_aggregate.csv")
 
     # Hypotheses ------------------------------------------------------------
     # POOLED testing: combine all methodologies for the primary statistical
@@ -254,6 +308,80 @@ def _safe_mean(xs):
     if not xs:
         return float("nan")
     return float(sum(xs) / len(xs))
+
+
+_PER_GRAPH_METRICS = (
+    "m_mastery",
+    "m_transfer",
+    "m_retention_1d",
+    "m_retention_3d",
+    "m_retention_7d",
+    "m_retention_14d",
+    "m_hint",
+    "m_robust",
+    "m_efficiency",
+    "m_meta",
+    "m_engage",
+    "m_calib",
+)
+
+
+def _per_graph_means(per_graph: dict[tuple[int, str], list]) -> dict[tuple[int, str, str], tuple[float, int]]:
+    """Per-(graph_seed, policy, metric) → (mean, n) with NaN filtered."""
+    import math
+
+    out: dict[tuple[int, str, str], tuple[float, int]] = {}
+    for (graph_seed, pol_name), recs in per_graph.items():
+        for metric in _PER_GRAPH_METRICS:
+            values = [
+                getattr(r, metric)
+                for r in recs
+                if getattr(r, metric) is not None
+                and not (isinstance(getattr(r, metric), float) and math.isnan(getattr(r, metric)))
+            ]
+            if not values:
+                continue
+            out[(graph_seed, pol_name, metric)] = (float(sum(values) / len(values)), len(values))
+    return out
+
+
+def _write_synthetic_per_graph_csv(per_graph: dict[tuple[int, str], list], path: Path) -> None:
+    """Long-format CSV: one row per (graph_seed, policy, metric)."""
+    import csv
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    means = _per_graph_means(per_graph)
+    with path.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["graph_seed", "policy", "metric", "mean", "n_students"])
+        for (graph_seed, pol_name, metric), (mean, n) in sorted(means.items()):
+            w.writerow([graph_seed, pol_name, metric, f"{mean:.6f}", n])
+
+
+def _write_synthetic_aggregate_csv(per_graph: dict[tuple[int, str], list], path: Path) -> None:
+    """Wide-format CSV: one row per (policy, metric) with mean and std over K graphs."""
+    import csv
+    import math
+    from collections import defaultdict
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    means = _per_graph_means(per_graph)
+    grouped: dict[tuple[str, str], list[float]] = defaultdict(list)
+    for (graph_seed, pol_name, metric), (mean, _n) in means.items():
+        grouped[(pol_name, metric)].append(mean)
+
+    with path.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["policy", "metric", "mean_over_graphs", "std_over_graphs", "k"])
+        for (pol_name, metric), values in sorted(grouped.items()):
+            k = len(values)
+            mean = sum(values) / k
+            if k > 1:
+                var = sum((v - mean) ** 2 for v in values) / (k - 1)
+                std = math.sqrt(var)
+            else:
+                std = 0.0
+            w.writerow([pol_name, metric, f"{mean:.6f}", f"{std:.6f}", k])
 
 
 if __name__ == "__main__":
